@@ -14,7 +14,7 @@ const CardImageTextOpa: React.FC<CardITOProps> = ({
       className="relative rounded-lg overflow-hidden shadow-lg group transition-opacity duration-300 ease-in-out"
       style={{ width, height }}
     >
-      <div className="w-full h-full transition-opacity duration-300 ease-in-out group-hover:opacity-50">
+      <div className="w-full h-full transition-opacity duration-300 ease-in-out group-hover:opacity-90">
         <Icon type={imageName} className="w-full h-full object-cover" />
       </div>
       <div className="absolute inset-0 flex flex-col justify-end p-4">

@@ -10,4 +10,6 @@ export interface CardITOProps {
   description?: string;
   width?: string;
   height?: string;
+  link?: string;
+  onClick?: () => void;
 }

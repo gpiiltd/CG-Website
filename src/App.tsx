@@ -1,5 +1,6 @@
 import Icon from './assets/SvgImagesAndIcons';
 import CardImageTextOpa from './Components/Cards/CardImageTextOpa';
+import CardWithImage from './Components/Cards/CardWithImage';
 function App() {
   return (
     <>
@@ -14,10 +15,26 @@ function App() {
           // width="45%"
           // height="65%"
         />
-        <CardImageTextOpa
-          imageName="cgLogo"
-          title="Sample Title"
-          description="This is a sample description."
+        <CardWithImage
+          imageName="menPipe"
+          title="Deployment, Operation & Maintenance of Offshore infrastructure"
+          description="From offshore infrastructure deployment, to energy logistics, our integrated services are designed."
+          link="Learn More"
+        />
+      </div>
+
+      <div className="flex w-full gap-2">
+        <CardWithImage
+          imageName="menPipe"
+          title="Deployment, Operation & Maintenance of Offshore infrastructure"
+          description="From offshore infrastructure deployment, to energy logistics, our integrated services are designed."
+          link="Learn More"
+        />
+        <CardWithImage
+          imageName="menPipe"
+          title="Deployment, Operation & Maintenance of Offshore infrastructure"
+          description="From offshore infrastructure deployment, to energy logistics, our integrated services are designed."
+          link="Learn More"
         />
       </div>
     </>
