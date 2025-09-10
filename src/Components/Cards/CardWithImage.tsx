@@ -19,7 +19,7 @@ const CardWithImage: React.FC<CardITOProps> = ({
     <div className="w-[70%]  flex flex-col justify-center">
       <h2 className="text-[#11092F] text-lg font-semibold">{title}</h2>
       <p className="text-[#3E3E41] my-1">{description}</p>
-      <p className="text-[#ED6C30]">{link}</p>
+      <p className="text-[#ED6C30] cursor-pointer">{link}</p>
     </div>
   </div>
 );
