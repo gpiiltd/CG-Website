@@ -12,4 +12,6 @@ export interface CardITOProps {
   height?: string;
   link?: string;
   onClick?: () => void;
+  faceName?: string;
+  role?: string;
 }
