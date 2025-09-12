@@ -1,17 +1,14 @@
-import Icon from './assets/SvgImagesAndIcons';
-import CardITO from './Components/Cards/CardITO';
+import { Typography } from './Components/Typography';
+
 function App() {
   return (
     <>
-      <div>
-        <h1>Century Website </h1>
-        Icon here <Icon type="cgLogo" className="w-10 h-10" />
-        CardITO here
-        <CardITO
-          imageUrl="cgLogo"
-          title="Sample Title"
-          description="This is a sample description."
-        />
+      <div className="flex justify-center items-center pt-36 bg-primary">
+        <Typography size="xl" weight={{ md: 'bold', base: 'light', lg: 'bold' }} color="primary">
+          Your personal shopping assistant at your fingertips, Simply share the url to the item you
+          want, and we'll take care of the purchasing and delivery process for you, ensuring it
+          arrives right at your doorstep.
+        </Typography>
       </div>
     </>
   );
