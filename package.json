@@ -8,12 +8,16 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "prepare": "husky"
+    "prepare": "husky",
+    "test": "echo \"No tests specified\" && exit 0"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.13",
     "react": "^19.1.1",
-    "react-dom": "^19.1.1"
+
+    "react-dom": "^19.1.1",
+    "react-spinners": "^0.17.0",
+    "tailwindcss": "^4.1.13"
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx}": [

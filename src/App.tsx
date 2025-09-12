@@ -1,14 +1,11 @@
-import { Typography } from './Components/Typography';
 
+import Icon from './assets/SvgImagesAndIcons';
 function App() {
   return (
     <>
-      <div className="flex justify-center items-center pt-36 bg-primary">
-        <Typography size="xl" weight={{ md: 'bold', base: 'light', lg: 'bold' }} color="primary">
-          Your personal shopping assistant at your fingertips, Simply share the url to the item you
-          want, and we'll take care of the purchasing and delivery process for you, ensuring it
-          arrives right at your doorstep.
-        </Typography>
+      <div>
+        <Icon type="cgLogo" className="w-10 h-10" />
+        <h1>Century Website </h1>
       </div>
     </>
   );

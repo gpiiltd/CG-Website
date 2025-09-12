@@ -5,7 +5,11 @@ export interface Svgprops {
 }
 
 export interface CardITOProps {
-  imageUrl?: string;
+  imageName?: string;
   title?: string;
   description?: string;
+  width?: string;
+  height?: string;
+  link?: string;
+  onClick?: () => void;
 }
