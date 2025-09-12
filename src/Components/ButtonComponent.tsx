@@ -29,7 +29,7 @@ export const ButtonComponent: React.FC<ButtonProps> = ({
 }) => {
   // Determine styles based on variant
   const isOutline = variant === 'outline';
-  
+
   // Set default colors based on variant
   const finalTextColor = text_color || (isOutline ? bg_color : 'white');
   const finalBorderColor = border_color || (isOutline ? bg_color : bg_color);
@@ -73,10 +73,7 @@ export const ButtonComponent: React.FC<ButtonProps> = ({
   };
 
   return (
-    <div
-      style={containerStyle}
-      onClick={active && !loading ? onClick : undefined}
-    >
+    <div style={containerStyle} onClick={active && !loading ? onClick : undefined}>
       <button
         onClick={active && !loading ? onClick : undefined}
         disabled={loading || !active}
@@ -110,3 +107,21 @@ export const ButtonComponent: React.FC<ButtonProps> = ({
     </div>
   );
 };
+
+//example code for buttons
+//  <br />
+//         <ButtonComponent
+//           text="Click me"
+//           loading={isLoading}
+//           onClick={handleClick}
+//           bg_color="#3b82f6"
+//           width="30%"
+//         />
+//         <br />
+//         <ButtonComponent
+//           text="Outline with Icon"
+//           variant="outline"
+//           bg_color="#10b981"
+//           iconPosition="prefix"
+//           width="30%"
+//         />

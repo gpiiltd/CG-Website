@@ -169,3 +169,21 @@ export const TabBar: React.FC<TabBarProps> = ({
     </div>
   );
 };
+
+//example code for modal
+{
+  /* <br />
+        <div className="App pt-4 bg-amber-300  flex flex-col justify-center m-10">
+          <div className="mx-4">
+            <TabBar
+              tabs={tabs}
+              variant="elevated"
+              onTabChange={handleTabChange}
+              className="custom-tab-bar"
+            />
+          </div>
+        </div>
+        <p className="m-10">
+          You can check your console to check the response for the onchanged values
+        </p> */
+}
