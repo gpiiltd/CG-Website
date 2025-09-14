@@ -15,3 +15,11 @@ export interface CardITOProps {
   faceName?: string;
   role?: string;
 }
+
+export interface Modalprops {
+  isOpen: boolean;
+  onClose: () => void;
+  children: React.ReactNode;
+  width?: string;
+  height?: string;
+}

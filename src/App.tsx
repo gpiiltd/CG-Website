@@ -1,5 +1,5 @@
 // import Icon from './assets/SvgImagesAndIcons';
-import FacesOfCG from './Pages/FacesOfCG';
+import FacesOfCG from './Pages/FacesOfCG/FacesOfCG';
 function App() {
   return (
     <>
