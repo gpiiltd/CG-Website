@@ -2,12 +2,10 @@ import React, { useState } from 'react';
 import CardFace from '../../Components/Cards/CardFace';
 import { cgFaces } from './ListofFaces';
 import CustomModal from '../../Components/Modal/Modal';
-import { FaLinkedinIn, FaTwitter, FaFacebookF, FaInstagram } from 'react-icons/fa';
 import Icon from '../../assets/SvgImagesAndIcons';
 
 const FacesOfCG: React.FC = () => {
   const [activeTab, setActiveTab] = useState<string>('directors');
-  // const [showModal, setShowModal] = useState(false);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [selectedFace, setSelectedFace] = useState<any>(null);
 
@@ -24,11 +22,10 @@ const FacesOfCG: React.FC = () => {
             stakeholders.
           </p>
 
-          {/* Responsive tabs */}
           <div className="flex justify-center bg-[#FCEEEA] space-x-2 sm:space-x-4 mb-6 w-full md:w-[70%] lg:w-[60%] mx-auto rounded-xl p-2">
             <button
               className={`flex-1 py-3 px-2 sm:px-6 rounded-lg text-sm sm:text-base ${
-                activeTab === 'directors' ? 'bg-white text-[#ED6C30]' : 'text-[#667085]'
+                activeTab === 'directors' ? 'bg-white text-[#ED6C30] shadow-lg' : 'text-[#667085]'
               }`}
               onClick={() => setActiveTab('directors')}
             >
@@ -36,7 +33,7 @@ const FacesOfCG: React.FC = () => {
             </button>
             <button
               className={`flex-1 py-3 px-2 sm:px-6 rounded-lg text-sm sm:text-base ${
-                activeTab === 'management' ? 'bg-white text-[#ED6C30]' : 'text-[#667085]'
+                activeTab === 'management' ? 'bg-white text-[#ED6C30] shadow-lg' : 'text-[#667085]'
               }`}
               onClick={() => setActiveTab('management')}
             >
@@ -45,7 +42,7 @@ const FacesOfCG: React.FC = () => {
           </div>
 
           {activeTab === 'directors' && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-12 gap-y-20 justify-items-center mb-16">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-12 gap-y-20 justify-items-center mb-16 mt-12">
               {cgFaces.map((face) => (
                 <div
                   key={face.faceName}
@@ -58,7 +55,6 @@ const FacesOfCG: React.FC = () => {
                     faceName={face.faceName}
                     role={face.role}
                     description={face.description}
-                    // onClick={() => setShowModal(true)}
                   />
                 </div>
               ))}
@@ -71,7 +67,8 @@ const FacesOfCG: React.FC = () => {
             </h1>
           )}
         </div>
-        <div className="max-w-5xl mx-auto mt-12 px-4">
+
+        <div className="max-w-5xl mx-auto  px-4 my-36">
           <div className="bg-[#18193F] rounded-[16px] py-12 px-8 flex flex-col md:flex-row items-center justify-between">
             <div>
               <h2 className="text-white text-3xl font-bold mb-2">Build a future with us</h2>
@@ -98,9 +95,7 @@ const FacesOfCG: React.FC = () => {
           height="585px"
         >
           {selectedFace && (
-            <div className="flex flex-col md:flex-row gap-8 px-10 py-2">
-              {/* Left: Image and name/role card */}
-
+            <div className="flex flex-col md:flex-row gap-8 px-10 py-2 mb-8">
               <div className="relative flex flex-col items-center md:w-[295px] md:h-[295px]">
                 <div className="absolute inset-0 ">
                   <div className="w-full h-full rounded-[48px] relative">
@@ -108,7 +103,7 @@ const FacesOfCG: React.FC = () => {
                       type={selectedFace.imageName}
                       className="w-full` h-[460px] object-cover rounded-xl"
                     />
-                    <div className="absolute left-0 bottom-[-200px] w-[90%] bg-[#FCEEEA] rounded-tr-[24px] shadow-md py-4 px-4 flex flex-col items-center">
+                    <div className="absolute left-0 bottom-[-500px] md:bottom-[-200px] w-[90%] bg-[#FCEEEA] rounded-tr-[24px] shadow-md py-4 px-4 flex flex-col items-center">
                       <span className="text-[#ED6C30] font-semibold text-xl">
                         {selectedFace.faceName}
                       </span>
@@ -118,8 +113,7 @@ const FacesOfCG: React.FC = () => {
                 </div>
               </div>
 
-              {/* Right: Bio and social links */}
-              <div className="flex-1 flex flex-col">
+              <div className="flex-1 flex flex-col mt-[500px] md:mt-0">
                 <div>
                   <p className="text-[#18193F] text-sm leading-relaxed whitespace-pre-line">
                     <span className="text-[#ED6C30] font-semibold mr-1">
@@ -129,37 +123,17 @@ const FacesOfCG: React.FC = () => {
                   </p>
                 </div>
                 <div className="flex items-center gap-6 mt-8">
-                  <a
-                    href={selectedFace.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[#ED6C30] hover:text-[#18193F]"
-                  >
-                    <FaLinkedinIn size={24} />
+                  <a href={selectedFace.linkedin} target="_blank" rel="noopener noreferrer">
+                    <Icon type="linkedinIcon" className="w-full h-full object-cover rounded-xl" />
                   </a>
-                  <a
-                    href={selectedFace.facebook}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[#ED6C30] hover:text-[#18193F]"
-                  >
-                    <FaFacebookF size={24} />
+                  <a href={selectedFace.facebook} target="_blank" rel="noopener noreferrer">
+                    <Icon type="facebookIcon" className="w-full h-full object-cover rounded-xl" />
                   </a>
-                  <a
-                    href={selectedFace.twitter}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[#ED6C30] hover:text-[#18193F]"
-                  >
-                    <FaTwitter size={24} />
+                  <a href={selectedFace.twitter} target="_blank" rel="noopener noreferrer">
+                    <Icon type="twitterIcon" className="w-full h-full object-cover rounded-xl" />
                   </a>
-                  <a
-                    href={selectedFace.instagram}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[#ED6C30] hover:text-[#18193F]"
-                  >
-                    <FaInstagram size={24} />
+                  <a href={selectedFace.instagram} target="_blank" rel="noopener noreferrer">
+                    <Icon type="instagramIcon" className="w-full h-full object-cover rounded-xl" />
                   </a>
                 </div>
               </div>
