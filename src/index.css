@@ -1,9 +1,8 @@
+
 @import "tailwindcss";
 @import 'swiper/css';
 @import 'swiper/css/pagination';
 @import 'swiper/css/navigation';
-
-
 
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -14,6 +13,14 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Hide scrollbars but keep scroll functionality */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
 section {
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE and Edge */
