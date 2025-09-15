@@ -2,7 +2,6 @@ import React from 'react';
 import Icon from '../../assets/SvgImagesAndIcons';
 import { Typography } from '../Typography';
 
-// Define the card data type
 interface CardData {
   id: number;
   title: string;
@@ -11,7 +10,6 @@ interface CardData {
   icon: string;
 }
 
-// Sample JSON data for cards
 const cardData: CardData[] = [
   {
     id: 1,

@@ -34,7 +34,6 @@ export default function Timeline() {
   const goPrev = () => setActiveIndex((prev) => Math.max(prev - 1, 0));
   const goNext = () => setActiveIndex((prev) => Math.min(prev + 1, years.length - 1));
 
-  // Auto-scroll to center the active year when selected
   useEffect(() => {
     if (scrollRef.current) {
       const activeButton = scrollRef.current.querySelector(`#year-${activeIndex}`);

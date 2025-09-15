@@ -12,8 +12,8 @@ interface ButtonProps {
   bg_color?: string;
   text_color?: string;
   border_color?: string;
-  minWidth?: string; // 👈 new: enforce a minimum size
-  fullWidth?: boolean; // 👈 new: allow full width stretching
+  minWidth?: string;
+  fullWidth?: boolean;
   variant?: 'solid' | 'outline';
 }
 
@@ -48,15 +48,15 @@ export const ButtonComponent: React.FC<ButtonProps> = ({
     borderStyle: 'solid',
     padding: '0.6rem 1.4rem',
     borderWidth: '1px',
-    display: 'inline-flex', // 👈 lets button size itself based on content
+    display: 'inline-flex',
     justifyContent: 'center',
     alignItems: 'center',
-    minWidth, // 👈 keeps a base size
-    width: fullWidth ? '100%' : 'auto', // 👈 only full width if user asks
+    minWidth,
+    width: fullWidth ? '100%' : 'auto',
     boxShadow: active && !isOutline ? '0 4px 6px rgba(0, 0, 0, 0.1)' : 'none',
     transform: hovered ? 'scale(1.03)' : 'scale(1)',
     fontFamily: 'system-ui, sans-serif',
-    whiteSpace: 'nowrap', // 👈 prevent breaking text in multiple lines
+    whiteSpace: 'nowrap',
   };
 
   const buttonStyle: React.CSSProperties = {
@@ -130,3 +130,65 @@ export const ButtonComponent: React.FC<ButtonProps> = ({
     </div>
   );
 };
+
+// Examples of how to use this component
+
+{
+  /* <ButtonComponent text="Submit" onClick={() => alert('Submitted!')} />
+<ButtonComponent
+  text="Cancel"
+  variant="outline"
+  bg_color="#ef4444" // red outline
+  onClick={() => console.log('Cancelled')}
+/>
+<ButtonComponent
+  text="Continue"
+  active={false} // disables click and dims button
+/>
+<ButtonComponent
+  text="Sign In"
+  fullWidth
+  bg_color="#16a34a" // green
+  onClick={() => console.log('Signing in...')}
+/>
+
+const [loading, setLoading] = useState(false);
+
+<ButtonComponent
+  text="Place Order"
+  loading={loading}
+  onClick={() => {
+    setLoading(true);
+    setTimeout(() => setLoading(false), 2000); // simulate API call
+  }}
+/>
+
+<ButtonComponent
+  text="Custom Styled"
+  bg_color="#9333ea" // purple
+  text_color="yellow"
+  border_color="#facc15"
+  minWidth="180px"
+  onClick={() => console.log('Custom button clicked')}
+/>
+<div style={{ display: 'flex', gap: '1rem' }}>
+  <ButtonComponent text="Accept" bg_color="#22c55e" />
+  <ButtonComponent text="Reject" variant="outline" bg_color="#ef4444" />
+</div>
+
+<ButtonComponent
+  text="Next Step"
+  onClick={() => console.log('Next step')}
+  bg_color="#3b82f6"
+/>
+
+
+import { useNavigate } from 'react-router-dom';
+
+const navigate = useNavigate();
+
+<ButtonComponent
+  text="Go to Dashboard"
+  onClick={() => navigate('/dashboard')}
+/> */
+}
