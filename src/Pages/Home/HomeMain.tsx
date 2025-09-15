@@ -1,8 +1,11 @@
+import HeroSection from "./HeroSection"
+import TrustedPartners from "./TrustedPartners"
 
 const HomeMain = () => {
   return (
-    <div className='h-screen'>
-      HomeMain
+    <div >
+<HeroSection/>
+<TrustedPartners />
       </div>
   )
 }

@@ -9,3 +9,13 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+section {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+section::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, and Opera */
+}
+

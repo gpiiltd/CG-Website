@@ -9,6 +9,8 @@ export default {
         foundation_blue: '#170C3D',
         body_text: '#3E3E41',
         foundation_orange: '#ED6C30',
+black:'body_text'
+
       },
     },
   },
