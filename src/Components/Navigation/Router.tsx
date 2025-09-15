@@ -1,11 +1,17 @@
 import { createBrowserRouter, RouterProvider, type RouteObject } from 'react-router-dom';
 import MainLayout from '../../Pages/MainLayout';
+import FacesOfCG from '../../Pages/FacesOfCG/FacesOfCG';
 
 const routes: RouteObject[] = [
   {
     path: '/',
     element: <MainLayout />,
-    children: [],
+    children: [
+      {
+        path: 'faces-of-cg',
+        element: <FacesOfCG />,
+      },
+    ],
   },
   {
     path: '*',
