@@ -1,15 +1,10 @@
-// import Icon from './assets/SvgImagesAndIcons';
-import FacesOfCG from './Pages/FacesOfCG/FacesOfCG';
+import Router from './Components/Navigation/Router';
+
 function App() {
   return (
     <>
-      {/* <div>
-        <Icon type="cgLogo" className="w-10 h-10" />
-        <h1>Century Website </h1>
-      </div> */}
-
       <div>
-        <FacesOfCG />
+        <Router />
       </div>
     </>
   );
