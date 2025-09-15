@@ -14,6 +14,7 @@ export interface CardITOProps {
   onClick?: () => void;
   faceName?: string;
   role?: string;
+imageSrc?: string;
 }
 
 export interface Modalprops {

@@ -1,4 +1,5 @@
 import HeroSection from "./HeroSection"
+import OurServices from "./OurServices"
 import TrustedPartners from "./TrustedPartners"
 
 const HomeMain = () => {
@@ -6,6 +7,7 @@ const HomeMain = () => {
     <div >
 <HeroSection/>
 <TrustedPartners />
+<OurServices />
       </div>
   )
 }

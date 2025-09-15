@@ -18,7 +18,10 @@
     "react-dom": "^19.1.1",
     "react-icons": "^5.5.0",
     "react-router-dom": "^7.9.1",
+    "react-slick": "^0.31.0",
     "react-spinners": "^0.17.0",
+    "slick-carousel": "^1.8.1",
+    "swiper": "^12.0.1",
     "tailwindcss": "^4.1.13"
   },
   "lint-staged": {
@@ -34,6 +37,7 @@
     "@eslint/js": "^9.33.0",
     "@types/react": "^19.1.10",
     "@types/react-dom": "^19.1.7",
+    "@types/react-slick": "^0.23.13",
     "@typescript-eslint/eslint-plugin": "^8.43.0",
     "@typescript-eslint/parser": "^8.43.0",
     "@vitejs/plugin-react-swc": "^4.0.0",
