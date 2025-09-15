@@ -9,8 +9,11 @@ import rope from '../assets/svgImages/rope.svg';
 import transform from '../assets/svgImages/transform.svg';
 import leverage from '../assets/svgImages/leverage.svg';
 import Timeline from '../Components/discovery/DiscoveryTimeline';
+import { useNavigate } from 'react-router-dom';
 
 const DiscoveryView = () => {
+  const navigate = useNavigate();
+
   return (
     <div className=" bg-white">
       {/* Hero Section */}
@@ -116,7 +119,7 @@ const DiscoveryView = () => {
           The journey: From passion to strategy
         </Typography>
         <Typography weight="light" className="text-[#11092F] text-center md:w-[40%] m-auto mb-6">
-          We didn’t just ride the waves — we learned to navigate storms. The early years tested our
+          We didn’t just ride the waves — we learned to navigate storms.The early years tested our
           resilience. When the global market retreated during the 2008 downturn, we doubled up on
           ingenuity
         </Typography>
@@ -144,7 +147,7 @@ const DiscoveryView = () => {
             </div>
 
             {/* Button aligned left */}
-            <ButtonComponent text="Faces of CG" bg_color="#ED6C30" />
+            <ButtonComponent text="Faces of CG" bg_color="#ED6C30" onClick={()=>navigate('/services')}/>
             {/* fix with what choima said and add className for user to still edit it*/}
           </div>
 
@@ -224,7 +227,7 @@ const DiscoveryView = () => {
               purposeful progress, leveraging African talent to redistribute opportunity and ignite
               critical innovation.
             </Typography>
-            <ButtonComponent text="View Our Services" variant="solid" bg_color="#ED6C30" />
+            <ButtonComponent text="View Our Services" variant="solid" bg_color="#ED6C30" onClick={()=>navigate('/services')}/>
           </div>
         </div>
 

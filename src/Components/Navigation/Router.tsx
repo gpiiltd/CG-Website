@@ -4,6 +4,8 @@ import routeNames from './RouteNames';
 import ServicesMain from '../../Pages/ServicesMain';
 import FacesOfCG from '../../Pages/FacesOfCG/FacesOfCG';
 import HomeMain from '../../Pages/Home/HomeMain';
+import DiscoveryView from '../../Pages/DiscoveryView';
+import ContactUs from '../../Pages/ContactUs';
 
 const routes: RouteObject[] = [
   {
@@ -11,7 +13,6 @@ const routes: RouteObject[] = [
     element: <MainLayout />,
     children: [
       { index: true, element: <HomeMain /> },
-
       {
         path: routeNames.services,
         element: <ServicesMain />,
@@ -22,6 +23,10 @@ const routes: RouteObject[] = [
           },
         ],
       },
+      { path: routeNames.discoveryCG, element: <DiscoveryView /> },
+
+      { path: routeNames.contactUs, element: <ContactUs /> },
+
     ],
   },
   // ...

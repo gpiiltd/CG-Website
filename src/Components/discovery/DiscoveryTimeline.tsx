@@ -64,9 +64,9 @@ export default function Timeline() {
                 >
                   <span>{item.year}</span>
                   {i === activeIndex ? (
-                    <Icon type="dotted" className="text-orange-500 mt-1" />
+                    <Icon type="dotted" className="text-orange-500 mt-1 " />
                   ) : (
-                    <Icon type="dull" className="text-gray-400 mt-1" />
+                    <Icon type="dull" className="text-gray-400 mt-1 " />
                   )}
                 </button>
                 {i < years.length - 1 && <span className="mx-2 text-gray-400 select-none">—</span>}
@@ -95,14 +95,14 @@ export default function Timeline() {
               <button
                 onClick={goPrev}
                 disabled={activeIndex === 0}
-                className="p-2 border-1 rounded-full text-orange-500 opacity-30 disabled:opacity-50"
+                className="p-2 border-1 rounded-full text-orange-500 opacity-30 disabled:opacity-50 cursor-pointer"
               >
                 <ChevronLeft size={20} />
               </button>
               <button
                 onClick={goNext}
                 disabled={activeIndex === years.length - 1}
-                className="p-2 border-2 border-orange-500 rounded-full text-orange-500 disabled:opacity-50"
+                className="p-2 border-2 border-orange-500 rounded-full text-orange-500 disabled:opacity-50 cursor-pointer"
               >
                 <ChevronRight size={20} />
               </button>
