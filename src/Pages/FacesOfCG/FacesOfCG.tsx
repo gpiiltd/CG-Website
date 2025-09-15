@@ -11,7 +11,7 @@ const FacesOfCG: React.FC = () => {
 
   return (
     <>
-      <div className="min-h-screen bg-white pb-16">
+      <div className="min-h-screen bg-white pb-16 mx-4">
         <div className="max-w-6xl mx-auto px-4 pt-12">
           <h1 className="text-4xl md:text-5xl font-bold text-[#18193F] text-center mb-4">
             Faces Of Century Group
@@ -42,7 +42,7 @@ const FacesOfCG: React.FC = () => {
           </div>
 
           {activeTab === 'directors' && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-12 gap-y-20 justify-items-center mb-16 mt-12">
+            <div className="w-full justify-items-center grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-4 gap-x-4 gap-y-20  mb-16 mt-12">
               {cgFaces.map((face) => (
                 <div
                   key={face.faceName}
@@ -101,9 +101,9 @@ const FacesOfCG: React.FC = () => {
                   <div className="w-full h-full rounded-[48px] relative">
                     <Icon
                       type={selectedFace.imageName}
-                      className="w-full` h-[460px] object-cover rounded-xl"
+                      className="w-full` md:h-[460px] object-cover rounded-xl"
                     />
-                    <div className="absolute left-0 bottom-[-500px] md:bottom-[-200px] w-[90%] bg-[#FCEEEA] rounded-tr-[24px] shadow-md py-4 px-4 flex flex-col items-center">
+                    <div className="absolute left-0 bottom-[-340px] md:bottom-[-200px] w-[90%] bg-[#FCEEEA] rounded-tr-[24px] shadow-md py-4 px-4 flex flex-col items-center">
                       <span className="text-[#ED6C30] font-semibold text-xl">
                         {selectedFace.faceName}
                       </span>
@@ -113,7 +113,7 @@ const FacesOfCG: React.FC = () => {
                 </div>
               </div>
 
-              <div className="flex-1 flex flex-col mt-[500px] md:mt-0">
+              <div className="flex-1 flex flex-col mt-[350px] md:mt-0">
                 <div>
                   <p className="text-[#18193F] text-sm leading-relaxed whitespace-pre-line">
                     <span className="text-[#ED6C30] font-semibold mr-1">

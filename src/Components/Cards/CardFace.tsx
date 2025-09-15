@@ -5,12 +5,12 @@ import type { CardITOProps } from '../Interfaces';
 const CardFace: React.FC<CardITOProps> = ({
   imageName = '',
   description,
-  width = '295px',
+  width = '260px',
   height = '295px',
   faceName = '',
   role = '',
 }) => (
-  <div className="relative w-[400px] h-[500px] group cursor-pointer" style={{ width, height }}>
+  <div className="relative  group cursor-pointer" style={{ width, height }}>
     <div className="absolute inset-0 transition-all duration-500 ease-in-out z-20 group-hover:opacity-0">
       <div className="w-full h-full rounded-[48px] relative">
         <Icon type={imageName} className="w-full h-full object-cover rounded-xl" />
