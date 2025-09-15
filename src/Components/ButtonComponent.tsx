@@ -1,4 +1,8 @@
+import { useState } from 'react';
 import { ClipLoader } from 'react-spinners';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronRight } from 'lucide-react';
+import Icon from '../assets/SvgImagesAndIcons';
 
 interface ButtonProps {
   text: string;
@@ -8,9 +12,8 @@ interface ButtonProps {
   bg_color?: string;
   text_color?: string;
   border_color?: string;
-  icon?: React.ReactNode;
-  iconPosition?: 'prefix' | 'suffix';
-  width?: string;
+  minWidth?: string; // 👈 new: enforce a minimum size
+  fullWidth?: boolean; // 👈 new: allow full width stretching
   variant?: 'solid' | 'outline';
 }
 
@@ -20,17 +23,15 @@ export const ButtonComponent: React.FC<ButtonProps> = ({
   onClick,
   active = true,
   bg_color = '#3b82f6',
-  text_color, // No default, will be set based on variant
-  border_color, // No default, will be set based on variant
-  icon,
-  iconPosition = 'suffix',
-  width = '100%',
+  text_color,
+  border_color,
+  minWidth = '120px',
+  fullWidth = false,
   variant = 'solid',
 }) => {
-  // Determine styles based on variant
-  const isOutline = variant === 'outline';
+  const [hovered, setHovered] = useState(false);
 
-  // Set default colors based on variant
+  const isOutline = variant === 'outline';
   const finalTextColor = text_color || (isOutline ? bg_color : 'white');
   const finalBorderColor = border_color || (isOutline ? bg_color : bg_color);
   const finalBgColor = isOutline ? 'transparent' : bg_color;
@@ -39,27 +40,28 @@ export const ButtonComponent: React.FC<ButtonProps> = ({
     cursor: active ? 'pointer' : 'default',
     fontSize: '1rem',
     borderRadius: '60px',
-    transition: 'all 0.3s',
+    transition: 'all 0.3s ease',
     backgroundColor: finalBgColor,
     color: finalTextColor,
     opacity: active ? 1 : 0.7,
     borderColor: active ? finalBorderColor : 'transparent',
     borderStyle: 'solid',
-    padding: '0.6rem 1.2rem',
+    padding: '0.6rem 1.4rem',
     borderWidth: '1px',
-    display: 'flex',
+    display: 'inline-flex', // 👈 lets button size itself based on content
     justifyContent: 'center',
     alignItems: 'center',
-    width: width,
-    minWidth: '120px',
+    minWidth, // 👈 keeps a base size
+    width: fullWidth ? '100%' : 'auto', // 👈 only full width if user asks
     boxShadow: active && !isOutline ? '0 4px 6px rgba(0, 0, 0, 0.1)' : 'none',
+    transform: hovered ? 'scale(1.03)' : 'scale(1)',
     fontFamily: 'system-ui, sans-serif',
+    whiteSpace: 'nowrap', // 👈 prevent breaking text in multiple lines
   };
 
   const buttonStyle: React.CSSProperties = {
     border: 'none',
     display: 'flex',
-    justifyContent: 'center',
     alignItems: 'center',
     fontSize: '1rem',
     letterSpacing: '0.05em',
@@ -73,24 +75,45 @@ export const ButtonComponent: React.FC<ButtonProps> = ({
   };
 
   return (
-    <div style={containerStyle} onClick={active && !loading ? onClick : undefined}>
+    <div
+      style={containerStyle}
+      onClick={active && !loading ? onClick : undefined}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
       <button
         onClick={active && !loading ? onClick : undefined}
         disabled={loading || !active}
         style={buttonStyle}
       >
+        {/* Text */}
         <span
           style={{
             visibility: loading ? 'hidden' : 'visible',
             display: 'flex',
             alignItems: 'center',
             gap: '0.5rem',
-            flexDirection: iconPosition === 'prefix' ? 'row' : 'row-reverse',
           }}
         >
-          {icon && <span>{icon}</span>}
           <span>{text}</span>
         </span>
+
+        {/* Right Arrow Icon (animated in on hover) */}
+        <AnimatePresence>
+          {hovered && !loading && (
+            <motion.span
+              initial={{ opacity: 0, x: 5 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 5 }}
+              transition={{ duration: 0.2 }}
+              style={{ display: 'flex', alignItems: 'center' }}
+            >
+              <Icon type="Arrow" className="" />
+            </motion.span>
+          )}
+        </AnimatePresence>
+
+        {/* Loading Spinner */}
         {loading && (
           <span
             style={{
@@ -107,21 +130,3 @@ export const ButtonComponent: React.FC<ButtonProps> = ({
     </div>
   );
 };
-
-//example code for buttons
-//  <br />
-//         <ButtonComponent
-//           text="Click me"
-//           loading={isLoading}
-//           onClick={handleClick}
-//           bg_color="#3b82f6"
-//           width="30%"
-//         />
-//         <br />
-//         <ButtonComponent
-//           text="Outline with Icon"
-//           variant="outline"
-//           bg_color="#10b981"
-//           iconPosition="prefix"
-//           width="30%"
-//         />
