@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import shell from '../../assets/svgImages/shell.svg';
 import npdc from '../../assets/svgImages/npdc.svg';
 import oriental from '../../assets/svgImages/oriental.svg';
@@ -13,8 +13,9 @@ import { ButtonComponent } from '../../Components/ButtonComponent';
 import people from '../../assets/svgImages/people.svg';
 import fpsologo from '../../assets/svgImages/American_logo.svg';
 
-
 const TrustedPartners = () => {
+  const navigate = useNavigate();
+
   const images = [
     { src: shell, alt: 'Shell' },
     { src: npdc, alt: 'Energy Direct' },
@@ -62,14 +63,12 @@ const TrustedPartners = () => {
               <Link to="/contact-us">
                 <ButtonComponent text="Contact us" bg_color="#ED6C30" />
               </Link>
-              <Link to="/learn-more">
                 <ButtonComponent
                   text="Learn More"
                   variant="outline"
                   bg_color="#642D14"
-                  iconPosition="prefix"
+                  onClick={() => navigate('/discover-century-group')}
                 />
-              </Link>
             </div>
           </div>
         </div>
@@ -100,12 +99,7 @@ const TrustedPartners = () => {
             </Typography>
             <div className="flex gap-4">
               <Link to="/learn-more">
-                <ButtonComponent
-                  text="Learn More"
-                  variant="outline"
-                  bg_color="#FDF0EA"
-                  iconPosition="prefix"
-                />
+                <ButtonComponent text="Learn More" variant="outline" bg_color="#FDF0EA" />
               </Link>
             </div>
           </div>

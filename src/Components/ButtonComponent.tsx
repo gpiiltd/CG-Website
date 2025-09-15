@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { ClipLoader } from 'react-spinners';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronRight } from 'lucide-react';
 import Icon from '../assets/SvgImagesAndIcons';
 
 interface ButtonProps {

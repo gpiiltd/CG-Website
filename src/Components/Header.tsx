@@ -36,19 +36,18 @@ const Header = () => {
               Home
             </Typography>
           </Link>
-
-          <Link to="/discover-cg">
+          <Link to="/discover-century-group">
             <Typography
               size="md"
               weight="normal"
               className={`cursor-pointer duration-300 ease-in-out text-[#3E3E41] ${
-                isActive('/discover-cg') ? 'text-foundation_blue' : 'hover:text-[#ED6C30]'
+                isActive('/discover-century-group') ? 'text-[#ED6C30]' : 'hover:text-[#ED6C30]'
               }`}
             >
               Discover Century Group
             </Typography>
           </Link>
-
+          -
           <Link to="/services">
             <Typography
               size="md"
@@ -60,7 +59,6 @@ const Header = () => {
               Services
             </Typography>
           </Link>
-
           <div className="hidden lg:flex items-center space-x-4 xl:space-x-6">
             <Link to="/contact-us">
               <ButtonComponent text="Contact us" bg_color="#ED6C30" />
@@ -95,12 +93,12 @@ const Header = () => {
                 </Typography>
               </Link>
 
-              <Link to="/discover-cg" onClick={() => setIsOpen(false)}>
+              <Link to="/discover-century-group" onClick={() => setIsOpen(false)}>
                 <Typography
                   size="md"
                   weight="normal"
                   className={`cursor-pointer duration-300 ease-in-out text-[#3E3E41] ${
-                    isActive('/discover-cg') ? 'text-[#ED6C30]' : 'hover:text-[#ED6C30]'
+                    isActive('/discover-century-group') ? 'text-[#ED6C30]' : 'hover:text-[#ED6C30]'
                   }`}
                 >
                   Discover Century Group
