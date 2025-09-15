@@ -63,7 +63,7 @@ const getWeightClass = (weight: WeightKey | Record<string, WeightKey>) => {
 const getColorClass = (color: string) => {
   switch (color) {
     case "primary":
-      return "text-primary";
+      return "text-[#11092F]";
     case "secondary":
       return "text-secondary";
     case "warning":
