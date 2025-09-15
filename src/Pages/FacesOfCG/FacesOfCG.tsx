@@ -3,6 +3,7 @@ import CardFace from '../../Components/Cards/CardFace';
 import { cgFaces } from './ListofFaces';
 import CustomModal from '../../Components/Modal/Modal';
 import Icon from '../../assets/SvgImagesAndIcons';
+import AnimatedScreen from '../../Components/Animations';
 
 const FacesOfCG: React.FC = () => {
   const [activeTab, setActiveTab] = useState<string>('directors');
@@ -11,6 +12,7 @@ const FacesOfCG: React.FC = () => {
 
   return (
     <>
+<AnimatedScreen>
       <div className="min-h-screen bg-white pb-16 mx-4">
         <div className="max-w-6xl mx-auto px-4 pt-12">
           <h1 className="text-4xl md:text-5xl font-bold text-[#18193F] text-center mb-4">
@@ -141,6 +143,7 @@ const FacesOfCG: React.FC = () => {
           )}
         </CustomModal>
       </div>
+</AnimatedScreen>
     </>
   );
 };

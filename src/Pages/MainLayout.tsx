@@ -11,7 +11,7 @@ const MainLayout = () => {
     <div className="min-h-screen flex flex-col w-full bg-white">
       <Header />
       <main className="flex-grow">
-        <Outlet />
+          <Outlet />
       </main>
     </div>
   );
