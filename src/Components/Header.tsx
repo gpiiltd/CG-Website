@@ -13,7 +13,7 @@ const Header = () => {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <nav className="w-full">
+    <nav className=" w-full">
       <div className="px-3 sm:px-4 lg:px-6 max-w-[95%] mx-auto flex items-center justify-between py-3">
         <Link to="/" className="flex">
           <img src={logo} alt="logo" />
@@ -42,7 +42,7 @@ const Header = () => {
               size="md"
               weight="normal"
               className={`cursor-pointer duration-300 ease-in-out text-[#3E3E41] ${
-                isActive('/discover-cg') ? 'text-[#ED6C30]' : 'hover:text-[#ED6C30]'
+                isActive('/discover-cg') ? 'text-foundation_blue' : 'hover:text-[#ED6C30]'
               }`}
             >
               Discover Century Group

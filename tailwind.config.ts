@@ -1,6 +1,5 @@
-
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx,html}'],
   theme: {
     extend: {
@@ -8,11 +7,11 @@ module.exports = {
         title: ['Montserrat', 'sans-serif'],
       },
       colors: {
-        Foundation_Blue: '#170C3D',
-        Body_text: '#3E3E41',
-        Foundation_Orange: '#ED6C30',
+        foundation_blue: '#170C3D',
+        body_text: '#3E3E41',
+        foundation_orange: '#ED6C30',
       },
     },
   },
   plugins: [],
-};
+}
