@@ -27,6 +27,9 @@ import dull from './svgImages/dull.svg';
 import checks from './svgImages/checks.svg';
 import manshore from './svgImages/manshore.svg';
 import shore from './svgImages/shore.svg';
+import manworker from './svgImages/manworker.svg';
+import womanworker from './svgImages/womanworker.svg';
+import gasplant from './svgImages/gasplant.svg';
 
 const Icon: React.FC<Svgprops> = ({ type, className, click }) => {
   const renderIcon = () => {
@@ -84,6 +87,12 @@ const Icon: React.FC<Svgprops> = ({ type, className, click }) => {
         return <img src={manshore} alt="manshore" className={className} />;
       case 'shore':
         return <img src={shore} alt="shore" className={className} />;
+      case 'manworker':
+        return <img src={manworker} alt="manworker" className={className} />;
+      case 'womanworker':
+        return <img src={womanworker} alt="womanworker" className={className} />;
+      case 'gasplant':
+        return <img src={gasplant} alt="gasplant" className={className} />;
       default:
         return null;
     }

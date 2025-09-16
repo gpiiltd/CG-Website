@@ -1,8 +1,11 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import manshore from '../../assets/svgImages/manshore.svg';
+import womanworker from '../../assets/svgImages/womanworker.svg';
+import manworker from '../../assets/svgImages/manworker.svg';
+import gasplant from '../../assets/svgImages/gasplant.svg';
 import shore from '../../assets/svgImages/shore.svg';
-import { ButtonComponent } from '../../Components/ButtonComponent';
 import ServiceSection from './ServiceSection';
+import OverlaySection from './OverlaySection';
 
 const OurServicesTab = () => {
   const navigate = useNavigate();
@@ -27,36 +30,41 @@ const OurServicesTab = () => {
       </div>
 
       {/* Overlay Section */}
-      <div className="relative -mt-24 bg-[#EDFFFF] w-[90%] justify-center items-center mx-auto rounded-2xl shadow-lg z-20">
-        <div className="max-w-[95%] mx-auto px-6 py-16 grid lg:grid-cols-2 gap-12 items-center md:flex-row-reverse flex-col">
-          {/* left side text */}
-          <div>
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 leading-snug">
-              Deployment, Operation and maintenance of Offshore infrastructure
-            </h2>
-            <p className="text-gray-700 mb-4 font-medium">
-              A detailed wireframe kit made of comprehensive components to get you started on you
-              next website or landing pageproject.
-            </p>
-            <div className="flex gap-4">
-              <Link to="/contact-us">
-                <ButtonComponent text="Contact us" bg_color="#ED6C30" />
-              </Link>
-              <ButtonComponent
-                text="Learn More"
-                variant="outline"
-                bg_color="#642D14"
-                onClick={() => navigate('/discover-century-group')}
-              />
-            </div>
-          </div>
+      <OverlaySection
+        title="Deployment, Operation and maintenance of Offshore infrastructure"
+        description="A detailed wireframe kit made of comprehensive components to get you started on your next website or landing page project."
+        image={manshore}
+        contactLink="/contact-us"
+        onLearnMore={() => navigate('/discover-century-group')}
+        bgColor="#EDFFFF"
+      />
 
-          {/* right side images */}
-          <div className="">
-            <img src={manshore} alt="Team" className="rounded object-cover w-full full" />
-          </div>
-        </div>
-      </div>
+      <OverlaySection
+        title="Exploration and production"
+        description="A detailed wireframe kit made of comprehensive components to get you started on your next website or landing page project."
+        image={womanworker}
+        contactLink="/contact-us"
+        onLearnMore={() => navigate('/discover-century-group')}
+        bgColor="#F5F1FE"
+      />
+
+      <OverlaySection
+        title="Deployment, Operation and maintenance of Offshore infrastructure"
+        description="A detailed wireframe kit made of comprehensive components to get you started on your next website or landing page project."
+        image={manworker}
+        contactLink="/contact-us"
+        onLearnMore={() => navigate('/discover-century-group')}
+        bgColor="#F6E4F0"
+      />
+
+      <OverlaySection
+        title="Deployment, Operation and maintenance of Offshore infrastructure"
+        description="A detailed wireframe kit made of comprehensive components to get you started on your next website or landing page project."
+        image={gasplant}
+        contactLink="/contact-us"
+        onLearnMore={() => navigate('/discover-century-group')}
+        bgColor="#FEF3EF"
+      />
 
       {/* MAIN SERVICE SECTIONS */}
       <div>
