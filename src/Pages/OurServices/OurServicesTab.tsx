@@ -1,11 +1,8 @@
 import { Link, useNavigate } from 'react-router-dom';
 import manshore from '../../assets/svgImages/manshore.svg';
 import shore from '../../assets/svgImages/shore.svg';
-
-// import ship from '../../assets/svgImages/ship.svg';
-// import workers1 from '../../assets/svgImages/workers.svg';
-// import workers2 from '../../assets/svgImages/workers2.svg';
 import { ButtonComponent } from '../../Components/ButtonComponent';
+import ServiceSection from './ServiceSection';
 
 const OurServicesTab = () => {
   const navigate = useNavigate();
@@ -61,49 +58,43 @@ const OurServicesTab = () => {
         </div>
       </div>
 
-      {/* SERVICE 2 */}
-      <div className="bg-[#F5F1FE] mt-12">
-        <div className="justify-start max-w-[585px] px-16 pt-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 leading-snug">
-            Exploration & Production
-          </h2>
-          <p className="text-gray-700 mb-4 font-medium">
-            From offshore infrastructure deployment, to energy logistics, our integrated services
-            are designed too optimize operation, minimize risk and maximize, value for stakeholders.
-          </p>
-        </div>
+      {/* MAIN SERVICE SECTIONS */}
+      <div>
+        {/* SERVICE 2 */}
+        <ServiceSection
+          bgColor="#F5F1FE"
+          title="Exploration & Production"
+          subtitle="From offshore infrastructure deployment, to energy logistics, our integrated services are designed too optimize operation, minimize risk and maximize, value for stakeholders."
+          images={[shore, shore, shore]}
+          companyTitle="Century Exploration & Production Limited (CEPL)"
+          companyDescription="CESL is one of the leading domestic providers of premium field development solutions and Operation & Maintenance services. We collaborate with world-renowned technical partners to deliver exceptional services in deep offshore, swamp, and land locations within the Gulf of Guinea."
+          companyDetails="Our comprehensive offerings extend to training and manpower services, community liaison, and logistics support for FPSO operations, catering to various International Oil Companies (IOCs) operating in Sub-Saharan Africa. As part of our strategic vision, CESL is actively expanding its operations beyond the West African Coast."
+          contactLink="/contact-us"
+        />
 
-        <div className="max-w-[95%] mx-auto px-6 py-16 grid lg:grid-cols-2 gap-12 ">
-          {/* Left side images */}
-          <div className="grid grid-cols-2 gap-4">
-            <img src={shore} alt="Team" className="rounded-lg object-cover w-full h-48" />
-            <img src={shore} alt="Ship" className="rounded-lg object-cover w-full  row-span-2" />
-            <img src={shore} alt="Team" className="rounded-lg object-cover w-full h-48" />
-          </div>
+        {/* SERVICE 3 */}
+        <ServiceSection
+          bgColor="#F6E4F0"
+          title="Ports Terminal and Management Services"
+          subtitle="From offshore infrastructure deployment, to energy logistics, our integrated services are designed too optimize operation, minimize risk and maximize, value for stakeholders."
+          images={[shore, shore, shore]}
+          companyTitle="Century Ports & Terminal Limited (CPTL)"
+          companyDescription="CESL is one of the leading domestic providers of premium field development solutions and Operation & Maintenance services. We collaborate with world-renowned technical partners to deliver exceptional services in deep offshore, swamp, and land locations within the Gulf of Guinea."
+          companyDetails="Our comprehensive offerings extend to training and manpower services, community liaison, and logistics support for FPSO operations, catering to various International Oil Companies (IOCs) operating in Sub-Saharan Africa. As part of our strategic vision, CESL is actively expanding its operations beyond the West African Coast."
+          contactLink="/contact-us"
+        />
 
-          {/* Right side text */}
-          <div>
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 leading-snug">
-              Century Exploration & Production Limited (CEPL)
-            </h2>
-            <p className="text-gray-700 mb-4 font-medium">
-              CESL is one of the leading domestic providers of premium field development solutions
-              and Operation & Maintenance services. We collaborate with world-renowned technical
-              partners to deliver exceptional services in deep offshore, swamp, and land locations
-              within the Gulf of Guinea.
-            </p>
-            <p className="text-gray-600 mb-8">
-              Our comprehensive offerings extend to training and manpower services, community
-              liaison, and logistics support for FPSO operations, catering to various International
-              Oil Companies (IOCs) operating in Sub-Saharan Africa. As part of our strategic vision,
-              CESL is actively expanding its operations beyond the West African Coast.
-            </p>
-
-            <Link to="/contact-us">
-              <ButtonComponent text="Contact us" bg_color="#ED6C30" />
-            </Link>
-          </div>
-        </div>
+        {/* SERVICE 4 */}
+        <ServiceSection
+          bgColor="#FFF3EE4D"
+          title="Natural Gas Transmission and Distribution"
+          subtitle="From offshore infrastructure deployment, to energy logistics, our integrated services are designed too optimize operation, minimize risk and maximize, value for stakeholders."
+          images={[shore, shore, shore]}
+          companyTitle="Gas Plus Synergy (GPS)"
+          companyDescription="CESL is one of the leading domestic providers of premium field development solutions and Operation & Maintenance services. We collaborate with world-renowned technical partners to deliver exceptional services in deep offshore, swamp, and land locations within the Gulf of Guinea."
+          companyDetails="Our comprehensive offerings extend to training and manpower services, community liaison, and logistics support for FPSO operations, catering to various International Oil Companies (IOCs) operating in Sub-Saharan Africa. As part of our strategic vision, CESL is actively expanding its operations beyond the West African Coast."
+          contactLink="/contact-us"
+        />
       </div>
     </div>
   );
