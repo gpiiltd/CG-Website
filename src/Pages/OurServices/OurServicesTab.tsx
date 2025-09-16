@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import manshore from '../../assets/svgImages/manshore.svg';
 import womanworker from '../../assets/svgImages/womanworker.svg';
 import manworker from '../../assets/svgImages/manworker.svg';
@@ -7,8 +8,48 @@ import shore from '../../assets/svgImages/shore.svg';
 import ServiceSection from './ServiceSection';
 import OverlaySection from './OverlaySection';
 
+const overlayData = [
+  {
+    title: 'Deployment, Operation and maintenance of Offshore infrastructure',
+    description:
+      'A detailed wireframe kit made of comprehensive components to get you started on your next website or landing page project.',
+    image: manshore,
+    bgColor: '#EDFFFF',
+  },
+  {
+    title: 'Exploration and production',
+    description:
+      'A detailed wireframe kit made of comprehensive components to get you started on your next website or landing page project.',
+    image: womanworker,
+    bgColor: '#F5F1FE',
+  },
+  {
+    title: 'Deployment, Operation and maintenance of Offshore infrastructure',
+    description:
+      'A detailed wireframe kit made of comprehensive components to get you started on your next website or landing page project.',
+    image: manworker,
+    bgColor: '#F6E4F0',
+  },
+  {
+    title: 'Deployment, Operation and maintenance of Offshore infrastructure',
+    description:
+      'A detailed wireframe kit made of comprehensive components to get you started on your next website or landing page project.',
+    image: gasplant,
+    bgColor: '#FEF3EF',
+  },
+];
+
 const OurServicesTab = () => {
   const navigate = useNavigate();
+  const [currentOverlay, setCurrentOverlay] = useState(0);
+
+  // Animation classes for fade-in/out
+  const animationClass = 'transition-all duration-500 ease-in-out opacity-100 scale-100';
+
+  const handleOverlayClick = () => {
+    setCurrentOverlay((prev) => (prev + 1) % overlayData.length);
+  };
+
   return (
     <div className="relative">
       {/* Hero Section */}
@@ -29,42 +70,63 @@ const OurServicesTab = () => {
         </div>
       </div>
 
-      {/* Overlay Section */}
-      <OverlaySection
-        title="Deployment, Operation and maintenance of Offshore infrastructure"
-        description="A detailed wireframe kit made of comprehensive components to get you started on your next website or landing page project."
-        image={manshore}
-        contactLink="/contact-us"
-        onLearnMore={() => navigate('/discover-century-group')}
-        bgColor="#EDFFFF"
-      />
+      {/* Overlay Section  for mobile view*/}
+      <div className="md:hidden">
+        <OverlaySection
+          title="Deployment, Operation and maintenance of Offshore infrastructure"
+          description="A detailed wireframe kit made of comprehensive components to get you started on your next website or landing page project."
+          image={manshore}
+          contactLink="/contact-us"
+          onLearnMore={() => navigate('/discover-century-group')}
+          bgColor="#EDFFFF"
+        />
 
-      <OverlaySection
-        title="Exploration and production"
-        description="A detailed wireframe kit made of comprehensive components to get you started on your next website or landing page project."
-        image={womanworker}
-        contactLink="/contact-us"
-        onLearnMore={() => navigate('/discover-century-group')}
-        bgColor="#F5F1FE"
-      />
+        <OverlaySection
+          title="Exploration and production"
+          description="A detailed wireframe kit made of comprehensive components to get you started on your next website or landing page project."
+          image={womanworker}
+          contactLink="/contact-us"
+          onLearnMore={() => navigate('/discover-century-group')}
+          bgColor="#F5F1FE"
+        />
 
-      <OverlaySection
-        title="Deployment, Operation and maintenance of Offshore infrastructure"
-        description="A detailed wireframe kit made of comprehensive components to get you started on your next website or landing page project."
-        image={manworker}
-        contactLink="/contact-us"
-        onLearnMore={() => navigate('/discover-century-group')}
-        bgColor="#F6E4F0"
-      />
+        <OverlaySection
+          title="Deployment, Operation and maintenance of Offshore infrastructure"
+          description="A detailed wireframe kit made of comprehensive components to get you started on your next website or landing page project."
+          image={manworker}
+          contactLink="/contact-us"
+          onLearnMore={() => navigate('/discover-century-group')}
+          bgColor="#F6E4F0"
+        />
 
-      <OverlaySection
-        title="Deployment, Operation and maintenance of Offshore infrastructure"
-        description="A detailed wireframe kit made of comprehensive components to get you started on your next website or landing page project."
-        image={gasplant}
-        contactLink="/contact-us"
-        onLearnMore={() => navigate('/discover-century-group')}
-        bgColor="#FEF3EF"
-      />
+        <OverlaySection
+          title="Deployment, Operation and maintenance of Offshore infrastructure"
+          description="A detailed wireframe kit made of comprehensive components to get you started on your next website or landing page project."
+          image={gasplant}
+          contactLink="/contact-us"
+          onLearnMore={() => navigate('/discover-century-group')}
+          bgColor="#FEF3EF"
+        />
+      </div>
+
+      {/* Animated Overlay Section  for Large screen size*/}
+      <div
+        className={`w-full md:flex justify-center hidden`}
+        onClick={handleOverlayClick}
+        onTouchStart={handleOverlayClick}
+        style={{ cursor: 'pointer' }}
+      >
+        <div className={animationClass} key={currentOverlay}>
+          <OverlaySection
+            title={overlayData[currentOverlay].title}
+            description={overlayData[currentOverlay].description}
+            image={overlayData[currentOverlay].image}
+            contactLink="/contact-us"
+            onLearnMore={() => navigate('/discover-century-group')}
+            bgColor={overlayData[currentOverlay].bgColor}
+          />
+        </div>
+      </div>
 
       {/* MAIN SERVICE SECTIONS */}
       <div>
