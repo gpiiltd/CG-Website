@@ -25,6 +25,8 @@ import Arrow from './svgImages/Arrow.svg';
 import dotted from './svgImages/dotted.svg';
 import dull from './svgImages/dull.svg';
 import checks from './svgImages/checks.svg';
+import manshore from './svgImages/manshore.svg';
+import shore from './svgImages/shore.svg';
 
 const Icon: React.FC<Svgprops> = ({ type, className, click }) => {
   const renderIcon = () => {
@@ -78,6 +80,10 @@ const Icon: React.FC<Svgprops> = ({ type, className, click }) => {
         return <img src={instagramIcon} alt="instagramIcon" className={className} />;
       case 'facebookIcon':
         return <img src={facebookIcon} alt="facebookIcon" className={className} />;
+      case 'manshore':
+        return <img src={manshore} alt="manshore" className={className} />;
+      case 'shore':
+        return <img src={shore} alt="shore" className={className} />;
       default:
         return null;
     }
