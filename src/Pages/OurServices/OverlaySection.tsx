@@ -1,15 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ButtonComponent } from '../../Components/ButtonComponent';
-
-interface OverlaySectionProps {
-  title: string;
-  description: string;
-  image: string;
-  contactLink?: string;
-  learnMoreLink?: string;
-  onLearnMore?: () => void;
-  bgColor?: string;
-}
+import type { OverlaySectionProps } from '../../Components/Interfaces';
 
 const OverlaySection: React.FC<OverlaySectionProps> = ({
   title,
@@ -20,7 +11,10 @@ const OverlaySection: React.FC<OverlaySectionProps> = ({
   bgColor = '#F5F1FE',
   onLearnMore,
 }) => (
-  <div className="relative -mt-24 w-[90%] justify-center items-center mx-auto rounded-2xl shadow-lg z-20" style={{ backgroundColor: bgColor }}>
+  <div
+    className="relative -mt-24 w-[90%] justify-center items-center mx-auto rounded-2xl shadow-lg z-20"
+    style={{ backgroundColor: bgColor }}
+  >
     <div className="max-w-[95%] mx-auto px-6 py-16 grid lg:grid-cols-2 gap-12 items-center md:flex-row-reverse flex-col">
       {/* left side text */}
       <div>

@@ -1,17 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ButtonComponent } from '../../Components/ButtonComponent';
-
-interface ServiceSectionProps {
-  bgColor?: string;
-  title?: string;
-  subtitle?: string;
-  description?: string;
-  images: string[];
-  companyTitle: string;
-  companyDescription: string;
-  companyDetails: string;
-  contactLink?: string;
-}
+import type { ServiceSectionProps } from '../../Components/Interfaces';
 
 const ServiceSection: React.FC<ServiceSectionProps> = ({
   bgColor = '#F5F1FE',
@@ -23,9 +12,9 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({
   companyDetails,
   contactLink = '/contact-us',
 }) => (
-  <div className={`mt-12`} style={{ backgroundColor: bgColor }}>
+  <div className={`mt-0`} style={{ backgroundColor: bgColor }}>
     <div className="justify-start px-8 md:px-16 pt-16">
-      <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 leading-snug">{title}</h2>
+      <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 leading-snug max-w-3xl">{title}</h2>
       <p className="text-gray-700 mb-4 font-medium max-w-[585px]">{subtitle}</p>
     </div>
 

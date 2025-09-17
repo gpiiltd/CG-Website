@@ -2,39 +2,36 @@ import { Link } from 'react-router-dom';
 import { FaLinkedinIn, FaFacebookF, FaTwitter, FaInstagram } from 'react-icons/fa';
 import { Typography } from './Typography';
 import { ButtonComponent } from './ButtonComponent';
-import manImage from "../assets/svgImages/man.jpg";
-
+import manImage from '../assets/svgImages/man.jpg';
 
 const Footer = () => {
   return (
-<>
-       {/* Top CTA Section */}
-<div className="relative bg-cover bg-center py-20 px-6 text-center flex flex-col justify-center items-center min-h-[400px]"
-  style={{ backgroundImage: `url(${manImage})` }}>
-
-  {/* Gradient overlay - starts transparent, gets darker towards bottom */}
-{/* Maximum darkness */}
-<div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/80 to-black"></div>
-  {/* Content */}
-  <div className="relative z-10 max-w-4xl mx-auto">
-    <p className="text-sm uppercase tracking-widest text-gray-300 mb-4">
-      LET US BE YOUR STRATEGIC PARTNER
-    </p>
-    <h2 className="text-4xl md:text-5xl font-bold leading-tight text-white mb-8">
-      Need Energy Infrastructure <br /> and More?
-    </h2>
-    <div className="inline-block">
-      <ButtonComponent text="Contact us" bg_color="#ED6C30" />
-    </div>
-  </div>
-</div>
-    <footer className="bg-black text-white">
-      <div className="border-b border-gray-800">
-
-
-
-        {/* Footer Links */}
-        <div className=" px-6 sm:px-12 py-12">
+    <>
+      {/* Top CTA Section */}
+      <div
+        className="relative bg-cover bg-center py-20 px-6 text-center flex flex-col justify-center items-center min-h-[400px]"
+        style={{ backgroundImage: `url(${manImage})` }}
+      >
+        {/* Gradient overlay - starts transparent, gets darker towards bottom */}
+        {/* Maximum darkness */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/80 to-black"></div>
+        {/* Content */}
+        <div className="relative z-10 max-w-4xl mx-auto">
+          <p className="text-sm uppercase tracking-widest text-gray-300 mb-4">
+            LET US BE YOUR STRATEGIC PARTNER
+          </p>
+          <h2 className="text-4xl md:text-5xl font-bold leading-tight text-white mb-8">
+            Need Energy Infrastructure <br /> and More?
+          </h2>
+          <div className="inline-block">
+            <ButtonComponent text="Contact us" bg_color="#ED6C30" />
+          </div>
+        </div>
+      </div>
+      <footer className="bg-black text-white">
+        <div className="border-b border-gray-800">
+          {/* Footer Links */}
+          <div className=" px-6 sm:px-12 py-12">
             <div className=" max-w-[95%] mx-auto  grid grid-cols-1 sm:grid-cols-4 gap-10 text-gray-300">
               {/* Discover CG */}
               <div>
@@ -86,28 +83,28 @@ const Footer = () => {
                 </Typography>
                 <ul className="space-y-3">
                   <li>
-                    <Link to="/services/offshore-infrastructure" className="hover:text-white">
+                    <Link to="/services/1" className="hover:text-white">
                       <Typography size="md" weight="light">
                         Offshore infrastructure
                       </Typography>
                     </Link>
                   </li>
                   <li>
-                    <Link to="/services/exploration" className="hover:text-white">
+                    <Link to="/services/2" className="hover:text-white">
                       <Typography size="md" weight="light">
                         Exploration and production
                       </Typography>
                     </Link>
                   </li>
                   <li>
-                    <Link to="/services/ports-terminal" className="hover:text-white">
+                    <Link to="/services/3" className="hover:text-white">
                       <Typography size="md" weight="light">
                         Ports Terminal and Management Services
                       </Typography>
                     </Link>
                   </li>
                   <li>
-                    <Link to="/services/natural-gas" className="hover:text-white">
+                    <Link to="/services/4" className="hover:text-white">
                       <Typography size="md" weight="light">
                         Natural Gas Transmission and Distribution
                       </Typography>
@@ -182,17 +179,16 @@ const Footer = () => {
                 </a>
               </div>
             </div>
+          </div>
         </div>
-      </div>
 
-      {/* Bottom Copyright */}
-      <div className="max-w-[95%] mx-auto px-6 py-4 text-start text-sm text-gray-400">
-        © {new Date().getFullYear()} Century Group Energy Services Limited. All rights reserved.
-      </div>
-    </footer>
-</>
+        {/* Bottom Copyright */}
+        <div className="max-w-[95%] mx-auto px-6 py-4 text-start text-sm text-gray-400">
+          © {new Date().getFullYear()} Century Group Energy Services Limited. All rights reserved.
+        </div>
+      </footer>
+    </>
   );
-
 };
 
 export default Footer;
