@@ -7,13 +7,11 @@ import manImage from '../assets/svgImages/man.jpg';
 const Footer = () => {
   return (
     <>
-      {/* Top CTA Section */}
       <div
         className="relative bg-cover bg-center py-20 px-6 text-center flex flex-col justify-center items-center min-h-[400px]"
         style={{ backgroundImage: `url(${manImage})` }}
       >
-        {/* Gradient overlay - starts transparent, gets darker towards bottom */}
-        {/* Maximum darkness */}
+
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/80 to-black"></div>
         {/* Content */}
         <div className="relative z-10 max-w-4xl mx-auto">
