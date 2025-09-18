@@ -65,7 +65,7 @@ const getColorClass = (color: string) => {
     case "primary":
       return "text-[#11092F]";
     case "secondary":
-      return "text-secondary";
+      return "text-[#3E3E41]";
     case "warning":
       return "text-yellow-500";
     case "error":

@@ -22,6 +22,10 @@ const TrustedPartners = () => {
     { src: oriental, alt: 'Energy Link' },
     { src: energy, alt: 'NPDC' },
     { src: general, alt: 'General Hydrocarbons' },
+    { src: energy, alt: 'NPDC' },
+    { src: npdc, alt: 'Energy Direct' },
+
+
   ];
   return (
     <section className="w-full bg-white">
