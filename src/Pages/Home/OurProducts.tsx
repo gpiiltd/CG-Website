@@ -2,8 +2,7 @@
 import { Typography } from '../../Components/Typography';
 import VideoSlider from '../../Components/VideoSlider';
 import fpsologo from '../../assets/svgImages/video-thumbail.svg';
-import bg_video from "../../assets/videos/CD_video.mp4";
-
+import bg_video from '../../assets/videos/CD_video.mp4';
 
 const videos = [
   {
@@ -16,15 +15,17 @@ const videos = [
   },
   {
     id: '2',
-videoUrl: bg_video,    thumbnail: fpsologo,
-   title: 'TT FPSO Tour 2',
+    videoUrl: bg_video,
+    thumbnail: fpsologo,
+    title: 'TT FPSO Tour 2',
     description:
       'Positioned as a leading oil field infrastructure company, our focus is uncompromising safety standards, premium engineered and exceptional value, anchored in people- first, execution and proven technical expertise.',
   },
   {
     id: '3',
-videoUrl: bg_video,    thumbnail: fpsologo,
-   title: 'TT FPSO Tour 3',
+    videoUrl: bg_video,
+    thumbnail: fpsologo,
+    title: 'TT FPSO Tour 3',
     description:
       'Positioned as a leading oil field infrastructure company, our focus is uncompromising safety standards, premium engineered and exceptional value, anchored in people- first, execution and proven technical expertise.',
   },
@@ -33,8 +34,6 @@ const OurProducts = () => {
   return (
     <div className=" ">
       <div className=" mt-26">
-
-
         <div className="p-24">
           <Typography
             size="lg"
@@ -44,7 +43,7 @@ const OurProducts = () => {
           >
             OUR PROJECTS
           </Typography>
-          <VideoSlider videos={videos} autoPlay={false} showControls={true} className="mb-8" />
+          <VideoSlider videos={videos}    />
         </div>
       </div>
     </div>

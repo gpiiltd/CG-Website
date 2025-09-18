@@ -16,7 +16,7 @@ const CardImageTitleAndDescription: React.FC<CardComponentProps> = ({
   onLearnMoreClick,
 }) => {
   return (
-    <div className="flex flex-col md:flex-row rounded-lg shadow-md border border-gray-200 overflow-hidden">
+    <div className="bg-white flex flex-col md:flex-row rounded-lg shadow-md border border-gray-200 overflow-hidden">
       {/* Image Container */}
       <div className="w-full md:w-1/3 lg:w-2/5 flex-shrink-0 py-4 px-3 ">
         <img
