@@ -30,6 +30,12 @@ import shore from './svgImages/shore.svg';
 import manworker from './svgImages/manworker.svg';
 import womanworker from './svgImages/womanworker.svg';
 import gasplant from './svgImages/gasplant.svg';
+import akintobiAkinpelu from './svgImages/akintobiAkinpelu.svg';
+import michealIkinbor from './svgImages/michealIkinbor.svg';
+import muhriAbiodun from './svgImages/muhriAbiodun.svg';
+import ayebatariWilson from './svgImages/ayebatariWilson.svg';
+import paulUkeneye from './svgImages/paulUkeneye.svg';
+import ebimoboweiClifford from './svgImages/ebimoboweiClifford.svg';
 
 const Icon: React.FC<Svgprops> = ({ type, className, click }) => {
   const renderIcon = () => {
@@ -93,6 +99,18 @@ const Icon: React.FC<Svgprops> = ({ type, className, click }) => {
         return <img src={womanworker} alt="womanworker" className={className} />;
       case 'gasplant':
         return <img src={gasplant} alt="gasplant" className={className} />;
+      case 'akintobiAkinpelu':
+        return <img src={akintobiAkinpelu} alt="akintobiAkinpelu" className={className} />;
+      case 'michealIkinbor':
+        return <img src={michealIkinbor} alt="michealIkinbor" className={className} />;
+      case 'muhriAbiodun':
+        return <img src={muhriAbiodun} alt="muhriAbiodun" className={className} />;
+      case 'ayebatariWilson':
+        return <img src={ayebatariWilson} alt="ayebatariWilson" className={className} />;
+      case 'paulUkeneye':
+        return <img src={paulUkeneye} alt="paulUkeneye" className={className} />;
+      case 'ebimoboweiClifford':
+        return <img src={ebimoboweiClifford} alt="ebimoboweiClifford" className={className} />;
       default:
         return null;
     }
