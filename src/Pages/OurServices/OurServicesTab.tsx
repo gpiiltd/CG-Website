@@ -3,9 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import manshore from '../../assets/svgImages/manshore.svg';
 import ServiceSection from './ServiceSection';
 import OverlaySection from './OverlaySection';
-import { carouselData, overlayData, serviceSectionsData } from './servicesDatalist';
-import CarouselSection from './CarouselSection';
+import {  overlayData, serviceSectionsData } from './servicesDatalist';
+// import CarouselSection from './CarouselSection';
 import StatsBar from './StatsBar';
+import OurProducts from '../Home/OurProducts';
 
 const OurServicesTab = () => {
   const navigate = useNavigate();
@@ -92,7 +93,9 @@ const OurServicesTab = () => {
       </div>
 
       {/* Carousel Section */}
-      <CarouselSection data={carouselData} />
+      {/* <CarouselSection data={carouselData} /> */}
+
+      <OurProducts />
 
       {/* Stats Section */}
       <StatsBar />

@@ -1,13 +1,14 @@
 import { useParams } from 'react-router-dom';
 import ServiceSection from './ServiceSection';
-import { carouselData, serviceSectionsData } from './servicesDatalist';
+import { serviceSectionsData } from './servicesDatalist';
 import { Typography } from '../../Components/Typography';
 import { HoverCard } from '../../Components/HoverCard';
 import womanworker from '../../assets/svgImages/womanworker.svg';
 import gasplant from '../../assets/svgImages/gasplant.svg';
 import manworker from '../../assets/svgImages/manworker.svg';
-import CarouselSection from './CarouselSection';
+// import CarouselSection from './CarouselSection';
 import StatsBar from './StatsBar';
+import OurProducts from '../Home/OurProducts';
 
 const ServiceDetailPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -57,7 +58,9 @@ const ServiceDetailPage = () => {
       </div>
 
       {/* Carousel Section */}
-      <CarouselSection data={carouselData} />
+      {/* <CarouselSection data={carouselData} /> */}
+
+      <OurProducts />
 
       {/* Stats Section */}
       <StatsBar />
