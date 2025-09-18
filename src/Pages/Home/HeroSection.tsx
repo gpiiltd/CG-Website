@@ -1,8 +1,8 @@
 import AnimatedScreen from '../../Components/Animations';
 import { ButtonComponent } from '../../Components/ButtonComponent';
 import HeroCards from './HeroCards';
-import bg_video from "../../assets/videos/CD_video.mp4";
-
+import bg_video from '../../assets/videos/CD_video.mp4';
+import { Link } from 'react-router-dom';
 
 const HeroSection = () => {
   return (
@@ -35,7 +35,9 @@ const HeroSection = () => {
               since 2002.
             </p>
             <div className="inline-block">
-              <ButtonComponent text="Contact us" bg_color="#ED6C30" />
+              <Link to="/contact-us">
+                <ButtonComponent text="Contact us" bg_color="#ED6C30" />
+              </Link>
             </div>{' '}
           </div>
 
