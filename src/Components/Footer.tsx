@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
-import { FaLinkedinIn, FaFacebookF, FaTwitter, FaInstagram } from 'react-icons/fa';
+import { FaLinkedinIn, FaFacebookF, FaInstagram } from 'react-icons/fa';
 import { Typography } from './Typography';
 import { ButtonComponent } from './ButtonComponent';
 import manImage from '../assets/svgImages/man.jpg';
+import { FaXTwitter } from 'react-icons/fa6';
 
 const Footer = () => {
   return (
@@ -41,7 +42,7 @@ const Footer = () => {
                 </Typography>
                 <ul className="space-y-3">
                   <li>
-                    <Link to="/our-story" className="hover:text-white">
+                    <Link to="/discover-century-group" className="hover:text-white">
                       <Typography size="md" weight="normal">
                         Our story
                       </Typography>
@@ -55,24 +56,25 @@ const Footer = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link to="/careers" className="hover:text-white">
+                    <Link to="" className="hover:text-white">
                       <Typography size="md" weight="light">
                         Careers
                       </Typography>
                     </Link>
                   </li>
                   <li>
-                    <Link to="/our-assets" className="hover:text-white">
+                    <Link to="" className="hover:text-white">
                       <Typography size="md" weight="light">
                         Our Assets
                       </Typography>
                     </Link>
                   </li>
                   <li>
-                    <Link to="/contact-us" className="hover:text-white"></Link>
-                    <Typography size="md" weight="light">
+                    <Link to="/contact-us" className="hover:text-white">
+                     <Typography size="md" weight="light">
                       Talk to us
-                    </Typography>
+                    </Typography></Link>
+
                   </li>
                 </ul>
               </div>
@@ -121,42 +123,42 @@ const Footer = () => {
                 </Typography>
                 <ul className="space-y-3">
                   <li>
-                    <Link to="/corporate-governance" className="hover:text-white">
+                    <Link to="" className="hover:text-white">
                       <Typography size="md" weight="light">
                         Corporate Governance
                       </Typography>
                     </Link>
                   </li>
                   <li>
-                    <Link to="/health-safety" className="hover:text-white">
+                    <Link to="" className="hover:text-white">
                       <Typography size="md" weight="light">
                         Health & Safety
                       </Typography>
                     </Link>
                   </li>
                   <li>
-                    <Link to="/whistle-blowing" className="hover:text-white">
+                    <Link to="" className="hover:text-white">
                       <Typography size="md" weight="light">
                         Whistle Blowing
                       </Typography>
                     </Link>
                   </li>
                   <li>
-                    <Link to="/anti-money-laundering" className="hover:text-white">
+                    <Link to="" className="hover:text-white">
                       <Typography size="md" weight="light">
                         Anti-Money Laundering
                       </Typography>
                     </Link>
                   </li>
                   <li>
-                    <Link to="/terms" className="hover:text-white">
+                    <Link to="" className="hover:text-white">
                       <Typography size="md" weight="light">
                         Terms & Conditions
                       </Typography>
                     </Link>
                   </li>
                   <li>
-                    <Link to="/privacy" className="hover:text-white">
+                    <Link to="" className="hover:text-white">
                       <Typography size="md" weight="light">
                         Privacy Policy
                       </Typography>
@@ -166,16 +168,17 @@ const Footer = () => {
               </div>
               {/* Social Icons */}
               <div className="flex space-x-4 ">
-                <a href="#" className="p-2  rounded-full  transition">
+                <a href="https://www.linkedin.com/search/results/all/?fetchDeterministicClustersOnly=true&heroEntityKey=urn%3Ali%3Aorganization%3A930693&keywords=century%20group%20nigeria&origin=RICH_QUERY_SUGGESTION&position=1&searchId=1cbf806f-d5cb-404b-8f6e-06fb7eae83cf&sid=m7%3A&spellCorrectionEnabled=false" target='blank' className="p-2  rounded-full  transition">
                   <FaLinkedinIn />
                 </a>
-                <a href="#" className="p-2 rounded-full  transition">
+                <a href="https://m.facebook.com/CenturyGroupNigeria/" target='blank' className="p-2 rounded-full  transition">
                   <FaFacebookF />
                 </a>
-                <a href="#" className="p-2 rounded-full  transition">
-                  <FaTwitter />
+                <a href="https://x.com/CenturyGroupNG" target='blank' className="p-2 rounded-full  transition">
+                  <FaXTwitter />
+
                 </a>
-                <a href="#" className="p-2  rounded-full  transition">
+                <a href="https://www.instagram.com/centurygroupng/" target='blank' className="p-2  rounded-full  transition">
                   <FaInstagram />
                 </a>
               </div>

@@ -15,7 +15,7 @@ const Header = () => {
   return (
     <nav className=" w-full">
       <div className="px-3 sm:px-4 lg:px-6 max-w-[95%] mx-auto flex items-center justify-between py-3">
-        <Link to="/" className="flex">
+        <Link to="/" className="flex cursor-pointer">
           <img src={logo} alt="logo" />
         </Link>
         <GiHamburgerMenu
