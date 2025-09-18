@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import logo from '../Assets/svgImages/cg-logo.svg';
+import logo from '../assets/svgImages/cg-logo.svg';
 import { ButtonComponent } from './ButtonComponent';
 import { Typography } from './Typography';
 import { IoMdCloseCircleOutline } from 'react-icons/io';
