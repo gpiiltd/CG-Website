@@ -1,5 +1,5 @@
 import React from 'react';
-import man from '../Assets/svgImages/man_standing.svg';
+import man from '../assets/svgImages/man_standing.svg';
 import { ButtonComponent } from '../Components/ButtonComponent';
 import { Typography } from '../Components/Typography';
 import AnimatedScreen from '../Components/Animations';
