@@ -185,8 +185,6 @@ const Footer = () => {
             </div>
           </div>
         </div>
-
-        {/* Bottom Copyright */}
         <div className="max-w-[95%] mx-auto px-6 py-4 text-start text-sm text-gray-400">
           © {new Date().getFullYear()} Century Group Energy Services Limited. All rights reserved.
         </div>
