@@ -9,12 +9,14 @@ const CardWithImage: React.FC<CardITOProps> = ({
   link,
   width = '617.5px',
   height = '278',
+  imageSrc,
 }) => (
   <div
     className="flex gap-4 w-full bg-white rounded-lg shadow-md overflow-hidden p-6"
     style={{ width, height }}
   >
     <Icon type={imageName} className="w-full h-full object-cover rounded-xl" />
+    <img src={imageSrc} alt="image" />
 
     <div className="w-[70%]  flex flex-col justify-center">
       <h2 className="text-[#11092F] text-lg font-semibold">{title}</h2>

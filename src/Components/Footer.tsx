@@ -17,14 +17,17 @@ const Footer = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/80 to-black"></div>
         {/* Content */}
         <div className="relative z-10 max-w-4xl mx-auto">
-          <p className="text-sm uppercase tracking-widest text-gray-300 mb-4">
+          <p className="text-base uppercase tracking-widest font-bold mb-4 text-[#F9D1BF]">
             LET US BE YOUR STRATEGIC PARTNER
           </p>
           <h2 className="text-4xl md:text-5xl font-bold leading-tight text-white mb-8">
             Need Energy Infrastructure <br /> and More?
           </h2>
           <div className="inline-block">
-            <ButtonComponent text="Contact us" bg_color="#ED6C30" />
+            <Link to="/contact-us">
+              {' '}
+              <ButtonComponent text="Contact us" bg_color="#ED6C30" />
+            </Link>
           </div>
         </div>
       </div>
