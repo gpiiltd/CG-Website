@@ -6,6 +6,8 @@ import FacesOfCG from '../../Pages/FacesOfCG/FacesOfCG';
 import HomeMain from '../../Pages/Home/HomeMain';
 import DiscoveryView from '../../Pages/DiscoveryView';
 import ContactUs from '../../Pages/ContactUs';
+import OurServicesTab from '../../Pages/OurServices/OurServicesTab';
+import ServiceDetailPage from '../../Pages/OurServices/ServiceDetailPage';
 
 const routes: RouteObject[] = [
   {
@@ -19,14 +21,18 @@ const routes: RouteObject[] = [
         children: [
           {
             index: true,
-            element: <FacesOfCG />,
+            element: <OurServicesTab />,
+          },
+          {
+            path: routeNames.servicesDetail,
+            element: <ServiceDetailPage />,
           },
         ],
       },
       { path: routeNames.discoveryCG, element: <DiscoveryView /> },
 
       { path: routeNames.contactUs, element: <ContactUs /> },
-
+      { path: routeNames.ourTeam, element: <FacesOfCG /> },
     ],
   },
   // ...

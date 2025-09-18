@@ -86,28 +86,28 @@ const Footer = () => {
                 </Typography>
                 <ul className="space-y-3">
                   <li>
-                    <Link to="/services/offshore-infrastructure" className="hover:text-white">
+                    <Link to="/services/1" className="hover:text-white">
                       <Typography size="md" weight="light">
                         Offshore infrastructure
                       </Typography>
                     </Link>
                   </li>
                   <li>
-                    <Link to="/services/exploration" className="hover:text-white">
+                    <Link to="/services/2" className="hover:text-white">
                       <Typography size="md" weight="light">
                         Exploration and production
                       </Typography>
                     </Link>
                   </li>
                   <li>
-                    <Link to="/services/ports-terminal" className="hover:text-white">
+                    <Link to="/services/3" className="hover:text-white">
                       <Typography size="md" weight="light">
                         Ports Terminal and Management Services
                       </Typography>
                     </Link>
                   </li>
                   <li>
-                    <Link to="/services/natural-gas" className="hover:text-white">
+                    <Link to="/services/4" className="hover:text-white">
                       <Typography size="md" weight="light">
                         Natural Gas Transmission and Distribution
                       </Typography>
