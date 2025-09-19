@@ -33,8 +33,10 @@ const routes: RouteObject[] = [
 
       { path: routeNames.contactUs, element: <ContactUs /> },
       { path: routeNames.ourTeam, element: <FacesOfCG /> },
+
     ],
   },
+
   // ...
   {
     path: '*',

@@ -31,6 +31,7 @@ const CardImageTitleAndDescription: React.FC<CardComponentProps> = ({
         <div>
           <Typography
             size="2xl"
+color='primary'
             className="mb-3 text-start text-lg sm:text-xl md:text-2xl font-bold line-clamp-2"
           >
             {title}

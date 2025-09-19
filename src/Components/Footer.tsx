@@ -123,7 +123,7 @@ const Footer = () => {
                 </Typography>
                 <ul className="space-y-3">
                   <li>
-                    <Link to="" className="hover:text-white">
+                    <Link to='' className="hover:text-white">
                       <Typography size="md" weight="light">
                         Corporate Governance
                       </Typography>

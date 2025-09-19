@@ -11,9 +11,7 @@ const HomeMain = () => {
       <TrustedPartners />
       <WhyCG />
       <OurServices />
-<OurProducts />
-
-
+      <OurProducts />
     </div>
   );
 };

@@ -3,6 +3,8 @@ import man from '../assets/svgImages/man_standing.svg';
 import { ButtonComponent } from '../Components/ButtonComponent';
 import { Typography } from '../Components/Typography';
 import AnimatedScreen from '../Components/Animations';
+import { IoCall, IoLocation } from 'react-icons/io5';
+import { MdEmail } from 'react-icons/md';
 
 const ContactUs: React.FC = () => {
   return (
@@ -133,10 +135,11 @@ const ContactUs: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Address */}
-            <div className="bg-white shadow-md rounded-lg p-6 text-center">
+            <div className="bg-[#FFFAF8] shadow-md rounded-lg p-6 text-center">
               <div className="flex justify-center mb-4">
                 <div className="w-12 h-12 flex items-center justify-center bg-[#1D0C3D] text-white rounded-full">
-                  📍
+                  <IoLocation color='white'/>
+
                 </div>
               </div>
               <h4 className="font-semibold text-lg mb-2">Address</h4>
@@ -146,10 +149,11 @@ const ContactUs: React.FC = () => {
             </div>
 
             {/* Phone */}
-            <div className="bg-white shadow-md rounded-lg p-6 text-center">
+            <div className="bg-[#FFFAF8] shadow-md rounded-lg p-6 text-center">
               <div className="flex justify-center mb-4">
                 <div className="w-12 h-12 flex items-center justify-center bg-[#1D0C3D] text-white rounded-full">
-                  📞
+                  <IoCall color='white'/>
+
                 </div>
               </div>
               <h4 className="font-semibold text-lg mb-2">Phone numbers</h4>
@@ -158,14 +162,15 @@ const ContactUs: React.FC = () => {
             </div>
 
             {/* Email */}
-            <div className="bg-white shadow-md rounded-lg p-6 text-center">
+            <div className="bg-[#FFFAF8] shadow-md rounded-lg p-6 text-center">
               <div className="flex justify-center mb-4">
                 <div className="w-12 h-12 flex items-center justify-center bg-[#1D0C3D] text-white rounded-full">
-                  📧
+                 <MdEmail color='white'/>
+
                 </div>
               </div>
               <h4 className="font-semibold text-lg mb-2">Email address</h4>
-              <p className="text-gray-600 text-sm">enquiries@ceslintgroup.com</p>
+              <p className="text-gray-600 text-sm">Info@ceslintlgroup.com</p>
             </div>
           </div>
         </div>
