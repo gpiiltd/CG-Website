@@ -4,6 +4,7 @@ import { Typography } from './Typography';
 import { ButtonComponent } from './ButtonComponent';
 import manImage from '../assets/svgImages/man.jpg';
 import { FaXTwitter } from 'react-icons/fa6';
+import routeNames from './Navigation/RouteNames';
 
 const Footer = () => {
   return (
@@ -12,7 +13,6 @@ const Footer = () => {
         className="relative bg-cover bg-center py-20 px-6 text-center flex flex-col justify-center items-center min-h-[400px]"
         style={{ backgroundImage: `url(${manImage})` }}
       >
-
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/80 to-black"></div>
         {/* Content */}
         <div className="relative z-10 max-w-4xl mx-auto">
@@ -71,10 +71,10 @@ const Footer = () => {
                   </li>
                   <li>
                     <Link to="/contact-us" className="hover:text-white">
-                     <Typography size="md" weight="light">
-                      Talk to us
-                    </Typography></Link>
-
+                      <Typography size="md" weight="light">
+                        Talk to us
+                      </Typography>
+                    </Link>
                   </li>
                 </ul>
               </div>
@@ -123,7 +123,10 @@ const Footer = () => {
                 </Typography>
                 <ul className="space-y-3">
                   <li>
-                    <Link to='' className="hover:text-white">
+                    <Link
+                      to={routeNames.governanceLicencesAndCertifications}
+                      className="hover:text-white"
+                    >
                       <Typography size="md" weight="light">
                         Corporate Governance
                       </Typography>
@@ -168,17 +171,32 @@ const Footer = () => {
               </div>
               {/* Social Icons */}
               <div className="flex space-x-4 ">
-                <a href="https://www.linkedin.com/search/results/all/?fetchDeterministicClustersOnly=true&heroEntityKey=urn%3Ali%3Aorganization%3A930693&keywords=century%20group%20nigeria&origin=RICH_QUERY_SUGGESTION&position=1&searchId=1cbf806f-d5cb-404b-8f6e-06fb7eae83cf&sid=m7%3A&spellCorrectionEnabled=false" target='blank' className="p-2  rounded-full  transition">
+                <a
+                  href="https://www.linkedin.com/search/results/all/?fetchDeterministicClustersOnly=true&heroEntityKey=urn%3Ali%3Aorganization%3A930693&keywords=century%20group%20nigeria&origin=RICH_QUERY_SUGGESTION&position=1&searchId=1cbf806f-d5cb-404b-8f6e-06fb7eae83cf&sid=m7%3A&spellCorrectionEnabled=false"
+                  target="blank"
+                  className="p-2  rounded-full  transition"
+                >
                   <FaLinkedinIn />
                 </a>
-                <a href="https://m.facebook.com/CenturyGroupNigeria/" target='blank' className="p-2 rounded-full  transition">
+                <a
+                  href="https://m.facebook.com/CenturyGroupNigeria/"
+                  target="blank"
+                  className="p-2 rounded-full  transition"
+                >
                   <FaFacebookF />
                 </a>
-                <a href="https://x.com/CenturyGroupNG" target='blank' className="p-2 rounded-full  transition">
+                <a
+                  href="https://x.com/CenturyGroupNG"
+                  target="blank"
+                  className="p-2 rounded-full  transition"
+                >
                   <FaXTwitter />
-
                 </a>
-                <a href="https://www.instagram.com/centurygroupng/" target='blank' className="p-2  rounded-full  transition">
+                <a
+                  href="https://www.instagram.com/centurygroupng/"
+                  target="blank"
+                  className="p-2  rounded-full  transition"
+                >
                   <FaInstagram />
                 </a>
               </div>

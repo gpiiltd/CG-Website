@@ -8,6 +8,7 @@ import DiscoveryView from '../../Pages/DiscoveryView';
 import ContactUs from '../../Pages/ContactUs';
 import OurServicesTab from '../../Pages/OurServices/OurServicesTab';
 import ServiceDetailPage from '../../Pages/OurServices/ServiceDetailPage';
+import GovernanceAndPolicyMain from '../../Pages/GovernanceAndPolicyMain';
 
 const routes: RouteObject[] = [
   {
@@ -33,7 +34,9 @@ const routes: RouteObject[] = [
 
       { path: routeNames.contactUs, element: <ContactUs /> },
       { path: routeNames.ourTeam, element: <FacesOfCG /> },
-
+{
+path:routeNames.governanceLicencesAndCertifications,element:<GovernanceAndPolicyMain/>
+},
     ],
   },
 
