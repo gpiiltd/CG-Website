@@ -6,6 +6,7 @@ import workers5 from '../../assets/worker7.jpg';
 
 import { ButtonComponent } from '../../Components/ButtonComponent';
 import { HoverCard } from '../../Components/HoverCard';
+import { Link } from 'react-router-dom';
 
 const WhyCG = () => {
   return (
@@ -48,11 +49,9 @@ const WhyCG = () => {
           drive cost-efficient and effective goal attainment in the energy sector.
         </Typography>
         <div className="inline-block">
-          <ButtonComponent
-            text="Contact us"
-            bg_color="
-#ED6C30"
-          />
+          <Link to="/contact-us">
+            <ButtonComponent text="Contact us" bg_color="#ED6C30" />
+          </Link>
         </div>
       </div>
     </div>

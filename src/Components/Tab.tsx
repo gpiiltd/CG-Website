@@ -114,7 +114,7 @@ export const TabBar: React.FC<TabBarProps> = ({
       return {
         ...baseStyle,
         backgroundColor: isActive ? '#ffffff' : 'transparent',
-        color: isActive ? '#3498db' : '#000000',
+        color: isActive ? '#ED6C30' : '#667085',
         borderRadius: '8px',
         boxShadow: isActive
           ? '0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08)'
@@ -128,8 +128,10 @@ export const TabBar: React.FC<TabBarProps> = ({
   };
 
   return (
-    <div style={containerStyle} className={className}>
-      {tabs.map((tab) => (
+<div
+  style={containerStyle}
+  className={`bg-[#FDF0EA] ${className || ''}`}
+>      {tabs.map((tab) => (
         <button
           key={tab.id}
           style={getTabStyle(activeTab === tab.id)}
