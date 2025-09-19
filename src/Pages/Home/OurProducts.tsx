@@ -1,4 +1,3 @@
-// import { Typography } from '../../Components/Typography';
 import { Typography } from '../../Components/Typography';
 import VideoSlider from '../../Components/VideoSlider';
 import fpsologo from '../../assets/svgImages/video-thumbail.svg';
@@ -32,9 +31,9 @@ const videos = [
 ];
 const OurProducts = () => {
   return (
-    <div className=" ">
+    <div className="md:16 lg:pb-32">
       <div className=" mt-26">
-        <div className="p-24">
+        <div className="">
           <Typography
             size="lg"
             weight="bold"
@@ -43,7 +42,10 @@ const OurProducts = () => {
           >
             OUR PROJECTS
           </Typography>
-          <VideoSlider videos={videos}    />
+<div className='mb-12 md:mb-6 lg:mb-3'>
+<VideoSlider videos={videos}    />
+</div>
+
         </div>
       </div>
     </div>

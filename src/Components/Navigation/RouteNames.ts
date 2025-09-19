@@ -6,6 +6,7 @@ const routeNames = {
   ourTeam: '/our-team',
   discoveryCG: '/discover-century-group',
   contactUs: '/contact-us',
+governanceLicencesAndCertifications:'/governance-licences-certifications'
 };
 
 export default routeNames;
