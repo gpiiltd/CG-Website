@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { IoArrowBackCircleOutline, IoArrowForwardCircleOutline } from 'react-icons/io5';
 import { FaRegCirclePlay } from 'react-icons/fa6';
 
@@ -14,6 +14,7 @@ interface VideoSliderProps {
 
 const VideoSlider: React.FC<VideoSliderProps> = ({ videos }) => {
   const [current, setCurrent] = useState(0);
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
   const handlePrev = () => {
     setCurrent((prev) => (prev === 0 ? videos.length - 1 : prev - 1));
@@ -22,6 +23,16 @@ const VideoSlider: React.FC<VideoSliderProps> = ({ videos }) => {
   const handleNext = () => {
     setCurrent((prev) => (prev === videos.length - 1 ? 0 : prev + 1));
   };
+
+  // Pause all videos whenever current changes
+  useEffect(() => {
+    videoRefs.current.forEach((video, index) => {
+      if (video && index !== current) {
+        video.pause();
+        video.currentTime = 0; // reset to start if you like
+      }
+    });
+  }, [current]);
 
   return (
     <div className="relative w-full">
@@ -64,36 +75,32 @@ const VideoSlider: React.FC<VideoSliderProps> = ({ videos }) => {
                   }`}
                 >
                   <video
+                    ref={(el) => {
+                      videoRefs.current[index] = el;
+                    }}
                     src={video.videoUrl}
                     poster={video.thumbnail}
                     className="absolute inset-0 w-full h-full object-cover"
                     controls
                   />
+
                   {/* Play overlay */}
                   <div className="absolute inset-0 flex items-center justify-center">
                     <FaRegCirclePlay
                       className="text-white cursor-pointer z-10"
                       size={50}
                       onClick={() => {
-                        const videoElement = document.getElementById(
-                          `video-${video.id}`
-                        ) as HTMLVideoElement;
-                        if (videoElement.paused) {
-                          videoElement.play();
-                        } else {
-                          videoElement.pause();
+                        const videoElement = videoRefs.current[index];
+                        if (videoElement) {
+                          if (videoElement.paused) {
+                            videoElement.play();
+                          } else {
+                            videoElement.pause();
+                          }
                         }
                       }}
                     />
                   </div>
-
-                  <video
-                    id={`video-${video.id}`}
-                    src={video.videoUrl}
-                    poster={video.thumbnail}
-                    className="absolute inset-0 w-full h-full object-cover"
-                    controls
-                  />
                 </div>
               ))}
             </div>

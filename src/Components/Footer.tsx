@@ -172,7 +172,7 @@ const Footer = () => {
               {/* Social Icons */}
               <div className="flex space-x-4 ">
                 <a
-                  href="https://www.linkedin.com/search/results/all/?fetchDeterministicClustersOnly=true&heroEntityKey=urn%3Ali%3Aorganization%3A930693&keywords=century%20group%20nigeria&origin=RICH_QUERY_SUGGESTION&position=1&searchId=1cbf806f-d5cb-404b-8f6e-06fb7eae83cf&sid=m7%3A&spellCorrectionEnabled=false"
+                  href="https://www.linkedin.com/company/century-energy-services/"
                   target="blank"
                   className="p-2  rounded-full  transition"
                 >

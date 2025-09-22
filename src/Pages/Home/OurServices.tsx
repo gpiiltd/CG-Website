@@ -14,7 +14,7 @@ const OurServices = () => {
     <>
      <AnimatedScreen>
   <div className="bg-[#FFF3EE] py-12 w-full relative pb-8 md:pb-12 lg:pb-16">
-    <Typography size="3xl" weight="bold" className="mb-8 text-center" color="primary">
+    <Typography size="3xl" weight="bold" className="sm:mb-8 text-center" color="primary">
       Our Services
     </Typography>
 
@@ -30,7 +30,7 @@ const OurServices = () => {
       />
       <CardImageTitleAndDescription
         imageSrc={ship2}
-        title="Deployment, Operation & Maintenance of Offshore infrastructure"
+        title="Natural Gas Transmission and Distribution"
         description="From offshore infrastructure deployment, to energy logistics, our integrated services are designed"
         onLearnMoreClick={() => {
           navigate('services');
@@ -38,7 +38,7 @@ const OurServices = () => {
       />
       <CardImageTitleAndDescription
         imageSrc={workers}
-        title="Deployment, Operation & Maintenance of Offshore infrastructure"
+        title="Exploration and Production"
         description="From offshore infrastructure deployment, to energy logistics, our integrated services are designed"
         onLearnMoreClick={() => {
           navigate('services');
@@ -46,7 +46,7 @@ const OurServices = () => {
       />
       <CardImageTitleAndDescription
         imageSrc={tamara}
-        title="Deployment, Operation & Maintenance of Offshore infrastructure"
+        title="Ports and Terminal Management Services"
         description="From offshore infrastructure deployment, to energy logistics, our integrated services are designed"
         onLearnMoreClick={() => {
           console.log('lern more');
