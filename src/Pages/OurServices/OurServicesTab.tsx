@@ -6,7 +6,7 @@ import OverlaySection from './OverlaySection';
 import {  overlayData, serviceSectionsData } from './servicesDatalist';
 // import CarouselSection from './CarouselSection';
 import StatsBar from './StatsBar';
-import OurProducts from '../Home/OurProducts';
+import OurProducts from '../Home/OurProjects';
 
 const OurServicesTab = () => {
   const navigate = useNavigate();

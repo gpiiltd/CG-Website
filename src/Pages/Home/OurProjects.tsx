@@ -29,7 +29,7 @@ const videos = [
       'Positioned as a leading oil field infrastructure company, our focus is uncompromising safety standards, premium engineered and exceptional value, anchored in people- first, execution and proven technical expertise.',
   },
 ];
-const OurProducts = () => {
+const OurProjects = () => {
   return (
     <div className="md:16 lg:pb-32">
       <div className=" mt-26">
@@ -42,9 +42,9 @@ const OurProducts = () => {
           >
             OUR PROJECTS
           </Typography>
-<div className='mb-12 md:mb-6 lg:mb-3'>
-<VideoSlider videos={videos}    />
-</div>
+          <div className='mb-12 md:mb-6 lg:mb-3'>
+            <VideoSlider videos={videos}    />
+          </div>
 
         </div>
       </div>
@@ -52,4 +52,4 @@ const OurProducts = () => {
   );
 };
 
-export default OurProducts;
+export default OurProjects;

@@ -26,7 +26,7 @@ const ImageSlider = ({ images }: ImageSliderProps) => {
         1024: { slidesPerView: 4 },
         1280: { slidesPerView: 5 },
       }}
-      className="w-full max-w-screen-xl"
+      className="w-full"
     >
       {images.map((image, index) => (
         <SwiperSlide key={index}>

@@ -13,40 +13,40 @@ interface CardData {
 const cardData: CardData[] = [
   {
     id: 1,
-    title: 'Project Management',
-    subtitle: 'Organize your tasks and boost productivity',
+    title: 'Integrity',
+    subtitle: '',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
     icon: 'shield',
   },
   {
     id: 2,
-    title: 'Team Collaboration',
-    subtitle: 'Work together seamlessly',
+    title: 'Foresight',
+    subtitle: '',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
     icon: 'light',
   },
   {
     id: 3,
-    title: 'Data Analytics',
-    subtitle: 'Gain insights from your data',
+    title: 'Teamwork',
+    subtitle: '',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
     icon: 'teamwork',
   },
   {
     id: 4,
-    title: 'Cloud Storage',
-    subtitle: 'Secure and accessible anywhere',
+    title: 'Service Excellence',
+    subtitle: '',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
     icon: 'service',
   },
   {
     id: 5,
-    title: 'Customer Support',
-    subtitle: '24/7 assistance for your needs',
+    title: 'Local Capacity Development',
+    subtitle: '',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
     icon: 'loading',

@@ -2,7 +2,7 @@ import HeroSection from './HeroSection';
 import WhyCG from './WhyCG';
 import TrustedPartners from './TrustedPartners';
 import OurServices from './OurServices';
-import OurProducts from './OurProducts';
+import OurProjects from './OurProjects';
 
 const HomeMain = () => {
   return (
@@ -11,7 +11,7 @@ const HomeMain = () => {
       <TrustedPartners />
       <WhyCG />
       <OurServices />
-      <OurProducts />
+      <OurProjects />
     </div>
   );
 };

@@ -8,7 +8,7 @@ import gasplant from '../../assets/svgImages/gasplant.svg';
 import manworker from '../../assets/svgImages/manworker.svg';
 // import CarouselSection from './CarouselSection';
 import StatsBar from './StatsBar';
-import OurProducts from '../Home/OurProducts';
+import OurProducts from '../Home/OurProjects';
 
 const ServiceDetailPage = () => {
   const { id } = useParams<{ id: string }>();

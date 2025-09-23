@@ -10,15 +10,20 @@ import transform from '../assets/svgImages/transform.svg';
 import leverage from '../assets/svgImages/leverage.svg';
 import Timeline from '../Components/discovery/DiscoveryTimeline';
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const DiscoveryView = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className=" bg-white">
       {/* Hero Section */}
       <div className="space-y-2 md:mx-[4%] px-6 md:py-[3%]">
-        <Typography weight="semibold" className="text-[#ED6C30] text-xl md:text-2xl pt-8">
+        <Typography weight="semibold" className="text-[#ED6C30] pt-8 uppercase">
           The Century Group story
         </Typography>
 
@@ -78,18 +83,18 @@ const DiscoveryView = () => {
 
         {/* Overlay content */}
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className=" p-4 md:p-6 rounded-xl shadow-lg w-[90%] md:w-[52%] text-center">
-            <Typography className="uppercase text-sm md:text-xl font-semibold text-[#ffffff] mb-2">
-              our mission
+          <div className=" p-4 md:p-6 rounded-xl shadow-lg w-[90%] md:w-[53%] text-center text-balance">
+            <Typography className="text-sm font-semibold text-[#F9D1BF] mb-2">
+              OUR MISSION
             </Typography>
-            <Typography className="text-[#ffffff]">
+            <Typography className="text-[#ffffff] font-bold text-lg">
               To be a reference point for excellent service delivery to our clients and
               stakeholders, while continuing to{' '}
-              <span className="text-[#F9D1BF] font-semibold">
+              <span className="text-[#F9D1BF]">
                 De-risk and create new opportunities
               </span>{' '}
               in energy infrastructure supply across diverse sectors,{' '}
-              <span className="text-[#F9D1BF] font-semibold">
+              <span className="text-[#F9D1BF]">
                 facilitating job creation, skills development, and industrial growth
               </span>{' '}
               on a global scale.
@@ -104,7 +109,7 @@ const DiscoveryView = () => {
           Our Guiding Light
         </Typography>
         <Typography className="text-[#3E3E41] font-light md:text-[18px] w-[90%] md:w-[45%] mb-10">
-          At Century Group values defines who we are and how we operate. These principles shape
+          At Century Group, values define who we are and how we operate. These principles shape
           every decision we make and every partnership we build.
         </Typography>
         <CardGrid />
@@ -112,14 +117,14 @@ const DiscoveryView = () => {
 
       {/* Journey section ----------------------------------------------->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */}
       <div className="md:py-[7%] py-[12%] text-center">
-        <Typography weight="bold" className="text-[#ED6C30] mb-[20px] text-transform: uppercase">
+        <Typography weight="bold" className="text-[#ED6C30] mb-[20px] uppercase text-sm">
           How far we have come
         </Typography>
         <Typography weight="bold" className="text-[#11092F] md:text-5xl text-3xl mb-[30px]">
           The journey: From passion to strategy
         </Typography>
         <Typography weight="light" className="text-[#11092F] text-center md:w-[40%] m-auto mb-6">
-          We didn’t just ride the waves — we learned to navigate storms.The early years tested our
+          We didn’t just ride the waves — we learned to navigate storms. The early years tested our
           resilience. When the global market retreated during the 2008 downturn, we doubled up on
           ingenuity
         </Typography>
@@ -147,7 +152,7 @@ const DiscoveryView = () => {
             </div>
 
             {/* Button aligned left */}
-            <ButtonComponent text="Faces of CG" bg_color="#ED6C30" onClick={()=>navigate('/services')}/>
+            <ButtonComponent text="Faces of CG" bg_color="#ED6C30" onClick={()=>navigate('/our-team')}/>
             {/* fix with what choima said and add className for user to still edit it*/}
           </div>
 
@@ -168,7 +173,7 @@ const DiscoveryView = () => {
           </div>
         </div>
 
-        <div className="rounded-xl pb-[7%] flex md:flex-row-reverse flex-col items-center">
+        <div className="rounded-xl pb-[7%] flex md:flex-row-reverse md:gap-10 flex-col items-center">
           {/* Image first on mobile, second on desktop */}
           <div className="flex-1 mt-0 md:mt-0 mb-8 md:pr-14">
             <img
