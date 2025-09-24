@@ -5,8 +5,10 @@ import { Typography } from '../Components/Typography';
 import AnimatedScreen from '../Components/Animations';
 import { IoCall, IoLocation } from 'react-icons/io5';
 import { MdEmail } from 'react-icons/md';
+import usePageTitle from '../Components/PageTitle';
 
 const ContactUs: React.FC = () => {
+  usePageTitle('Century Group | Contact Us');
   return (
     <AnimatedScreen>
 

@@ -3,8 +3,10 @@ import { TabBar } from '../Components/Tab';
 import Certificates from '../Components/Certificates';
 import { Typography } from '../Components/Typography';
 import Policy from '../Components/Policy';
+import usePageTitle from '../Components/PageTitle';
 
 const GovernanceAndPolicyMain: React.FC = () => {
+  usePageTitle('Century Group | Governance & Policy');
   const [activeTab, setActiveTab] = useState('certificate');
 
   const tabs = [

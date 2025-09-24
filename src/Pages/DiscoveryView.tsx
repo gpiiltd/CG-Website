@@ -11,8 +11,10 @@ import leverage from '../assets/svgImages/leverage.svg';
 import Timeline from '../Components/discovery/DiscoveryTimeline';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
+import usePageTitle from '../Components/PageTitle';
 
 const DiscoveryView = () => {
+  usePageTitle('Century Group | Discover Us');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -90,10 +92,8 @@ const DiscoveryView = () => {
             <Typography className="text-[#ffffff] font-bold text-lg">
               To be a reference point for excellent service delivery to our clients and
               stakeholders, while continuing to{' '}
-              <span className="text-[#F9D1BF]">
-                De-risk and create new opportunities
-              </span>{' '}
-              in energy infrastructure supply across diverse sectors,{' '}
+              <span className="text-[#F9D1BF]">De-risk and create new opportunities</span> in energy
+              infrastructure supply across diverse sectors,{' '}
               <span className="text-[#F9D1BF]">
                 facilitating job creation, skills development, and industrial growth
               </span>{' '}
@@ -152,7 +152,11 @@ const DiscoveryView = () => {
             </div>
 
             {/* Button aligned left */}
-            <ButtonComponent text="Faces of CG" bg_color="#ED6C30" onClick={()=>navigate('/our-team')}/>
+            <ButtonComponent
+              text="Faces of CG"
+              bg_color="#ED6C30"
+              onClick={() => navigate('/our-team')}
+            />
             {/* fix with what choima said and add className for user to still edit it*/}
           </div>
 
@@ -232,7 +236,12 @@ const DiscoveryView = () => {
               purposeful progress, leveraging African talent to redistribute opportunity and ignite
               critical innovation.
             </Typography>
-            <ButtonComponent text="View Our Services" variant="solid" bg_color="#ED6C30" onClick={()=>navigate('/services')}/>
+            <ButtonComponent
+              text="View Our Services"
+              variant="solid"
+              bg_color="#ED6C30"
+              onClick={() => navigate('/services')}
+            />
           </div>
         </div>
 

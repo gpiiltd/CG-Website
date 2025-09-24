@@ -9,8 +9,10 @@ import manworker from '../../assets/svgImages/manworker.svg';
 // import CarouselSection from './CarouselSection';
 import StatsBar from './StatsBar';
 import OurProducts from '../Home/OurProjects';
+import usePageTitle from '../../Components/PageTitle';
 
 const ServiceDetailPage = () => {
+  usePageTitle('Century Group | Service Details');
   const { id } = useParams<{ id: string }>();
   const service = serviceSectionsData.find((s) => s.id === Number(id));
 
