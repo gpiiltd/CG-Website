@@ -62,7 +62,7 @@ const DiscoveryView = () => {
                   weight="semibold"
                   className="text-left md:text-left text-2xl text-white mb-2"
                 >
-                  The vision?
+                  The vision
                 </Typography>
                 <Typography weight="light" className="text-md text-left md:text-left text-white">
                   To build an African energy champion — one that fused global standards and
