@@ -3,12 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import manshore from '../../assets/svgImages/manshore.svg';
 import ServiceSection from './ServiceSection';
 import OverlaySection from './OverlaySection';
-import {  overlayData, serviceSectionsData } from './servicesDatalist';
+import { overlayData, serviceSectionsData } from './servicesDatalist';
 // import CarouselSection from './CarouselSection';
 import StatsBar from './StatsBar';
 import OurProducts from '../Home/OurProjects';
+import usePageTitle from '../../Components/PageTitle';
 
 const OurServicesTab = () => {
+  usePageTitle('Century Group | Services');
   const navigate = useNavigate();
   const [currentOverlay, setCurrentOverlay] = useState(0);
   const [activeServiceIndex, setActiveServiceIndex] = useState<number | null>(null);

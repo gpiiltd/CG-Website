@@ -4,8 +4,10 @@ import { cgDirectors, cgManagment } from './ListofFaces';
 import CustomModal from '../../Components/Modal/Modal';
 import Icon from '../../assets/SvgImagesAndIcons';
 import AnimatedScreen from '../../Components/Animations';
+import usePageTitle from '../../Components/PageTitle';
 
 const FacesOfCG: React.FC = () => {
+  usePageTitle('Century Group | Our Team');
   const [activeTab, setActiveTab] = useState<string>('directors');
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [selectedDirector, setSelectedDirector] = useState<any>(null);
