@@ -47,7 +47,6 @@ const Header = () => {
               Discover Century Group
             </Typography>
           </Link>
-          -
           <Link to="/services">
             <Typography
               size="md"

@@ -11,7 +11,8 @@ import { Typography } from '../../Components/Typography';
 import ImageSlider from '../../Components/Slider';
 import { ButtonComponent } from '../../Components/ButtonComponent';
 import people from '../../assets/svgImages/people.svg';
-import fpsologo from '../../assets/svgImages/American_logo.svg';
+// import fpsologo from '../../assets/svgImages/American_logo.svg';
+import aeclogo from '../../assets/aew.jpeg';
 
 const TrustedPartners = () => {
   const navigate = useNavigate();
@@ -28,6 +29,7 @@ const TrustedPartners = () => {
     { src: energy, alt: 'NPDC' },
     { src: general, alt: 'General Hydrocarbons' },
   ];
+
   return (
     <section className="w-full bg-white">
       <div className="max-w-[95%] mx-auto px-6 py-12">
@@ -41,11 +43,6 @@ const TrustedPartners = () => {
       <div className="bg-[#fff5f0]">
         <div className="max-w-[95%] mx-auto px-6 py-16 grid lg:grid-cols-2 gap-12 items-center">
           {/* Left side images */}
-          {/* <div className="grid grid-cols-2 gap-4">
-            <img src={workers2} alt="Team" className="rounded-lg object-cover w-full h-48" />
-            <img src={ship} alt="Ship" className="rounded-lg object-cover w-full  row-span-2" />
-            <img src={workers1} alt="Team" className="rounded-lg object-cover w-full h-48" />
-          </div> */}
           <div className="flex gap-4 h-max justify-center">
             <div className="flex flex-col gap-4 h-full">
               <img alt="Team" className="rounded-lg object-cover w-full" src={workers2}/>
@@ -67,11 +64,11 @@ const TrustedPartners = () => {
             </h2>
             <p className="text-gray-700 mb-4 font-bold text-lg">
               Delivering integrated offshore energy solutions through world class floater
-              development, comprehensive ancillary support.
+              deployment, comprehensive ancillary support.
             </p>
             <p className="text-gray-600 mb-8 text-lg">
               Our expertise and technical capabilities enable us to efficiently execute complex
-              offshore projects from concept through life cycle support, mitigating risk and
+              offshore projects from conceptualization through life cycle support, mitigating risk and
               amplifying value delivery.
             </p>
             <div className="flex gap-4">
@@ -97,24 +94,34 @@ const TrustedPartners = () => {
         {/* Content */}
         <div className="max-w-[95%] mx-auto px-6 py-16 grid lg:grid-cols-2 gap-12 items-center ">
           {/* Left side images */}
-          <div className="gap-4 bg-[#ED6C30] w-full h-full flex justify-end items-center px-6">
-            <img src={fpsologo} alt="Team" className="rounded-lg " />
+          <div className="gap-4 bg-white w-full h-full flex justify-end items-center px-6">
+            {/* <img src={fpsologo} alt="Team" className="rounded-lg " /> */}
+            <div className='font-bold flex flex-col items-start'>
+              <span className='font-outfit font-extrabold text-lg text-[#161C44] pl-3'>
+                MEET US AT THE 
+              </span>
+              <div className='flex items-center gap-2'>
+                  <img src={aeclogo} alt='African Energy Week' className=''/>
+              </div>
+            </div>
           </div>
 
           {/* Right side text */}
           <div className='space-y-4'>
             <Typography size="2xl" weight="bold" className="text-start text-white">
-              The world's leading gathering for the offshore oil and gas industry, brings together
-              key stakeholders involved in FSO, FPSO, FLNG, and FSRU projects.{' '}
+              {/* The world's leading gathering for the offshore oil and gas industry, brings together
+              key stakeholders involved in FSO, FPSO, FLNG, and FSRU projects.{' '} */}
+              Africa’s premier energy event, uniting governments, investors, and industry leaders
+              across the oil, gas, and renewable value chain.
             </Typography>
-            <Typography weight="light" className="text-start text-white">
+            {/* <Typography weight="light" className="text-start text-white">
               This year’s edition will continue to spotlight advancements in engineering practices,
               remote operations, and alternative energy, while recognising long-standing
               collaborations that have shaped the future of offshore energy.
-            </Typography>
+            </Typography> */}
             <div className="flex gap-4">
               <Link
-                to="https://www.fpsonetwork.com/events-fpsoworldcongress"
+                to="https://aecweek.com/"
                 target="_blank"
                 className="border-2 border-[#FDF0EA] rounded-full px-6 py-2 hover:scale-105 transition-all duration-300 ease-in-out"
               >

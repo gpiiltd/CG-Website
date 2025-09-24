@@ -46,10 +46,15 @@ const WhyCG = () => {
       </div>
       <div className="flex flex-col justify-center items-center px-3 md:px-48 py-8">
         <Typography size="lg" weight="normal" className="mb-8 text-center text-balance text-white">
-          We fuel your offshore energy ambition by seamlessly integrating world class floater (FPSO,
+          {/* We fuel your offshore energy ambition by seamlessly integrating world class floater (FPSO,
           FSO, etc) deploying unmatched efficiency, reduced risked and accelerated project delivery.
           Partner with us to navigate complexity with confidence, leveraging unified expertise that
-          drive cost-efficient and effective goal attainment in the energy sector.
+          drive cost-efficient and effective goal attainment in the energy sector. */}
+          We power your offshore ambitions by seamlessly
+delivering world-class energy infrastructure solutions (FPSOs, FSOs and more).
+Partner with us to navigate complex challenges with confidence leveraging our
+integrated expertise to achieve cost-effective, high-impact results in the energy
+sector
         </Typography>
         <div className="inline-block">
           <Link to="/contact-us">
