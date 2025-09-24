@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
-import { Typography } from './Typography';
 import { LazyImage } from './LazyImage';
+import { Typography } from './Typography';
 
 interface HoverCardProps {
   title: string;
@@ -14,8 +14,8 @@ export const HoverCard: React.FC<HoverCardProps> = ({
   title,
   description,
   imageSrc,
-  className = '',
-  linkTo,
+  className = "",
+linkTo
 }) => {
   const navigate = useNavigate();
 
@@ -38,13 +38,17 @@ export const HoverCard: React.FC<HoverCardProps> = ({
 
       {/* Text */}
       <div className="absolute inset-0 flex flex-col justify-end p-8">
+        {/* Title is always visible */}
         <Typography
           weight="bold"
           size="2xl"
           className="text-white text-xl sm:text-2xl font-bold mb-2 "
         >
           {title}
-        </Typography>{' '}
+        </Typography>
+
+        {/* Description is visible on hover for desktop, always visible on small screens */}
+
         <Typography
           weight="light"
           size="lg"

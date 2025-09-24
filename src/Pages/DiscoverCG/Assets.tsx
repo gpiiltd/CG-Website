@@ -1,10 +1,10 @@
 import { useState, type JSX } from 'react';
 import { Typography } from '../../Components/Typography';
 import ship from '../../assets/svgImages/bg_discovery.svg';
+import { assets, type Asset } from './data';
 import CustomModal from '../../Components/Modal/Modal';
 import { IoPlayOutline } from 'react-icons/io5';
 import AnimatedScreen from '../../Components/Animations';
-import { assets, type Asset } from './data';
 
 type ModalType = 'details' | 'tour' | null;
 
