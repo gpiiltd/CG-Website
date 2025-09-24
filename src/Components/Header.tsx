@@ -10,8 +10,17 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
-  const isActive = (path: string) => location.pathname === path;
+const isActive = (path: string) => {
+  const currentPath = location.pathname;
 
+  // Exact match for home page to avoid matching everything
+  if (path === '/') {
+    return currentPath === '/';
+  }
+
+  // For all other routes, check if current path starts with the route
+  return currentPath.startsWith(path);
+};
   return (
     <nav className=" w-full">
       <div className="px-3 sm:px-4 lg:px-6 max-w-[95%] mx-auto flex items-center justify-between py-3">

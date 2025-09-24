@@ -36,6 +36,8 @@ import muhriAbiodun from './svgImages/muhriAbiodun.svg';
 import ayebatariWilson from './svgImages/ayebatariWilson.svg';
 import paulUkeneye from './svgImages/paulUkeneye.svg';
 import ebimoboweiClifford from './svgImages/ebimoboweiClifford.svg';
+import ship_asset from './svgImages/ship_asset.svg';
+
 
 const Icon: React.FC<Svgprops> = ({ type, className, click }) => {
   const renderIcon = () => {
@@ -111,6 +113,8 @@ const Icon: React.FC<Svgprops> = ({ type, className, click }) => {
         return <img src={paulUkeneye} alt="paulUkeneye" className={className} />;
       case 'ebimoboweiClifford':
         return <img src={ebimoboweiClifford} alt="ebimoboweiClifford" className={className} />;
+ case 'shipAsset':
+        return <img src={ship_asset} alt="ebimoboweiClifford" className={className} />;
       default:
         return null;
     }
