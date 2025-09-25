@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
-import { LazyImage } from './LazyImage';
 import { Typography } from './Typography';
+import LazyImage from './LazyImage';
 
 interface HoverCardProps {
   title: string;
@@ -14,8 +14,8 @@ export const HoverCard: React.FC<HoverCardProps> = ({
   title,
   description,
   imageSrc,
-  className = "",
-linkTo
+  className = '',
+  linkTo,
 }) => {
   const navigate = useNavigate();
 
@@ -31,8 +31,7 @@ linkTo
       onClick={handleClick}
     >
       {/* Image */}
-      <LazyImage src={imageSrc} alt={title} />
-
+      <LazyImage src={imageSrc} alt={title} className="w-full h-full" />
       {/* Overlay */}
       <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-colors duration-300 ease-in-out"></div>
 

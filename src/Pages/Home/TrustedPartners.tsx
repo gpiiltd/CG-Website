@@ -11,8 +11,9 @@ import { Typography } from '../../Components/Typography';
 import ImageSlider from '../../Components/Slider';
 import { ButtonComponent } from '../../Components/ButtonComponent';
 import people from '../../assets/svgImages/people.svg';
-// import fpsologo from '../../assets/svgImages/American_logo.svg';
 import aeclogo from '../../assets/aew.jpeg';
+import LazyImage from '../../Components/LazyImage';
+import AnimatedScreen from '../../Components/Animations';
 
 const TrustedPartners = () => {
   const navigate = useNavigate();
@@ -31,7 +32,8 @@ const TrustedPartners = () => {
   ];
 
   return (
-    <section className="w-full bg-white">
+      <AnimatedScreen>
+ <section className="w-full bg-white">
       <div className="max-w-[95%] mx-auto px-6 py-12">
         <Typography color="primary" size="lg" weight="bold" className="mb-8 text-start">
           Trusted by top-tier energy and infrastructure leaders across Africa.
@@ -45,17 +47,24 @@ const TrustedPartners = () => {
           {/* Left side images */}
           <div className="flex gap-4 h-max justify-center">
             <div className="flex flex-col gap-4 h-full">
-              <img alt="Team" className="rounded-lg object-cover w-full" src={workers2}/>
-              <img alt="Team" className="rounded-lg object-cover w-full" src={workers1}/>
+              <LazyImage
+                src={workers2}
+                alt="Director 1"
+                className="rounded-lg object-cover w-full"
+              />
+              <LazyImage
+                src={workers1}
+                alt="Director 1"
+                className="rounded-lg object-cover w-full"
+              />
             </div>
-              <div>
-                <img alt="Ship" className="rounded-lg object-cover w-full" src={ship}/>
-              </div>
+            <div>
+              <LazyImage src={ship} alt="Director 1" className="rounded-lg object-cover w-full" />
+            </div>
           </div>
 
-
           {/* Right side text */}
-          <div className='h-full'>
+          <div className="h-full">
             <p className="text-orange-500 uppercase text-sm font-semibold mb-2 tracking-wide">
               Operational Excellence
             </p>
@@ -68,19 +77,19 @@ const TrustedPartners = () => {
             </p>
             <p className="text-gray-600 mb-8 text-lg">
               Our expertise and technical capabilities enable us to efficiently execute complex
-              offshore projects from conceptualization through life cycle support, mitigating risk and
-              amplifying value delivery.
+              offshore projects from conceptualization through life cycle support, mitigating risk
+              and amplifying value delivery.
             </p>
             <div className="flex gap-4">
               <Link to="/contact-us">
                 <ButtonComponent text="Contact us" bg_color="#ED6C30" />
               </Link>
-                <ButtonComponent
-                  text="Learn More"
-                  variant="outline"
-                  bg_color="#642D14"
-                  onClick={() => navigate('/discover-century-group')}
-                />
+              <ButtonComponent
+                text="Learn More"
+                variant="outline"
+                bg_color="#642D14"
+                onClick={() => navigate('/discover-century-group')}
+              />
             </div>
           </div>
         </div>
@@ -96,18 +105,18 @@ const TrustedPartners = () => {
           {/* Left side images */}
           <div className="gap-4 bg-white w-full h-full flex justify-end items-center px-6">
             {/* <img src={fpsologo} alt="Team" className="rounded-lg " /> */}
-            <div className='font-bold flex flex-col items-start'>
-              <span className='font-outfit font-extrabold text-lg text-[#161C44] pl-3'>
-                MEET US AT THE 
+            <div className="font-bold flex flex-col items-start">
+              <span className="font-outfit font-extrabold text-lg text-[#161C44] pl-3">
+                MEET US AT THE
               </span>
-              <div className='flex items-center gap-2'>
-                  <img src={aeclogo} alt='African Energy Week' className=''/>
+              <div className="flex items-center gap-2">
+                <img src={aeclogo} alt="African Energy Week" className="" />
               </div>
             </div>
           </div>
 
           {/* Right side text */}
-          <div className='space-y-4'>
+          <div className="space-y-4">
             <Typography size="2xl" weight="bold" className="text-start text-white">
               {/* The world's leading gathering for the offshore oil and gas industry, brings together
               key stakeholders involved in FSO, FPSO, FLNG, and FSRU projects.{' '} */}
@@ -126,13 +135,16 @@ const TrustedPartners = () => {
                 className="border-2 border-[#FDF0EA] rounded-full px-6 py-2 hover:scale-105 transition-all duration-300 ease-in-out"
               >
                 {/* <ButtonComponent text="Learn More" variant="outline" bg_color="#FDF0EA" /> */}
-                <span className='text-[#FDF0EA] font-semibold'>Learn More</span>
+                <span className="text-[#FDF0EA] font-semibold">Learn More</span>
               </Link>
             </div>
           </div>
         </div>
       </div>
     </section>
+      </AnimatedScreen>
+
+
   );
 };
 

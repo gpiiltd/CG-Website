@@ -18,7 +18,7 @@ const AnimatedScreen = ({ children }: AnimatedScreenProps) => {
       initial="hidden"
       animate="enter"
       exit="exit"
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.7 }}
       className="h-full w-full"
     >
       {children}

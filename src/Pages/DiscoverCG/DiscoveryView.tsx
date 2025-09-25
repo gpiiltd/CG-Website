@@ -2,7 +2,7 @@ import { ButtonComponent } from '../../Components/ButtonComponent';
 import { Typography } from '../../Components/Typography';
 import CardGrid from '../../Components/discovery/discoveryCard';
 import Icon from '../../assets/SvgImagesAndIcons';
-import discoverBg from '../../assets/svgImages/bg_discovery.svg';
+import discoverBg from '../../assets/discover_bg.png';
 import disMen from '../../assets/svgImages/disMen.svg';
 import disGirlBook from '../../assets/svgImages/disGirlBook.svg';
 import rope from '../../assets/svgImages/rope.svg';
@@ -11,6 +11,7 @@ import leverage from '../../assets/svgImages/leverage.svg';
 import Timeline from '../../Components/discovery/DiscoveryTimeline';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
+import LazyImage from '../../Components/LazyImage';
 
 const DiscoveryView = () => {
   const navigate = useNavigate();
@@ -49,7 +50,8 @@ const DiscoveryView = () => {
           {/* image below */}
           <div className="relative w-full mt-8 rounded-2xl">
             {/* Image */}
-            <img
+
+            <LazyImage
               src={discoverBg}
               alt="Century Group"
               className="w-full h-[300px] md:h-[450px] object-cover mb-3 rounded-2xl"
@@ -282,7 +284,6 @@ const DiscoveryView = () => {
           </div>
         </div>
       </div>
-
     </>
   );
 };
