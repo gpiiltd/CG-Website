@@ -3,6 +3,7 @@ import { ButtonComponent } from '../../Components/ButtonComponent';
 import HeroCards from './HeroCards';
 import bg_video from '../../assets/videos/CD_video.mp4';
 import { Link } from 'react-router-dom';
+import routeNames from '../../Components/Navigation/RouteNames';
 
 const HeroSection = () => {
   return (
@@ -18,7 +19,7 @@ const HeroSection = () => {
           <source src={bg_video} type="video/mp4" />
         </video>
 
-        <div className="absolute inset-0 bg-black/70" />
+        {/* <div className="absolute inset-0 bg-black/70" /> */}
 
         <div className="relative z-10 max-w-[95%] mx-auto px-6 grid lg:grid-cols-2 items-center h-full gap-8">
           <div className="space-y-6">
@@ -35,8 +36,8 @@ const HeroSection = () => {
               since 2002.
             </p>
             <div className="inline-block">
-              <Link to="/contact-us">
-                <ButtonComponent text="Contact us" bg_color="#ED6C30" />
+              <Link to={`${routeNames.discoveryCG}/${routeNames.assets}`}>
+                <ButtonComponent text="Our assets" bg_color="#ED6C30" />
               </Link>
             </div>{' '}
           </div>

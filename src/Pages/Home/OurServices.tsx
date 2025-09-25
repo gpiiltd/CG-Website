@@ -25,7 +25,7 @@ const OurServices = () => {
         title="Deployment, Operation & Maintenance of Offshore infrastructure"
         description="From offshore infrastructure deployment, to energy logistics, our integrated services are designed"
         onLearnMoreClick={() => {
-          navigate('services');
+          navigate('services/1');
         }}
       />
       <CardImageTitleAndDescription
@@ -33,7 +33,7 @@ const OurServices = () => {
         title="Natural Gas Transmission and Distribution"
         description="From offshore infrastructure deployment, to energy logistics, our integrated services are designed"
         onLearnMoreClick={() => {
-          navigate('services');
+          navigate('services/4');
         }}
       />
       <CardImageTitleAndDescription
@@ -41,7 +41,7 @@ const OurServices = () => {
         title="Exploration and Production"
         description="From offshore infrastructure deployment, to energy logistics, our integrated services are designed"
         onLearnMoreClick={() => {
-          navigate('services');
+          navigate('services/2');
         }}
       />
       <CardImageTitleAndDescription
@@ -49,7 +49,7 @@ const OurServices = () => {
         title="Ports and Terminal Management Services"
         description="From offshore infrastructure deployment, to energy logistics, our integrated services are designed"
         onLearnMoreClick={() => {
-          console.log('lern more');
+          navigate('services/3');
         }}
       />
     </div>

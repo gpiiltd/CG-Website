@@ -51,9 +51,9 @@ const videos = [
     id: '3',
     videoUrl: bg_video,
     thumbnail: fpsologo,
-    title: 'TT FPSO Tour 3',
+    title: 'Strategic Ports & Terminal Management solutions',
     description:
-      'Positioned as a leading oil field infrastructure company, our focus is uncompromising safety standards, premium engineered and exceptional value, anchored in people- first, execution and proven technical expertise.',
+      'A trusted partner in cargo handling and facility management, delivering tailored solutions for offshore and onshore oil exploration and production projects.',
   },
 ];
 
