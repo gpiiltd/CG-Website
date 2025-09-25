@@ -3,22 +3,49 @@ import VideoSlider from '../../Components/VideoSlider';
 import fpsologo from '../../assets/svgImages/video-thumbail.svg';
 import bg_video from '../../assets/videos/CD_video.mp4';
 
+// const videos = [
+//   {
+//     id: '1',
+//     videoUrl: bg_video,
+//     thumbnail: fpsologo,
+//     title: 'TT FPSO Tour',
+//     description:
+//       'Positioned as a leading oil field infrastructure company, our focus is uncompromising safety standards, premium engineered and exceptional value, anchored in people- first, execution and proven technical expertise.',
+//   },
+//   {
+//     id: '2',
+//     videoUrl: bg_video,
+//     thumbnail: fpsologo,
+//     title: 'TT FPSO Tour 2',
+//     description:
+//       'Positioned as a leading oil field infrastructure company, our focus is uncompromising safety standards, premium engineered and exceptional value, anchored in people- first, execution and proven technical expertise.',
+//   },
+//   {
+//     id: '3',
+//     videoUrl: bg_video,
+//     thumbnail: fpsologo,
+//     title: 'TT FPSO Tour 3',
+//     description:
+//       'Positioned as a leading oil field infrastructure company, our focus is uncompromising safety standards, premium engineered and exceptional value, anchored in people- first, execution and proven technical expertise.',
+//   },
+// ];
+
 const videos = [
   {
     id: '1',
     videoUrl: bg_video,
     thumbnail: fpsologo,
-    title: 'TT FPSO Tour',
+    title: 'Tamara Elmina (Guardian of okwori field)',
     description:
-      'Positioned as a leading oil field infrastructure company, our focus is uncompromising safety standards, premium engineered and exceptional value, anchored in people- first, execution and proven technical expertise.',
+      'A Critical asset in Nigeria’s offshore energy infrastructure, keeping the life blood of the economy flowing.',
   },
   {
     id: '2',
     videoUrl: bg_video,
     thumbnail: fpsologo,
-    title: 'TT FPSO Tour 2',
+    title: 'Tamara Tokoni',
     description:
-      'Positioned as a leading oil field infrastructure company, our focus is uncompromising safety standards, premium engineered and exceptional value, anchored in people- first, execution and proven technical expertise.',
+      'Positioned as a leading oil field infrastructure company, our focus is uncompromising safety standards, premium engineered and exceptional value, anchored in people-first, execution and proven technical expertise.',
   },
   {
     id: '3',
@@ -29,6 +56,7 @@ const videos = [
       'Positioned as a leading oil field infrastructure company, our focus is uncompromising safety standards, premium engineered and exceptional value, anchored in people- first, execution and proven technical expertise.',
   },
 ];
+
 const OurProjects = () => {
   return (
     <div className="md:16 lg:pb-32">

@@ -1,8 +1,8 @@
 import { Typography } from '../../Components/Typography';
-import ship2 from '../../assets/svgImages/ship_inthe_sea.svg';
-import workers from '../../assets/svgImages/people_working.svg';
-import ship from '../../assets/svgImages/ship2.svg';
-import tamara from '../../assets/svgImages/tamara.svg';
+import atalaEP from '../../assets/Atala-E&P.png'
+import tnFPSO from '../../assets/TN FPSO- Deployment - O&M.jpg'
+import LNGVessel from '../../assets/LNG Vessel.jpg';
+import CPTLOps from '../../assets/CPTL Ops.jpeg'
 import CardImageTitleAndDescription from '../../Components/Cards/CardImageTitleAndDescription';
 import { useNavigate } from 'react-router-dom';
 import AnimatedScreen from '../../Components/Animations';
@@ -21,7 +21,7 @@ const OurServices = () => {
     {/* Services Grid */}
     <div className="max-w-[85%] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 py-12 mb-4 md:mb-6 lg:mb-8">
       <CardImageTitleAndDescription
-        imageSrc={ship}
+        imageSrc={atalaEP}
         title="Deployment, Operation & Maintenance of Offshore infrastructure"
         description="From offshore infrastructure deployment, to energy logistics, our integrated services are designed"
         onLearnMoreClick={() => {
@@ -29,7 +29,7 @@ const OurServices = () => {
         }}
       />
       <CardImageTitleAndDescription
-        imageSrc={ship2}
+        imageSrc={LNGVessel}
         title="Natural Gas Transmission and Distribution"
         description="From offshore infrastructure deployment, to energy logistics, our integrated services are designed"
         onLearnMoreClick={() => {
@@ -37,7 +37,7 @@ const OurServices = () => {
         }}
       />
       <CardImageTitleAndDescription
-        imageSrc={workers}
+        imageSrc={tnFPSO}
         title="Exploration and Production"
         description="From offshore infrastructure deployment, to energy logistics, our integrated services are designed"
         onLearnMoreClick={() => {
@@ -45,7 +45,7 @@ const OurServices = () => {
         }}
       />
       <CardImageTitleAndDescription
-        imageSrc={tamara}
+        imageSrc={CPTLOps}
         title="Ports and Terminal Management Services"
         description="From offshore infrastructure deployment, to energy logistics, our integrated services are designed"
         onLearnMoreClick={() => {
