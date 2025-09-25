@@ -85,45 +85,45 @@ export const ButtonComponent: React.FC<ButtonProps> = ({
         disabled={loading || !active}
         style={buttonStyle}
       >
-        {/* Text */}
-        <span
-          style={{
-            visibility: loading ? 'hidden' : 'visible',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.5rem',
-          }}
-        >
-          <span>{text}</span>
-        </span>
-
-        {/* Right Arrow Icon (animated in on hover) */}
-        <AnimatePresence>
-          {hovered && !loading && (
-            <motion.span
-              initial={{ opacity: 0, x: 5 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 5 }}
-              transition={{ duration: 0.2 }}
-              style={{ display: 'flex', alignItems: 'center' }}
-            >
-              <Icon type="Arrow" className="" />
-            </motion.span>
-          )}
-        </AnimatePresence>
-
-        {/* Loading Spinner */}
-        {loading && (
+        {/* Text OR Loading Spinner */}
+        {loading ? (
           <span
             style={{
-              position: 'absolute',
               display: 'flex',
-              justifyContent: 'center',
               alignItems: 'center',
+              justifyContent: 'center',
+              width: '100%',
             }}
           >
             <ClipLoader color={finalTextColor} size={20} />
           </span>
+        ) : (
+          <>
+            <span
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+              }}
+            >
+              <span>{text}</span>
+            </span>
+
+            {/* Right Arrow Icon (animated in on hover) */}
+            <AnimatePresence>
+              {hovered && (
+                <motion.span
+                  initial={{ opacity: 0, x: 5 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 5 }}
+                  transition={{ duration: 0.2 }}
+                  style={{ display: 'flex', alignItems: 'center' }}
+                >
+                  <Icon type="Arrow" className="" />
+                </motion.span>
+              )}
+            </AnimatePresence>
+          </>
         )}
       </button>
     </div>

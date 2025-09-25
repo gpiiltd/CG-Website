@@ -25,7 +25,7 @@ const DiscoveryView = () => {
     <div className=" bg-white">
       {/* Hero Section */}
       <div className="space-y-2 md:mx-[4%] px-6 md:py-[3%]">
-        <Typography weight="semibold" className="text-[#ED6C30] pt-8 uppercase">
+        <Typography weight="semibold" className="text-[#ED6C30] text-sm pt-8 uppercase">
           The Century Group story
         </Typography>
 

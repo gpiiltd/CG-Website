@@ -69,7 +69,17 @@ export default function Timeline() {
                     <Icon type="dull" className="text-gray-400 mt-1 " />
                   )}
                 </button>
-                {i < years.length - 1 && <span className="mx-2 text-gray-400 select-none">—</span>}
+                {i < years.length - 1 && (
+                  <div className="flex items-center mx-2">
+                    <div className="w-3 h-[2px] bg-gray-300 mx-1" /> {/* line */}
+                    <div className="w-2 h-2 bg-gray-300 rounded-full" /> {/* dot */}
+                    <div className="w-3 h-[2px] bg-gray-300 mx-1" /> {/* line */}
+                    <div className="w-2 h-2 bg-gray-300 rounded-full" /> {/* dot */}
+                    <div className="w-3 h-[2px] bg-gray-300 mx-1" /> {/* line */}
+                    <div className="w-2 h-2 bg-gray-300 rounded-full" /> {/* dot */}
+                    <div className="w-3 h-[2px] bg-gray-300 mx-1" /> {/* line */}
+                  </div>
+                )}
               </div>
             ))}
           </div>

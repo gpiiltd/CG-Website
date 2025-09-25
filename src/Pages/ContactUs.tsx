@@ -6,180 +6,292 @@ import AnimatedScreen from '../Components/Animations';
 import { IoCall, IoLocation } from 'react-icons/io5';
 import { MdEmail } from 'react-icons/md';
 import usePageTitle from '../Components/PageTitle';
+import { zodResolver } from '@hookform/resolvers/zod';
+import emailjs from 'emailjs-com';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useEffect, useRef } from 'react';
+import { FormProvider, useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
+import { z } from 'zod';
+
+gsap.registerPlugin(ScrollTrigger);
+
+const contactSchema = z.object({
+  firstName: z.string().min(1, 'First name is required'),
+  lastName: z.string().min(1, 'Last name is required'),
+  email: z.string().min(1, 'Email address is required').email('Invalid email address'),
+  phone: z.string().min(1, 'Phone number is required'),
+  role: z.string().min(1, 'Role/Position is required'),
+  company: z.string().min(1, 'Company/Organisation is required'),
+  message: z.string().min(10, 'Message must be at least 10 characters'),
+  honeypot: z.string().optional(),
+});
+
+type ContactFormData = z.infer<typeof contactSchema>;
 
 const ContactUs: React.FC = () => {
+  const sectionRef = useRef(null);
+  const [loading, setLoading] = React.useState(false);
+  const methods = useForm<ContactFormData>({
+    resolver: zodResolver(contactSchema),
+    mode: 'onBlur', // Validate when an input loses focus
+  });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = methods;
+
+  useEffect(() => {
+    if (sectionRef.current) {
+      gsap.fromTo(
+        sectionRef.current,
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top bottom-=100',
+            end: 'bottom top+=100',
+            scrub: true,
+          },
+        }
+      );
+    }
+  }, []);
+
+  // Fix: Move the onSubmit handler inside the component and ensure it returns JSX
+  const onSubmit = (data: ContactFormData) => {
+    setLoading(true);
+
+    const templateParams = {
+      firstName: data.firstName,
+      lastName: data.lastName,
+      email: data.email,
+      phone: data.phone,
+      role: data.role,
+      company: data.company,
+      message: data.message,
+    };
+
+    emailjs
+      .send('service_inplpcr', 'template_ermsvkm', templateParams, 'nXYflXqHCDwyly38J')
+      .then((response) => {
+        console.log('Success:', response);
+        toast.success('Message sent successfully!');
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        toast.error("There's been an error. Please, try again.");
+      })
+      .finally(() => {
+        setLoading(false); // always stop loading
+      });
+  };
+
   usePageTitle('Century Group | Contact Us');
   return (
     <AnimatedScreen>
+      <div className="bg-white">
+        {/* Top section */}
+        <div className="max-w-6xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          {/* Left image */}
+          <div>
+            <img
+              src={man}
+              alt="Oil rig worker"
+              className="rounded-lg shadow-lg object-cover w-full  h-[600px]"
+            />
+          </div>
 
-    <div className="bg-white">
-      {/* Top section */}
-      <div className="max-w-6xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-        {/* Left image */}
-        <div>
-          <img
-            src={man}
-            alt="Oil rig worker"
-            className="rounded-lg shadow-lg object-cover w-full  h-[600px]"
-          />
+          {/* Right form */}
+          <div>
+            <h2 className="text-3xl font-bold text-[#1D0C3D] mb-2">Send Us A Message</h2>
+            <p className="text-gray-600 mb-6">We hope to hear from you soon!</p>
+
+            <FormProvider {...methods}>
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div>
+                    <Typography size="md" weight="normal" color="primary" className="mb-2">
+                      First name
+                    </Typography>
+                    <input
+                      type="text"
+                      placeholder="Enter first Name"
+                      {...register('firstName')}
+                      className="border border-gray-300 rounded-md px-4 py-2 w-full
+             focus:outline-none focus:ring-2 focus:ring-orange-500
+             text-gray-900 placeholder-gray-400"
+                    />
+                    {errors?.firstName?.message && (
+                      <p className="text-red-500 text-sm mt-1">{errors.firstName.message}</p>
+                    )}
+                  </div>
+
+                  <div>
+                    <Typography size="md" weight="normal" color="primary" className="mb-2">
+                      Last name
+                    </Typography>
+                    <input
+                      type="text"
+                      placeholder="Enter last name"
+                      {...register('lastName')}
+                      className="border border-gray-300 rounded-md px-4 py-2 w-full
+             focus:outline-none focus:ring-2 focus:ring-orange-500
+             text-gray-900 placeholder-gray-400"
+                    />
+                    {errors?.lastName?.message && (
+                      <p className="text-red-500 text-sm mt-1">{errors.lastName.message}</p>
+                    )}
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <Typography size="md" weight="normal" color="primary" className="mb-2">
+                      Email
+                    </Typography>
+                    <input
+                      type="email"
+                      placeholder="Enter email"
+                      {...register('email')}
+                      className="border border-gray-300 rounded-md px-4 py-2 w-full
+             focus:outline-none focus:ring-2 focus:ring-orange-500
+             text-gray-900 placeholder-gray-400"
+                    />
+                    {errors?.email?.message && (
+                      <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
+                    )}
+                  </div>
+                  <div>
+                    <Typography size="md" weight="normal" color="primary" className="mb-2">
+                      Phone Number
+                    </Typography>
+                    <input
+                      type="text"
+                      placeholder="Enter phone number"
+                      {...register('phone')}
+                      className="border border-gray-300 rounded-md px-4 py-2 w-full
+             focus:outline-none focus:ring-2 focus:ring-orange-500
+             text-gray-900 placeholder-gray-400"
+                    />
+                    {errors?.phone?.message && (
+                      <p className="text-red-500 text-sm mt-1">{errors.phone.message}</p>
+                    )}
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <Typography size="md" weight="normal" color="primary" className="mb-2">
+                      Role/Position
+                    </Typography>
+                    <input
+                      type="text"
+                      placeholder="Enter Role/Position"
+                      {...register('role')}
+                      className="border border-gray-300 rounded-md px-4 py-2 w-full
+             focus:outline-none focus:ring-2 focus:ring-orange-500
+             text-gray-900 placeholder-gray-400"
+                    />
+                    {errors?.role?.message && (
+                      <p className="text-red-500 text-sm mt-1">{errors.role.message}</p>
+                    )}
+                  </div>
+                  <div>
+                    <Typography size="md" weight="normal" color="primary" className="mb-2">
+                      Company/Organisation
+                    </Typography>
+                    <input
+                      type="text"
+                      placeholder="Enter Company/Organisation"
+                      {...register('company')}
+                      className="border border-gray-300 rounded-md px-4 py-2 w-full
+             focus:outline-none focus:ring-2 focus:ring-orange-500
+             text-gray-900 placeholder-gray-400"
+                    />
+                    {errors?.company?.message && (
+                      <p className="text-red-500 text-sm mt-1">{errors.company.message}</p>
+                    )}
+                  </div>
+                </div>
+
+                <div>
+                  <Typography size="md" weight="normal" color="primary" className="mb-2">
+                    Message
+                  </Typography>
+                  <textarea
+                    placeholder="Type message"
+                    rows={4}
+                    {...register('message')}
+                    className="border placeholder-gray-400 text-gray-900 border-gray-300 rounded-md px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  ></textarea>
+                  {errors?.message?.message && (
+                    <p className="text-red-500 text-sm mt-1">{errors.message.message}</p>
+                  )}
+                </div>
+
+                {/* Honeypot field for spam protection */}
+                <input type="text" {...register('honeypot')} className="hidden" />
+
+                <ButtonComponent text="Send a message" bg_color="#ED6C30" loading={loading} />
+              </form>
+            </FormProvider>
+          </div>
         </div>
 
-        {/* Right form */}
-        <div>
-          <h2 className="text-3xl font-bold text-[#1D0C3D] mb-2">Send Us A Message</h2>
-          <p className="text-gray-600 mb-6">We hope to hear from you soon!</p>
+        {/* Bottom section */}
+        <div className="bg-gray-50 py-12">
+          <div className="max-w-6xl mx-auto px-6">
+            <h3 className="text-2xl font-bold text-center text-[#1D0C3D] mb-10">
+              More Ways To Contact Us
+            </h3>
 
-          <form className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div>
-                <Typography size="md" weight="normal" color="primary" className='mb-2'>
-                  First name
-                </Typography>
-                <input
-                  type="text"
-                  placeholder="Enter first Name"
-                  className="border border-gray-300 rounded-md px-4 py-2 w-full
-               focus:outline-none focus:ring-2 focus:ring-orange-500
-               text-gray-900 placeholder-gray-400"
-                />
-              </div>
-
-              <div>
-                <Typography size="md" weight="normal" color="primary" className='mb-2'>
-                  Last name
-                </Typography>
-                <input
-                  type="text"
-                  placeholder="Enter last name"
-                  className="border border-gray-300 rounded-md px-4 py-2 w-full
-               focus:outline-none focus:ring-2 focus:ring-orange-500
-               text-gray-900 placeholder-gray-400"
-                />
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <Typography size="md" weight="normal" color="primary" className='mb-2'>
-                  Email
-                </Typography>
-                <input
-                  type="text"
-                  placeholder="Enter email"
-                  className="border border-gray-300 rounded-md px-4 py-2 w-full
-               focus:outline-none focus:ring-2 focus:ring-orange-500
-               text-gray-900 placeholder-gray-400"
-                />
-              </div>
-              <div>
-                <Typography size="md" weight="normal" color="primary" className='mb-2'>
-                  Phone Number
-                </Typography>
-                <input
-                  type="text"
-                  placeholder="Enter phone number"
-                  className="border border-gray-300 rounded-md px-4 py-2 w-full
-               focus:outline-none focus:ring-2 focus:ring-orange-500
-               text-gray-900 placeholder-gray-400"
-                />
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <Typography size="md" weight="normal" color="primary" className='mb-2'>
-                  Role/Position
-                </Typography>
-                <input
-                  type="text"
-                  placeholder="Enter Role/Position"
-                  className="border border-gray-300 rounded-md px-4 py-2 w-full
-               focus:outline-none focus:ring-2 focus:ring-orange-500
-               text-gray-900 placeholder-gray-400"
-                />
-              </div>
-              <div>
-                <Typography size="md" weight="normal" color="primary" className='mb-2'>
-                  Company/Organisation
-                </Typography>
-                <input
-                  type="text"
-                  placeholder="Enter Company/Organisation"
-                  className="border border-gray-300 rounded-md px-4 py-2 w-full
-               focus:outline-none focus:ring-2 focus:ring-orange-500
-               text-gray-900 placeholder-gray-400"
-                />
-              </div>
-            </div>
-
-            <div>
-                <Typography size="md" weight="normal" color="primary" className='mb-2'>
-                Message
-              </Typography>
-              <textarea
-                placeholder="Type message"
-                rows={4}
-                className="border border-gray-300 rounded-md px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-orange-500"
-              ></textarea>
-            </div>
-
-            <ButtonComponent text="Send a message" bg_color="#ED6C30" />
-          </form>
-        </div>
-      </div>
-
-      {/* Bottom section */}
-      <div className="bg-gray-50 py-12">
-        <div className="max-w-6xl mx-auto px-6">
-          <h3 className="text-2xl font-bold text-center text-[#1D0C3D] mb-10">
-            More Ways To Contact Us
-          </h3>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {/* Address */}
-            <div className="bg-[#FFFAF8] shadow-md rounded-lg p-6 text-center">
-              <div className="flex justify-center mb-4">
-                <div className="w-12 h-12 flex items-center justify-center bg-[#1D0C3D] text-white rounded-full">
-                  <IoLocation color='white'/>
-
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {/* Address */}
+              <div className="bg-[#FFFAF8] shadow-md rounded-lg p-6 text-center">
+                <div className="flex justify-center mb-4">
+                  <div className="w-12 h-12 flex items-center justify-center bg-[#1D0C3D] text-white rounded-full">
+                    <IoLocation color="white" />
+                  </div>
                 </div>
+                <h4 className="font-semibold text-lg mb-2">Address</h4>
+                <p className="text-gray-600 text-sm">
+                  Ibukun House Block 105, No 8 Baderinwa Alabi Street, Lekki Phase 1, Lagos
+                </p>
               </div>
-              <h4 className="font-semibold text-lg mb-2">Address</h4>
-              <p className="text-gray-600 text-sm">
-                Ibukun House Block 105, No 8 Baderinwa Alabi Street, Lekki Phase 1, Lagos
-              </p>
-            </div>
 
-            {/* Phone */}
-            <div className="bg-[#FFFAF8] shadow-md rounded-lg p-6 text-center">
-              <div className="flex justify-center mb-4">
-                <div className="w-12 h-12 flex items-center justify-center bg-[#1D0C3D] text-white rounded-full">
-                  <IoCall color='white'/>
-
+              {/* Phone */}
+              <div className="bg-[#FFFAF8] shadow-md rounded-lg p-6 text-center">
+                <div className="flex justify-center mb-4">
+                  <div className="w-12 h-12 flex items-center justify-center bg-[#1D0C3D] text-white rounded-full">
+                    <IoCall color="white" />
+                  </div>
                 </div>
+                <h4 className="font-semibold text-lg mb-2">Phone numbers</h4>
+                <p className="text-gray-600 text-sm">+2342017009825</p>
+                <p className="text-gray-600 text-sm">+2342017009826</p>
               </div>
-              <h4 className="font-semibold text-lg mb-2">Phone numbers</h4>
-              <p className="text-gray-600 text-sm">+2342017009825</p>
-              <p className="text-gray-600 text-sm">+2342017009826</p>
-            </div>
 
-            {/* Email */}
-            <div className="bg-[#FFFAF8] shadow-md rounded-lg p-6 text-center">
-              <div className="flex justify-center mb-4">
-                <div className="w-12 h-12 flex items-center justify-center bg-[#1D0C3D] text-white rounded-full">
-                 <MdEmail color='white'/>
-
+              {/* Email */}
+              <div className="bg-[#FFFAF8] shadow-md rounded-lg p-6 text-center">
+                <div className="flex justify-center mb-4">
+                  <div className="w-12 h-12 flex items-center justify-center bg-[#1D0C3D] text-white rounded-full">
+                    <MdEmail color="white" />
+                  </div>
                 </div>
+                <h4 className="font-semibold text-lg mb-2">Email address</h4>
+                <p className="text-gray-600 text-sm">Info@ceslintlgroup.com</p>
               </div>
-              <h4 className="font-semibold text-lg mb-2">Email address</h4>
-              <p className="text-gray-600 text-sm">Info@ceslintlgroup.com</p>
             </div>
           </div>
         </div>
       </div>
-    </div>
     </AnimatedScreen>
-
   );
 };
 
