@@ -2,6 +2,8 @@ import { Typography } from '../../Components/Typography';
 import VideoSlider from '../../Components/VideoSlider';
 import fpsologo from '../../assets/svgImages/video-thumbail.svg';
 import bg_video from '../../assets/videos/CD_video.mp4';
+import CPTL_SOLUTIONS from '../../assets/videos/CPTL_SOLUTIONS.mp4';
+import Guardian_of_Okwori from '../../assets/videos/Guardian_of_Okwori.mp4';
 
 // const videos = [
 //   {
@@ -33,7 +35,7 @@ import bg_video from '../../assets/videos/CD_video.mp4';
 const videos = [
   {
     id: '1',
-    videoUrl: bg_video,
+    videoUrl: Guardian_of_Okwori,
     thumbnail: fpsologo,
     title: 'Tamara Elmina (Guardian of okwori field)',
     description:
@@ -49,7 +51,7 @@ const videos = [
   },
   {
     id: '3',
-    videoUrl: bg_video,
+    videoUrl: CPTL_SOLUTIONS,
     thumbnail: fpsologo,
     title: 'Strategic Ports & Terminal Management solutions',
     description:

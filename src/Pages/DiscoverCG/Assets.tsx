@@ -5,10 +5,12 @@ import { assets, type Asset } from './data';
 import CustomModal from '../../Components/Modal/Modal';
 import { IoPlayOutline } from 'react-icons/io5';
 import AnimatedScreen from '../../Components/Animations';
+import usePageTitle from '../../Components/PageTitle';
 
 type ModalType = 'details' | 'tour' | null;
 
 const Assets = () => {
+  usePageTitle('Century Group | Assets');
   const [selectedAsset, setSelectedAsset] = useState<Asset | null>(null);
   const [modalType, setModalType] = useState<ModalType>(null);
 
