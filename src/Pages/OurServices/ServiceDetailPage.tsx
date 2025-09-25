@@ -43,18 +43,21 @@ const ServiceDetailPage = () => {
             description=""
             imageSrc={manworker}
             className="h-80 lg:col-span-1"
+            linkTo="/services/3"
           />
           <HoverCard
             title="Deployment, Operation & maintenance of Offshore infrastructure"
             description=""
             imageSrc={womanworker}
             className="h-80 lg:col-span-1"
+            linkTo="/services/1"
           />
           <HoverCard
             title="Natural Gas Transmission & Distribution"
             description=""
             imageSrc={gasplant}
             className="h-80 lg:col-span-1"
+            linkTo="/services/4"
           />
         </div>
       </div>
