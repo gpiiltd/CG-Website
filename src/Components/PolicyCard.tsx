@@ -72,7 +72,7 @@ const PolicyCard: React.FC<PolicyCardProps> = ({
             <img
               src={image}
               alt={title}
-              className="rounded-lg w-full h-[405px] hover:shadow-md transition-shadow duration-300"
+              className="rounded-lg w-full h-[405px] transition-shadow duration-300"
             />
           </div>
         </div>

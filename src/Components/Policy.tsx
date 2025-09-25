@@ -11,17 +11,25 @@ const policies = [
     downloadLink: "/documents/corporate-governance.pdf",
   },
   {
-    title: "Health & Safety Policy",
+    title: "Whistle Blowing",
     description:
-      "Our Health & Safety Policy ensures a safe and healthy workplace, minimizing risks and ensuring compliance with global standards.",
+      "The Whistleblowing Policy provides a safe and confidential way to report misconduct. It protects individuals from retaliation and helps maintain integrity across the organization.",
     image: qualityCert,
     viewLink: "/documents/health-safety.pdf",
     downloadLink: "/documents/health-safety.pdf",
   },
   {
-    title: "Environmental Management Policy",
+    title: "Health, Safety and Environment Policy",
     description:
-      "Our Environmental Policy demonstrates our commitment to sustainability and protecting the environment while delivering energy solutions.",
+      "Our HSE Policy puts people and the environment first. It promotes safe workplaces, prevents accidents, and reduces environmental impact in all our operations.",
+    image: qualityCert,
+    viewLink: "/documents/environment.pdf",
+    downloadLink: "/documents/environment.pdf",
+  },
+  {
+    title: "Anti-money Laundering Policy",
+    description:
+      "The Anti-Money Laundering Policy outlines measures to prevent financial crimes. It ensures compliance with regulations and safeguards our reputation.",
     image: qualityCert,
     viewLink: "/documents/environment.pdf",
     downloadLink: "/documents/environment.pdf",

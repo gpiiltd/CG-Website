@@ -14,7 +14,6 @@ import twitterIcon from './svgImages/twitterIcon.svg';
 import linkedinIcon from './svgImages/linkedinIcon.svg';
 import instagramIcon from './svgImages/instagramIcon.svg';
 import facebookIcon from './svgImages/facebookIcon.svg';
-
 import shield from './svgImages/shieldCard.svg';
 import light from './svgImages/light.svg';
 import teamwork from './svgImages/teamwork.svg';

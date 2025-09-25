@@ -32,7 +32,7 @@ const routes: RouteObject[] = [
           },
         ],
       },
-        {
+      {
         path: routeNames.discoveryCG, // /discover-century-group
         element: <DiscoverCGMain />,
         children: [
@@ -49,9 +49,10 @@ const routes: RouteObject[] = [
 
       { path: routeNames.contactUs, element: <ContactUs /> },
       { path: routeNames.ourTeam, element: <FacesOfCG /> },
-{
-path:routeNames.governanceLicencesAndCertifications,element:<GovernanceAndPolicyMain/>
-},
+      {
+        path: routeNames.governanceLicencesAndCertifications,
+        element: <GovernanceAndPolicyMain />,
+      },
     ],
   },
 

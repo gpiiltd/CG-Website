@@ -20,7 +20,7 @@ const Footer = () => {
             Need Energy Infrastructure and More?
           </p>
           <h2 className="text-4xl md:text-5xl font-bold leading-tight text-white mb-8">
-            Let us be your <br/>
+            Let us be your <br />
             strategic partner
           </h2>
           <div className="inline-block">
@@ -64,7 +64,7 @@ const Footer = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link to="" className="hover:text-white">
+                    <Link to="/discover-century-group/assets" className="hover:text-white">
                       <Typography size="md" weight="light">
                         Our Assets
                       </Typography>
@@ -134,21 +134,30 @@ const Footer = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link to="" className="hover:text-white">
+                    <Link
+                      to={routeNames.governanceLicencesAndCertifications}
+                      className="hover:text-white"
+                    >
                       <Typography size="md" weight="light">
                         Health & Safety
                       </Typography>
                     </Link>
                   </li>
                   <li>
-                    <Link to="" className="hover:text-white">
+                    <Link
+                      to={routeNames.governanceLicencesAndCertifications}
+                      className="hover:text-white"
+                    >
                       <Typography size="md" weight="light">
                         Whistle Blowing
                       </Typography>
                     </Link>
                   </li>
                   <li>
-                    <Link to="" className="hover:text-white">
+                    <Link
+                      to={routeNames.governanceLicencesAndCertifications}
+                      className="hover:text-white"
+                    >
                       <Typography size="md" weight="light">
                         Anti-Money Laundering
                       </Typography>
