@@ -22,16 +22,16 @@ const HeroSection = () => {
 
         <div className="relative z-10 max-w-[95%] mx-auto px-6 grid lg:grid-cols-2 items-center h-full gap-8">
           <div className="space-y-6">
-            <div className="inline-block px-4 py-2 rounded-full bg-gray-900/70 text-sm">
-              Find us at the FPSO World Congress 2025 →
+            <div className="inline-block pl-4 pr-10 py-2 rounded-full bg-gray-900/70 text-sm">
+              Solution, People, Value
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-              Secure Offshore Energy <br />
-              Infrastructure For <br />
-              Market Leaders
+              CG is a Diversified <br />
+              Energy Infrastructure <br />
+              Investment & Delivery Company
             </h1>
             <p className="text-lg text-gray-300 max-w-lg">
-              A leading offshore asset development and production company, safely delivering value
+              We are a leading offshore asset development and production company, safely delivering value
               since 2002.
             </p>
             <div className="inline-block">

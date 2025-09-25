@@ -6,7 +6,7 @@ import OverlaySection from './OverlaySection';
 import { overlayData, serviceSectionsData } from './servicesDatalist';
 // import CarouselSection from './CarouselSection';
 import StatsBar from './StatsBar';
-import OurProducts from '../Home/OurProjects';
+import OurProjects from '../Home/OurProjects';
 import usePageTitle from '../../Components/PageTitle';
 
 const OurServicesTab = () => {
@@ -104,7 +104,7 @@ const OurServicesTab = () => {
       {/* Carousel Section */}
       {/* <CarouselSection data={carouselData} /> */}
 
-      <OurProducts />
+      <OurProjects />
 
       {/* Stats Section */}
       <StatsBar />

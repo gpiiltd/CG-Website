@@ -13,7 +13,7 @@ const Header = () => {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <nav className=" w-full">
+    <nav className="sticky top-0 z-50 bg-white w-full shadow-sm">
       <div className="px-3 sm:px-4 lg:px-6 max-w-[95%] mx-auto flex items-center justify-between py-3">
         <Link to="/" className="flex cursor-pointer">
           <img src={logo} alt="logo" />
@@ -47,7 +47,6 @@ const Header = () => {
               Discover Century Group
             </Typography>
           </Link>
-          -
           <Link to="/services">
             <Typography
               size="md"

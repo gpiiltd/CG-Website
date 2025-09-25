@@ -8,7 +8,7 @@ import gasplant from '../../assets/svgImages/gasplant.svg';
 import manworker from '../../assets/svgImages/manworker.svg';
 // import CarouselSection from './CarouselSection';
 import StatsBar from './StatsBar';
-import OurProducts from '../Home/OurProjects';
+import OurProjects from '../Home/OurProjects';
 import usePageTitle from '../../Components/PageTitle';
 
 const ServiceDetailPage = () => {
@@ -66,7 +66,7 @@ const ServiceDetailPage = () => {
       {/* Carousel Section */}
       {/* <CarouselSection data={carouselData} /> */}
 
-      <OurProducts />
+      <OurProjects />
 
       {/* Stats Section */}
       <StatsBar />

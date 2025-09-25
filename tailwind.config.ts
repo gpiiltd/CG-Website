@@ -3,8 +3,11 @@ export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx,html}'],
   theme: {
     extend: {
-     sans: ['"Helvetica Neue"', "Helvetica", "Arial", "sans-serif"],
+      fontFamily: {
+        sans: ['"Helvetica Neue"', "Helvetica", "Arial", "sans-serif"],
         body: ['"Helvetica Neue"', "Helvetica", "Arial", "sans-serif"],
+        outfit: ["Outfit","sans-serif"],
+      },
       colors: {
         foundation_blue: '#170C3D',
         body_text: '#3E3E41',

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { FaLinkedinIn, FaFacebookF, FaInstagram } from 'react-icons/fa';
+import { FaLinkedinIn, FaFacebookF, FaInstagram, FaYoutube } from 'react-icons/fa';
 import { Typography } from './Typography';
 import { ButtonComponent } from './ButtonComponent';
 import manImage from '../assets/svgImages/man.jpg';
@@ -17,10 +17,11 @@ const Footer = () => {
         {/* Content */}
         <div className="relative z-10 max-w-4xl mx-auto">
           <p className="text-base uppercase tracking-widest font-bold mb-4 text-[#F9D1BF]">
-            LET US BE YOUR STRATEGIC PARTNER
+            Need Energy Infrastructure and More?
           </p>
           <h2 className="text-4xl md:text-5xl font-bold leading-tight text-white mb-8">
-            Need Energy Infrastructure <br /> and More?
+            Let us be your <br/>
+            strategic partner
           </h2>
           <div className="inline-block">
             <Link to="/contact-us">
@@ -199,12 +200,19 @@ const Footer = () => {
                 >
                   <FaInstagram />
                 </a>
+                <a
+                  href="https://www.youtube.com/@centurygroup2246/"
+                  target="blank"
+                  className="p-2  rounded-full  transition"
+                >
+                  <FaYoutube />
+                </a>
               </div>
             </div>
           </div>
         </div>
         <div className="max-w-[95%] mx-auto px-6 py-4 text-start text-sm text-gray-400">
-          © {new Date().getFullYear()} Century Group Energy Services Limited. All rights reserved.
+          © {new Date().getFullYear()} Century Group. All rights reserved.
         </div>
       </footer>
     </>
