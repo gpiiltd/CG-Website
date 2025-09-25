@@ -14,11 +14,23 @@ import usePageTitle from '../../Components/PageTitle';
 const ServiceDetailPage = () => {
   usePageTitle('Century Group | Service Details');
   const { id } = useParams<{ id: string }>();
-  const service = serviceSectionsData.find((s) => s.id === Number(id));
+  const serviceId = Number(id);
+  const service = serviceSectionsData.find((s) => s.id === serviceId);
 
   if (!service) {
     return <div>Service not found.</div>;
   }
+
+  // Filter out the current service
+  const otherServices = serviceSectionsData.filter((s) => s.id !== serviceId);
+
+  // Service images
+  const serviceImages: Record<number, string> = {
+    1: womanworker,
+    2: manworker,
+    3: manworker,
+    4: gasplant,
+  };
 
   return (
     <>
@@ -38,24 +50,16 @@ const ServiceDetailPage = () => {
           </Typography>
         </div>
         <div className="p-6 grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-[90%] mx-auto">
-          <HoverCard
-            title="Ports Terminal & Management Services"
-            description=""
-            imageSrc={manworker}
-            className="h-80 lg:col-span-1"
-          />
-          <HoverCard
-            title="Deployment, Operation & maintenance of Offshore infrastructure"
-            description=""
-            imageSrc={womanworker}
-            className="h-80 lg:col-span-1"
-          />
-          <HoverCard
-            title="Natural Gas Transmission & Distribution"
-            description=""
-            imageSrc={gasplant}
-            className="h-80 lg:col-span-1"
-          />
+          {otherServices.map((other) => (
+            <HoverCard
+              key={other.id}
+              title={other.title}
+              // description={other.subtitle}
+              imageSrc={serviceImages[other.id]}
+              className="h-80 lg:col-span-1"
+              linkTo={`/services/${other.id}`}
+            />
+          ))}
         </div>
       </div>
 

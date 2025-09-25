@@ -1,26 +1,35 @@
+import { useNavigate } from 'react-router-dom';
+
 interface HoverCardProps {
   title: string;
-  description: string;
+  description?: string;
   imageSrc: string;
   className?: string;
+  linkTo?: string;
 }
 
 export const HoverCard: React.FC<HoverCardProps> = ({
   title,
   description,
   imageSrc,
-  className = "",
+  className = '',
+  linkTo,
 }) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    if (linkTo) {
+      navigate(linkTo);
+    }
+  };
+
   return (
     <div
-      className={`relative rounded-lg overflow-hidden shadow-lg group transition-opacity duration-300 ease-in-out ${className}`}
+      className={`relative rounded-lg overflow-hidden shadow-lg group transition-opacity duration-300 ease-in-out cursor-pointer ${className}`}
+      onClick={handleClick}
     >
       {/* Image */}
-      <img
-        src={imageSrc}
-        alt={title}
-        className="w-full h-full object-cover"
-      />
+      <img src={imageSrc} alt={title} className="w-full h-full object-cover" />
 
       {/* Overlay */}
       <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-colors duration-300 ease-in-out"></div>

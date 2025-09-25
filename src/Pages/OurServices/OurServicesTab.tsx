@@ -14,14 +14,10 @@ const OurServicesTab = () => {
   const navigate = useNavigate();
   const [currentOverlay, setCurrentOverlay] = useState(0);
   const [activeServiceIndex, setActiveServiceIndex] = useState<number | null>(null);
+  const [canScroll, setCanScroll] = useState(true);
 
   // Animation classes for fade-in/out
   const animationClass = 'transition-all duration-500 ease-in-out opacity-100 scale-100';
-
-  const handleOverlayClick = () => {
-    setCurrentOverlay((prev) => (prev + 1) % overlayData.length);
-    setActiveServiceIndex(null); // Hide service section when overlay changes
-  };
 
   const handleLearnMore = (overlayIndex: number) => {
     const overlayId = overlayData[overlayIndex].id;
@@ -69,10 +65,21 @@ const OurServicesTab = () => {
 
             {/* Animated Overlay Section for Large screen size */}
             <div
-              className={`w-full hidden md:flex justify-center `}
-              onClick={handleOverlayClick}
-              onTouchStart={handleOverlayClick}
-              style={{ cursor: 'pointer' }}
+              className="w-full hidden md:flex justify-center cursor-move"
+              onWheel={(e) => {
+                if (!canScroll) return;
+                setCanScroll(false);
+
+                if (e.deltaY > 0) {
+                  setCurrentOverlay((prev) => (prev + 1) % overlayData.length);
+                } else if (e.deltaY < 0) {
+                  setCurrentOverlay((prev) => (prev - 1 + overlayData.length) % overlayData.length);
+                }
+                setActiveServiceIndex(null);
+
+                setTimeout(() => setCanScroll(true), 500); // 500ms delay, adjust as needed
+              }}
+              style={{ cursor: 'grabbing' }}
             >
               <div className={animationClass} key={currentOverlay}>
                 <OverlaySection
