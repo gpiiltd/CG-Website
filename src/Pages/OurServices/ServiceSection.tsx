@@ -9,12 +9,13 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({
   images,
   companyTitle,
   companyDescription,
-  companyDetails,
   contactLink = '/contact-us',
 }) => (
   <div className={`mt-0`} style={{ backgroundColor: bgColor }}>
     <div className="justify-start px-8 md:px-16 pt-16">
-      <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 leading-snug max-w-3xl">{title}</h2>
+      <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 leading-snug max-w-3xl">
+        {title}
+      </h2>
       <p className="text-gray-700 mb-4 font-medium max-w-[585px]">{subtitle}</p>
     </div>
 
@@ -36,8 +37,11 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({
         <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 leading-snug">
           {companyTitle}
         </h2>
-        <p className="text-gray-700 mb-4 font-medium">{companyDescription}</p>
-        <p className="text-gray-600 mb-8">{companyDetails}</p>
+        {companyDescription?.split('\n\n').map((para, idx) => (
+          <p key={idx} className="text-gray-700 mb-4 font-medium">
+            {para.trim()}
+          </p>
+        ))}
         <Link to={contactLink}>
           <ButtonComponent text="Contact us" bg_color="#ED6C30" />
         </Link>
