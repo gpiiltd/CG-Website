@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 
 interface HoverCardProps {
   title: string;
-  description: string;
+  description?: string;
   imageSrc: string;
   className?: string;
   linkTo?: string;
