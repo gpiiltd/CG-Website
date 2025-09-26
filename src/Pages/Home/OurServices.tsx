@@ -20,38 +20,43 @@ const OurServices = () => {
 
     {/* Services Grid */}
     <div className="max-w-[85%] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 py-12 mb-4 md:mb-6 lg:mb-8">
-      <CardImageTitleAndDescription
+  <CardImageTitleAndDescription
         imageSrc={atalaEP}
         title="Deployment, Operation & Maintenance of Offshore infrastructure"
-        description="From offshore infrastructure deployment, to energy logistics, our integrated services are designed"
+        description="Century Group manages the full lifecycle of offshore infrastructure, from safe commissioning to long-term performance. Through robust systems and digital solutions, we maximize uptime, extend asset life, and reduce costs while safeguarding people and the environment."
         onLearnMoreClick={() => {
           navigate('services/1');
         }}
       />
-      <CardImageTitleAndDescription
+
+ <CardImageTitleAndDescription
         imageSrc={LNGVessel}
         title="Natural Gas Transmission and Distribution"
-        description="From offshore infrastructure deployment, to energy logistics, our integrated services are designed"
+        description="We deliver safe and efficient midstream solutions for LNG and LPG, connecting production to markets through pipelines, storage, and distribution networks. Our flexible operations support power generation, industry, and households while ensuring cost efficiency and environmental responsibility. Through Gasplus Synergy Limited, we strengthen energy security and advance cleaner fuel adoption across the energy landscape"
         onLearnMoreClick={() => {
           navigate('services/4');
         }}
       />
-      <CardImageTitleAndDescription
+
+ <CardImageTitleAndDescription
         imageSrc={tnFPSO}
         title="Exploration and Production"
-        description="From offshore infrastructure deployment, to energy logistics, our integrated services are designed"
+        description="We responsibly explore and develop hydrocarbon resources using advanced technology and disciplined project execution. Our expertise spans from discovery to production, ensuring safe operations, optimized recovery, and sustainable value creation for partners and communities."
         onLearnMoreClick={() => {
           navigate('services/2');
         }}
       />
+
+
       <CardImageTitleAndDescription
         imageSrc={CPTLOps}
         title="Ports and Terminal Management Services"
-        description="From offshore infrastructure deployment, to energy logistics, our integrated services are designed"
+        description="Century group provides end-to-end management of ports and terminals, from vessel berthing to storage and distribution, ensuring safe and efficient cargo handling. With strong safety systems, advanced technologies, and performance-driven operations, we maximize asset utilization and minimize downtime. Our dedicated subsidiary, Century Ports & Terminals Limited, delivers long-term value, reliability, and cost efficiency across critical maritime infrastructure"
         onLearnMoreClick={() => {
           navigate('services/3');
         }}
       />
+
     </div>
 
     {/* Statistics Card - Closer positioning with subtle overlap */}

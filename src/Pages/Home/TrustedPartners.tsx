@@ -14,6 +14,7 @@ import people from '../../assets/svgImages/people.svg';
 import aeclogo from '../../assets/aew.jpeg';
 import LazyImage from '../../Components/LazyImage';
 import AnimatedScreen from '../../Components/Animations';
+import Animate from '../../Components/Animate';
 
 const TrustedPartners = () => {
   const navigate = useNavigate();
@@ -50,20 +51,22 @@ const TrustedPartners = () => {
               <LazyImage
                 src={workers2}
                 alt="Director 1"
-                className="rounded-lg object-cover w-full"
+                className="rounded-lg object-cover h-full w-full"
               />
               <LazyImage
                 src={workers1}
                 alt="Director 1"
-                className="rounded-lg object-cover w-full"
+                className="rounded-lg object-cover h-full w-full"
               />
             </div>
             <div>
-              <LazyImage src={ship} alt="Director 1" className="rounded-lg object-cover w-full" />
+              <LazyImage src={ship} alt="Director 1" className="rounded-lg object-cover h-full w-full" />
             </div>
           </div>
 
           {/* Right side text */}
+<Animate animationType='slideInRight' duration={3000}>
+
           <div className="h-full">
             <p className="text-orange-500 uppercase text-sm font-semibold mb-2 tracking-wide">
               Operational Excellence
@@ -92,6 +95,7 @@ const TrustedPartners = () => {
               />
             </div>
           </div>
+</Animate>
         </div>
       </div>
 
@@ -118,23 +122,17 @@ const TrustedPartners = () => {
           {/* Right side text */}
           <div className="space-y-4">
             <Typography size="2xl" weight="bold" className="text-start text-white">
-              {/* The world's leading gathering for the offshore oil and gas industry, brings together
-              key stakeholders involved in FSO, FPSO, FLNG, and FSRU projects.{' '} */}
+
               Africa’s premier energy event, uniting governments, investors, and industry leaders
               across the oil, gas, and renewable value chain.
             </Typography>
-            {/* <Typography weight="light" className="text-start text-white">
-              This year’s edition will continue to spotlight advancements in engineering practices,
-              remote operations, and alternative energy, while recognising long-standing
-              collaborations that have shaped the future of offshore energy.
-            </Typography> */}
+
             <div className="flex gap-4">
               <Link
                 to="https://aecweek.com/"
                 target="_blank"
                 className="border-2 border-[#FDF0EA] rounded-full px-6 py-2 hover:scale-105 transition-all duration-300 ease-in-out"
               >
-                {/* <ButtonComponent text="Learn More" variant="outline" bg_color="#FDF0EA" /> */}
                 <span className="text-[#FDF0EA] font-semibold">Learn More</span>
               </Link>
             </div>

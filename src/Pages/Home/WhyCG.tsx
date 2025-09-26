@@ -17,12 +17,14 @@ const WhyCG = () => {
           Why Century Group?
         </h2>
         <div className="p-6 grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-[90%] mx-auto">
-          <HoverCard
+<HoverCard
             title="Safety"
             description="Aligned with rigorous governance and HSE Policies"
             imageSrc={workers2}
             className="h-72 lg:col-span-1"
           />
+
+
           <HoverCard
             title="Optimised cost efficiency"
             description="20+ years of continuous operation with an average of 30% cost savings for clients"
