@@ -11,7 +11,7 @@ export const overlayData = [
     id: 1,
     title: 'Deployment, Operation and maintenance of Offshore infrastructure',
     description:
-      'Century Group provides integrated lifecycle services for the deployment, operations, and maintenance of critical offshore energy infrastructure.',
+      'Century Group manages the full lifecycle of offshore infrastructure, from safe commissioning to long-term performance. Through robust systems and digital solutions, we maximize uptime, extend asset life, and reduce costs while safeguarding people and the environment.',
     image: atalaEP,
     bgColor: '#EDFFFF',
   },
@@ -19,7 +19,7 @@ export const overlayData = [
     id: 2,
     title: 'Exploration and production',
     description:
-      'Century Group’s Exploration & Production of Hydrocarbons service is built on deep industry expertise and a commitment to unlocking energy resources responsibly.',
+      'We responsibly explore and develop hydrocarbon resources using advanced technology and disciplined project execution. Our expertise spans from discovery to production, ensuring safe operations, optimized recovery, and sustainable value creation for partners and communities.',
     image: tnFPSO,
     bgColor: '#F5F1FE',
   },
@@ -27,7 +27,7 @@ export const overlayData = [
     id: 3,
     title: 'Ports Terminal and Management Services',
     description:
-      'Century Group delivers integrated Ports & Terminal Management services, ensuring the safe, reliable, and efficient handling of hydrocarbons and cargo at strategic maritime hub "Port of Kidney Island".',
+      'Century group provides end-to-end management of ports and terminals, from vessel berthing to storage and distribution, ensuring safe and efficient cargo handling. With strong safety systems, advanced technologies, and performance-driven operations, we maximize asset utilization and minimize downtime. Our dedicated subsidiary, Century Ports & Terminals Limited, delivers long-term value, reliability, and cost efficiency across critical maritime infrastructure.',
     image: CPTLOps,
     bgColor: '#F6E4F0',
   },
@@ -35,7 +35,7 @@ export const overlayData = [
     id: 4,
     title: 'Natural Gas Transmission and Distribution',
     description:
-      'Century Group’s Natural Gas Transmission & Distribution service provides reliable midstream solutions that connect resources to markets.',
+      'We deliver safe and efficient midstream solutions for LNG and LPG, connecting production to markets through pipelines, storage, and distribution networks. Our flexible operations support power generation, industry, and households while ensuring cost efficiency and environmental responsibility. Through Gasplus Synergy Limited, we strengthen energy security and advance cleaner fuel adoption across the energy landscape.',
     image: LNGVessel,
     bgColor: '#FEF3EF',
   },
@@ -46,7 +46,7 @@ export const serviceSectionsData = [
     bgColor: '#EDFFFF',
     title: 'Deployment, Operation and maintenance of Offshore infrastructure',
     subtitle:
-      'Century Group provides integrated lifecycle services for the deployment, operations, and maintenance of critical offshore energy infrastructure.',
+      'Century Group manages the full lifecycle of offshore infrastructure, from safe commissioning to long-term performance. Through robust systems and digital solutions, we maximize uptime, extend asset life, and reduce costs while safeguarding people and the environment.',
     images: [atalaEP, atalaEP, atalaEP],
     companyTitle: 'Century Energy Services Limited (CESL)',
     companyDescription: `Century Group provides integrated lifecycle services for the deployment, operations, and maintenance of critical offshore energy infrastructure. Our comprehensive approach ensures assets are commissioned safely and efficiently, transitioning seamlessly into stable production phases. We specialize in managing the full spectrum of offshore facilities, from fixed platforms to floating systems, with a relentless focus on operational excellence, asset integrity, and minimizing lifecycle costs from day one.\n\n
@@ -59,7 +59,7 @@ export const serviceSectionsData = [
     bgColor: '#F5F1FE',
     title: 'Exploration and production',
     subtitle:
-      'Century Group’s Exploration & Production of Hydrocarbons service is built on deep industry expertise and a commitment to unlocking energy resources responsibly.',
+      'We responsibly explore and develop hydrocarbon resources using advanced technology and disciplined project execution. Our expertise spans from discovery to production, ensuring safe operations, optimized recovery, and sustainable value creation for partners and communities.',
     images: [tnFPSO, tnFPSO, tnFPSO],
     companyTitle: 'Century Exploration & Production Limited (CEPL)',
     companyDescription: `Century Group’s Exploration & Production of Hydrocarbons service is built on deep industry expertise and a commitment to unlocking energy resources responsibly. Through reliable partnerships and access to novel technologies in advanced seismic interpretation, subsurface evaluation, and optimized drilling programs, we deliver end-to-end solutions that ensure efficient access to oil and gas reserves. Our approach integrates cutting-edge technology with disciplined project management, enabling us to safely bring hydrocarbons from discovery through development.\n\n
@@ -88,7 +88,7 @@ Our special purpose subsidiary- Century Ports & Terminals Limited is committed t
     bgColor: '#FEF3EF',
     title: 'Natural Gas Transmission and Distribution',
     subtitle:
-      'Century Group’s Natural Gas Transmission & Distribution service provides reliable midstream solutions that connect resources to markets.',
+      'We deliver safe and efficient midstream solutions for LNG and LPG, connecting production to markets through pipelines, storage, and distribution networks. Our flexible operations support power generation, industry, and households while ensuring cost efficiency and environmental responsibility. Through Gasplus Synergy Limited, we strengthen energy security and advance cleaner fuel adoption across the energy landscape.',
     images: [LNGVessel, LNGVessel, LNGVessel],
     companyTitle: 'Gas Plus Synergy (GPS)',
     companyDescription: `Century Group’s Natural Gas Transmission & Distribution service provides reliable midstream solutions that connect resources to markets. We specialize in the safe and efficient handling of Liquefied Natural Gas (LNG) and Liquefied Petroleum Gas (LPG), leveraging advanced infrastructure to enable seamless transportation from production sites to end users. Our expertise ensures that natural gas is delivered where it is needed most, supporting domestic consumption. \n\n
