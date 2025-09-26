@@ -3,13 +3,13 @@ import ServiceSection from './ServiceSection';
 import { serviceSectionsData } from './servicesDatalist';
 import { Typography } from '../../Components/Typography';
 import { HoverCard } from '../../Components/HoverCard';
-import womanworker from '../../assets/svgImages/womanworker.svg';
-import gasplant from '../../assets/svgImages/gasplant.svg';
-import manworker from '../../assets/svgImages/manworker.svg';
-// import CarouselSection from './CarouselSection';
 import StatsBar from './StatsBar';
 import OurProjects from '../Home/OurProjects';
 import usePageTitle from '../../Components/PageTitle';
+import atalaEP from '../../assets/Atala-E&P.png';
+import tnFPSO from '../../assets/TN FPSO- Deployment - O&M.jpg';
+import LNGVessel from '../../assets/LNG Vessel.jpg';
+import CPTLOps from '../../assets/CPTL Ops.jpeg';
 
 const ServiceDetailPage = () => {
   usePageTitle('Century Group | Service Details');
@@ -26,10 +26,10 @@ const ServiceDetailPage = () => {
 
   // Service images
   const serviceImages: Record<number, string> = {
-    1: womanworker,
-    2: manworker,
-    3: manworker,
-    4: gasplant,
+    1: atalaEP,
+    2: tnFPSO,
+    3: CPTLOps,
+    4: LNGVessel,
   };
 
   return (

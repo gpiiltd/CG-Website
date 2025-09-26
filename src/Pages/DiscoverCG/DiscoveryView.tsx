@@ -12,8 +12,10 @@ import Timeline from '../../Components/discovery/DiscoveryTimeline';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import LazyImage from '../../Components/LazyImage';
+import usePageTitle from '../../Components/PageTitle';
 
 const DiscoveryView = () => {
+  usePageTitle('Century Group | Discovery');
   const navigate = useNavigate();
 
   useEffect(() => {

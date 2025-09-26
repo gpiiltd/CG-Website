@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ButtonComponent } from '../../Components/ButtonComponent';
 import type { OverlaySectionProps } from '../../Components/Interfaces';
+import { LazyImage } from '../../Components/LazyImage';
 
 const OverlaySection: React.FC<OverlaySectionProps> = ({
   title,
@@ -41,7 +42,7 @@ const OverlaySection: React.FC<OverlaySectionProps> = ({
 
       {/* right side images */}
       <div>
-        <img src={image} alt="Overlay" className="rounded object-cover w-full" />
+        <LazyImage src={image} alt={title} className="object-cover w-full h-[350px]  rounded-xl" />
       </div>
     </div>
   </div>
