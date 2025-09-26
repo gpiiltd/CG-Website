@@ -49,13 +49,15 @@ export const HoverCard: React.FC<HoverCardProps> = ({
         {/* Description is visible on hover for desktop, always visible on small screens */}
 
         <Typography
-          weight="light"
-          size="lg"
-          className="transition-all duration-500 ease-in-out
-                      opacity-100 max-h-full sm:opacity-0 sm:max-h-0 group-hover:opacity-100 group-hover:max-h-40 overflow-hidden"
-        >
-          {description}
-        </Typography>
+  weight="light"
+  size="lg"
+  className="transition-all duration-500 ease-in-out
+             text-white
+             opacity-100 max-h-full sm:opacity-0 sm:max-h-0 group-hover:opacity-100 group-hover:max-h-40 overflow-hidden"
+>
+  {description}
+</Typography>
+
       </div>
     </div>
   );
