@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import manshore from '../../assets/svgImages/manshore.svg';
 import ServiceSection from './ServiceSection';
 import OverlaySection from './OverlaySection';
 import { overlayData, serviceSectionsData } from './servicesDatalist';
@@ -8,6 +7,7 @@ import { overlayData, serviceSectionsData } from './servicesDatalist';
 import StatsBar from './StatsBar';
 import OurProjects from '../Home/OurProjects';
 import usePageTitle from '../../Components/PageTitle';
+import dsc00741 from '../../assets/DSC00741.jpg';
 
 const OurServicesTab = () => {
   usePageTitle('Century Group | Services');
@@ -32,7 +32,7 @@ const OurServicesTab = () => {
             {/* Hero Section */}
             <div
               className="relative bg-cover bg-center py-20 px-6 text-center flex flex-col justify-center items-center min-h-[518px] "
-              style={{ backgroundImage: `url(${manshore})` }}
+              style={{ backgroundImage: `url(${dsc00741})` }}
             >
               <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/80 to-black"></div>
               <div className="relative z-10 max-w-4xl mx-auto">
