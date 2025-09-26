@@ -177,7 +177,7 @@ const Footer = () => {
                       </Typography>
                     </Link>
                   </li>
-                  <li>
+                  {/* <li>
                     <Link to="" className="hover:text-white">
                       <Typography size="md" weight="light">
                         Terms & Conditions
@@ -190,7 +190,7 @@ const Footer = () => {
                         Privacy Policy
                       </Typography>
                     </Link>
-                  </li>
+                  </li> */}
                 </ul>
               </div>
               {/* Social Icons */}
