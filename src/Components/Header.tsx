@@ -130,30 +130,7 @@ const isActive = (path: string) => {
               </Link>
             </div>
 
-            <div className="flex justify-center items-center gap-12 pb-18">
-              <Link to="/governance" onClick={() => setIsOpen(false)}>
-                <Typography
-                  size="md"
-                  weight="semibold"
-                  className={`cursor-pointer duration-300 ease-in-out text-[#878787] ${
-                    isActive('/governance') ? 'text-[#ED6C30]' : 'hover:text-[#ED6C30]'
-                  }`}
-                >
-                  Governance
-                </Typography>
-              </Link>
-              <Link to="/legal" onClick={() => setIsOpen(false)}>
-                <Typography
-                  size="md"
-                  weight="semibold"
-                  className={`cursor-pointer duration-300 ease-in-out text-[#878787] ${
-                    isActive('/legal') ? 'text-[#ED6C30]' : 'hover:text-[#ED6C30]'
-                  }`}
-                >
-                  Legal
-                </Typography>
-              </Link>
-            </div>
+
           </div>
         )}
       </div>
