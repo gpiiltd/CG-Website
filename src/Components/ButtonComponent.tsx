@@ -14,6 +14,7 @@ interface ButtonProps {
   minWidth?: string;
   fullWidth?: boolean;
   variant?: 'solid' | 'outline';
+  expandOnHover?: boolean;
 }
 
 export const ButtonComponent: React.FC<ButtonProps> = ({
@@ -27,6 +28,7 @@ export const ButtonComponent: React.FC<ButtonProps> = ({
   minWidth = '120px',
   fullWidth = false,
   variant = 'solid',
+  expandOnHover = true,
 }) => {
   const [hovered, setHovered] = useState(false);
 
@@ -39,7 +41,7 @@ export const ButtonComponent: React.FC<ButtonProps> = ({
     cursor: active ? 'pointer' : 'default',
     fontSize: '1rem',
     borderRadius: '60px',
-    transition: 'all 0.3s ease',
+    transition: 'all 0.6s ease',
     backgroundColor: finalBgColor,
     color: finalTextColor,
     opacity: active ? 1 : 0.7,
@@ -93,6 +95,7 @@ export const ButtonComponent: React.FC<ButtonProps> = ({
               alignItems: 'center',
               justifyContent: 'center',
               width: '100%',
+              fontWeight: 600,
             }}
           >
             <ClipLoader color={finalTextColor} size={20} />
@@ -104,25 +107,28 @@ export const ButtonComponent: React.FC<ButtonProps> = ({
                 display: 'flex',
                 alignItems: 'center',
                 gap: '0.5rem',
+                fontWeight: 600,
               }}
             >
               <span>{text}</span>
             </span>
 
             {/* Right Arrow Icon (animated in on hover) */}
-            <AnimatePresence>
-              {hovered && (
-                <motion.span
-                  initial={{ opacity: 0, x: 5 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: 5 }}
-                  transition={{ duration: 0.4 }}
-                  style={{ display: 'flex', alignItems: 'center' }}
-                >
-                  <Icon type="Arrow" className="" />
-                </motion.span>
-              )}
-            </AnimatePresence>
+            {expandOnHover && (
+              <AnimatePresence>
+                {hovered && (
+                  <motion.span
+                    initial={{ opacity: 0, x: 5 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: 5 }}
+                    transition={{ duration: 0.8 }}
+                    style={{ display: 'flex', alignItems: 'center' }}
+                  >
+                    <Icon type="Arrow" className="" />
+                  </motion.span>
+                )}
+              </AnimatePresence>
+            )}
           </>
         )}
       </button>

@@ -69,7 +69,7 @@ const isActive = (path: string) => {
           </Link>
           <div className="hidden lg:flex items-center space-x-4 xl:space-x-6">
             <Link to="/contact-us">
-              <ButtonComponent text="Contact us" bg_color="#ED6C30" />
+              <ButtonComponent text="Contact us" bg_color="#ED6C30" expandOnHover={false}/>
             </Link>
           </div>
         </div>
