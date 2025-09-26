@@ -4,6 +4,7 @@ import HeroCards from './HeroCards';
 import bg_video from '../../assets/videos/CD_video.mp4';
 import { Link } from 'react-router-dom';
 import routeNames from '../../Components/Navigation/RouteNames';
+import Animate from '../../Components/Animate';
 
 const HeroSection = () => {
   return (
@@ -23,9 +24,12 @@ const HeroSection = () => {
 
         <div className="relative z-10 max-w-[95%] mx-auto px-6 grid lg:grid-cols-2 items-center h-full gap-8">
           <div className="space-y-6">
-            <div className="inline-block pl-4 pr-10 py-2 rounded-full bg-gray-900/70 text-sm">
+
+<Animate animationType='fadeIn' duration={2000}>
+        <div className="text-[#ED6C30] inline-block pl-4 pr-10 py-2 rounded-full bg-gray-900/70 text-base font-semibold">
               Solution, People, Value
             </div>
+      </Animate>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
               CG is a Diversified <br />
               Energy Infrastructure <br />

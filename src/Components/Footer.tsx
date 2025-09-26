@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { FaLinkedinIn, FaFacebookF, FaInstagram, FaYoutube } from 'react-icons/fa';
 import { Typography } from './Typography';
 import { ButtonComponent } from './ButtonComponent';
-import manImage from '../assets/svgImages/man.jpg';
+import footerImage from '../assets/footer_image.jpg';
 import { FaXTwitter } from 'react-icons/fa6';
 import routeNames from './Navigation/RouteNames';
 
@@ -10,19 +10,33 @@ const Footer = () => {
   return (
     <>
       <div
-        className="relative bg-cover bg-center py-20 px-6 text-center flex flex-col justify-center items-center min-h-[400px]"
-        style={{ backgroundImage: `url(${manImage})` }}
+        className="relative py-20 px-6 text-center flex flex-col justify-center items-center min-h-[400px]"
+        style={{
+          backgroundImage: `url(${footerImage})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+        }}
       >
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/80 to-black"></div>
         {/* Content */}
         <div className="relative z-10 max-w-4xl mx-auto">
-          <p className="text-base uppercase tracking-widest font-bold mb-4 text-[#F9D1BF]">
+          <Typography
+            size="lg"
+            weight="bold"
+            className="text-base uppercase tracking-widest font-bold mb-4 text-[#F9D1BF]"
+          >
             Need Energy Infrastructure and More?
-          </p>
-          <h2 className="text-4xl md:text-5xl font-bold leading-tight text-white mb-8">
+          </Typography>
+
+          <Typography
+            size="3xl"
+            weight="bold"
+            className="text-3xl md:text-5xl font-bold leading-tight text-white mb-8"
+          >
             Let us be your <br />
             strategic partner
-          </h2>
+          </Typography>
           <div className="inline-block">
             <Link to="/contact-us">
               {' '}
