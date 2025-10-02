@@ -301,7 +301,7 @@ const ContactUs: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className="w-full h-[30rem] relative cursor-pointer" onClick={openLocationInMaps}>
+        <div className="w-full h-[40rem] relative cursor-pointer" onClick={openLocationInMaps}>
           <img
             src={discoverBg}
             alt="Century Group Location"
