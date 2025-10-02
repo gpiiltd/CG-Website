@@ -47,10 +47,8 @@ const Footer = () => {
       </div>
       <footer className="bg-black text-white">
         <div className="border-b border-gray-800">
-          {/* Footer Links */}
           <div className=" px-6 sm:px-12 py-12">
             <div className=" max-w-[95%] mx-auto  grid grid-cols-1 sm:grid-cols-4 gap-10 text-gray-300">
-              {/* Discover CG */}
               <div>
                 <Typography size="lg" weight="bold" className="mb-4">
                   Discover CG
