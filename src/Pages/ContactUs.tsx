@@ -14,6 +14,7 @@ import { useEffect, useRef } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { z } from 'zod';
+import discoverBg from '../assets/svgImages/map.svg';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -78,7 +79,7 @@ const ContactUs: React.FC = () => {
     };
 
     emailjs
-      .send('service_inplpcr', 'template_ermsvkm', templateParams, 'nXYflXqHCDwyly38J')
+      .send('service_inplpcr', 'template_3w11lls', templateParams, 'nXYflXqHCDwyly38J')
       .then((response) => {
         console.log('Success:', response);
         toast.success('Message sent successfully!');
@@ -90,6 +91,16 @@ const ContactUs: React.FC = () => {
       .finally(() => {
         setLoading(false); // always stop loading
       });
+  };
+
+  // Simple function to open location in maps
+  const openLocationInMaps = () => {
+    // Using the address since we don't have exact coordinates
+    const address = 'Ibukun House Block 105, No 8 Baderinwa Alabi Street, Lekki Phase 1, Lagos';
+    const encodedAddress = encodeURIComponent(address);
+    const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodedAddress}`;
+
+    window.open(mapUrl, '_blank');
   };
 
   usePageTitle('Century Group | Contact Us');
@@ -287,6 +298,20 @@ const ContactUs: React.FC = () => {
                 <h4 className="font-semibold text-lg mb-2">Email address</h4>
                 <p className="text-gray-600 text-sm">Info@ceslintlgroup.com</p>
               </div>
+            </div>
+          </div>
+        </div>
+        <div className="w-full h-[30rem] relative cursor-pointer" onClick={openLocationInMaps}>
+          <img
+            src={discoverBg}
+            alt="Century Group Location"
+            className="w-full h-[40rem] md:h-[40rem] object-cover mb-3 rounded-2xl"
+          />
+          {/* Overlay button */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="bg-white px-6 py-3 rounded-lg shadow-lg font-semibold text-gray-800 hover:bg-gray-100 transition-colors flex items-center gap-2">
+              <IoLocation className="text-blue-500" />
+              Click to View Our Location on Map
             </div>
           </div>
         </div>
