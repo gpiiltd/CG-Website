@@ -132,7 +132,7 @@ const ContactUs: React.FC = () => {
                     </Typography>
                     <input
                       type="text"
-                      placeholder="Enter first Name"
+                      placeholder="Enter first name"
                       {...register('firstName')}
                       className="border border-gray-300 rounded-md px-4 py-2 w-full
              focus:outline-none focus:ring-2 focus:ring-orange-500
@@ -180,7 +180,7 @@ const ContactUs: React.FC = () => {
                   </div>
                   <div>
                     <Typography size="md" weight="normal" color="primary" className="mb-2">
-                      Phone Number
+                      Phone number
                     </Typography>
                     <input
                       type="text"

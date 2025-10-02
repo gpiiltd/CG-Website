@@ -31,9 +31,8 @@ export interface ServiceSectionProps {
   subtitle?: string;
   description?: string;
   images: string[];
-  companyTitle: string;
-  companyDescription: string;
-  companyDetails: string;
+  companyTitle?: string;
+  companyDescription?: string;
   contactLink?: string;
 }
 

@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
-import { FaLinkedinIn, FaFacebookF, FaInstagram } from 'react-icons/fa';
+import { FaLinkedinIn, FaFacebookF, FaInstagram, FaYoutube } from 'react-icons/fa';
 import { Typography } from './Typography';
 import { ButtonComponent } from './ButtonComponent';
-import manImage from '../assets/svgImages/man.jpg';
+import footerImage from '../assets/footer_image.jpg';
 import { FaXTwitter } from 'react-icons/fa6';
 import routeNames from './Navigation/RouteNames';
 
@@ -10,18 +10,33 @@ const Footer = () => {
   return (
     <>
       <div
-        className="relative bg-cover bg-center py-20 px-6 text-center flex flex-col justify-center items-center min-h-[400px]"
-        style={{ backgroundImage: `url(${manImage})` }}
+        className="relative py-20 px-6 text-center flex flex-col justify-center items-center min-h-[400px]"
+        style={{
+          backgroundImage: `url(${footerImage})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+        }}
       >
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/80 to-black"></div>
         {/* Content */}
         <div className="relative z-10 max-w-4xl mx-auto">
-          <p className="text-base uppercase tracking-widest font-bold mb-4 text-[#F9D1BF]">
-            LET US BE YOUR STRATEGIC PARTNER
-          </p>
-          <h2 className="text-4xl md:text-5xl font-bold leading-tight text-white mb-8">
-            Need Energy Infrastructure <br /> and More?
-          </h2>
+          <Typography
+            size="lg"
+            weight="bold"
+            className="text-base uppercase tracking-widest font-bold mb-4 text-[#F9D1BF]"
+          >
+            Need Energy Infrastructure and More?
+          </Typography>
+
+          <Typography
+            size="3xl"
+            weight="bold"
+            className="text-3xl md:text-5xl font-bold leading-tight text-white mb-8"
+          >
+            Let us be your <br />
+            strategic partner
+          </Typography>
           <div className="inline-block">
             <Link to="/contact-us">
               {' '}
@@ -63,7 +78,7 @@ const Footer = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link to="" className="hover:text-white">
+                    <Link to="/discover-century-group/assets" className="hover:text-white">
                       <Typography size="md" weight="light">
                         Our Assets
                       </Typography>
@@ -133,27 +148,36 @@ const Footer = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link to="" className="hover:text-white">
+                    <Link
+                      to={routeNames.governanceLicencesAndCertifications}
+                      className="hover:text-white"
+                    >
                       <Typography size="md" weight="light">
                         Health & Safety
                       </Typography>
                     </Link>
                   </li>
                   <li>
-                    <Link to="" className="hover:text-white">
+                    <Link
+                      to={routeNames.governanceLicencesAndCertifications}
+                      className="hover:text-white"
+                    >
                       <Typography size="md" weight="light">
                         Whistle Blowing
                       </Typography>
                     </Link>
                   </li>
                   <li>
-                    <Link to="" className="hover:text-white">
+                    <Link
+                      to={routeNames.governanceLicencesAndCertifications}
+                      className="hover:text-white"
+                    >
                       <Typography size="md" weight="light">
                         Anti-Money Laundering
                       </Typography>
                     </Link>
                   </li>
-                  <li>
+                  {/* <li>
                     <Link to="" className="hover:text-white">
                       <Typography size="md" weight="light">
                         Terms & Conditions
@@ -166,7 +190,7 @@ const Footer = () => {
                         Privacy Policy
                       </Typography>
                     </Link>
-                  </li>
+                  </li> */}
                 </ul>
               </div>
               {/* Social Icons */}
@@ -199,12 +223,19 @@ const Footer = () => {
                 >
                   <FaInstagram />
                 </a>
+                <a
+                  href="https://www.youtube.com/@centurygroup2246/"
+                  target="blank"
+                  className="p-2  rounded-full  transition"
+                >
+                  <FaYoutube />
+                </a>
               </div>
             </div>
           </div>
         </div>
         <div className="max-w-[95%] mx-auto px-6 py-4 text-start text-sm text-gray-400">
-          © {new Date().getFullYear()} Century Group Energy Services Limited. All rights reserved.
+          © {new Date().getFullYear()} Century Group. All rights reserved.
         </div>
       </footer>
     </>

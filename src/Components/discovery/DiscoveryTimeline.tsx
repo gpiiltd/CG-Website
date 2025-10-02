@@ -3,6 +3,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import disShipBig from '../../assets/svgImages/disShipBig.svg';
 import Icon from '../../assets/SvgImagesAndIcons';
 import { Typography } from '../Typography';
+import LazyImage from '../LazyImage';
 
 const years = [
   {
@@ -85,8 +86,8 @@ export default function Timeline() {
                   id={`year-${i}`}
                   onClick={() => setActiveIndex(i)}
                   className={`relative flex flex-col items-center text-md ${
-                    i === activeIndex ? 'font-bold' : 'font-light'
-                  } ${i === activeIndex ? 'text-orange-500' : 'text-gray-400'}`}
+                    i <= activeIndex ? 'font-bold text-orange-500' : 'font-light text-gray-400'
+                  }`}
                 >
                   <span>{item.year}</span>
                   {i === activeIndex ? (
@@ -95,6 +96,7 @@ export default function Timeline() {
                     <Icon type="dull" className="text-gray-400 mt-1 " />
                   )}
                 </button>
+
                 {i < years.length - 1 && (
                   <div className="flex items-center mx-2">
                     <div className="w-3 h-[2px] bg-gray-300 mx-1" /> {/* line */}
@@ -111,10 +113,10 @@ export default function Timeline() {
           </div>
         </div>
       </div>
-
       <div className="mx-[7%] flex flex-col-reverse md:flex-row gap-6 mt-6">
-        <div className="w-full">
-          <img
+        {/* Image Container - Fixed height */}
+        <div className="w-full md:w-1/2 h-[400px] md:h-[500px]">
+          <LazyImage
             src={disShipBig}
             alt="Timeline Illustration"
             className="rounded-xl object-cover w-full h-full"
@@ -122,64 +124,55 @@ export default function Timeline() {
         </div>
 
         <div className="bg-white w-full">
-          {/* <div className="flex justify-between items-center mb-12">
-            <Typography weight="semibold" className="text-orange-500 font-semibold text-3xl">
-              {activeYear.year}
-              {activeYear.year !== 2025 && ' - ' + (activeYear.year + 4)}
-            </Typography>
-            <div className="flex gap-2">
-              <button
-                onClick={goPrev}
-                disabled={activeIndex === 0}
-                className="p-2 border-1 rounded-full text-orange-500 opacity-30 disabled:opacity-50 cursor-pointer"
-              >
-                <ChevronLeft size={20} />
-              </button>
-              <button
-                onClick={goNext}
-                disabled={activeIndex === years.length - 1}
-                className="p-2 border-2 border-orange-500 rounded-full text-orange-500 disabled:opacity-50 cursor-pointer"
-              >
-                <ChevronRight size={20} />
-              </button>
-            </div>
-          </div> */}
-
           <div className="flex justify-between items-center mb-12">
             <Typography weight="semibold" className="text-orange-500 font-semibold text-3xl">
               {activeIndex < years.length - 1
                 ? `${activeYear.year} - ${years[activeIndex + 1].year}`
                 : activeYear.year}
             </Typography>
+
             <div className="flex gap-2">
               <button
                 onClick={goPrev}
                 disabled={activeIndex === 0}
-                className="p-2 border-1 rounded-full text-orange-500 opacity-30 disabled:opacity-50 cursor-pointer"
+                className={`p-2 rounded-full transition-all duration-200 ${
+                  activeIndex === 0
+                    ? 'border-1 border-gray-300 text-gray-300 cursor-not-allowed opacity-50'
+                    : 'border-2 border-orange-500 text-orange-500 hover:bg-orange-50 cursor-pointer'
+                }`}
               >
                 <ChevronLeft size={20} />
               </button>
               <button
                 onClick={goNext}
                 disabled={activeIndex === years.length - 1}
-                className="p-2 border-2 border-orange-500 rounded-full text-orange-500 disabled:opacity-50 cursor-pointer"
+                className={`p-2 rounded-full transition-all duration-200 ${
+                  activeIndex === years.length - 1
+                    ? 'border-1 border-gray-300 text-gray-300 cursor-not-allowed opacity-50'
+                    : 'border-2 border-orange-500 text-orange-500 hover:bg-orange-50 cursor-pointer'
+                }`}
               >
                 <ChevronRight size={20} />
               </button>
             </div>
           </div>
 
-          {/* Milestones */}
-          <div className="mt-4 space-y-4">
-            {activeYear.milestones.map((milestone, index) => (
-              <div
-                key={index}
-                className="flex items-start gap-3 p-4 rounded-xl border border-gray-200"
-              >
-                <Icon type="checks" className="text-gray-400 mt-1 h-20 md:h-10" />
-                <p className="text-gray-700 text-sm leading-relaxed">{milestone}</p>
-              </div>
-            ))}
+          {/* Scrollable Milestones */}
+          <div className="flex-1 overflow-y-auto px-4 pb-4">
+            <div className="space-y-4">
+              {activeYear.milestones.map((milestone, index) => (
+                <div
+                  key={index}
+                  className="flex items-start gap-3 p-4 rounded-xl border border-gray-200"
+                >
+                  {/* Fixed icon with flex-shrink-0 */}
+                  <div className="flex-shrink-0">
+                    <Icon type="checks" className="text-gray-400 w-6 h-6" />
+                  </div>
+                  <p className="text-gray-700 text-sm leading-relaxed flex-1">{milestone}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

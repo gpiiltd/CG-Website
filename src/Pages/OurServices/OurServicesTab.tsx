@@ -1,27 +1,23 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import manshore from '../../assets/svgImages/manshore.svg';
 import ServiceSection from './ServiceSection';
 import OverlaySection from './OverlaySection';
 import { overlayData, serviceSectionsData } from './servicesDatalist';
 // import CarouselSection from './CarouselSection';
 import StatsBar from './StatsBar';
-import OurProducts from '../Home/OurProjects';
+import OurProjects from '../Home/OurProjects';
 import usePageTitle from '../../Components/PageTitle';
+import dsc00741 from '../../assets/DSC00741.jpg';
 
 const OurServicesTab = () => {
   usePageTitle('Century Group | Services');
   const navigate = useNavigate();
   const [currentOverlay, setCurrentOverlay] = useState(0);
   const [activeServiceIndex, setActiveServiceIndex] = useState<number | null>(null);
+  const [canScroll, setCanScroll] = useState(true);
 
   // Animation classes for fade-in/out
   const animationClass = 'transition-all duration-500 ease-in-out opacity-100 scale-100';
-
-  const handleOverlayClick = () => {
-    setCurrentOverlay((prev) => (prev + 1) % overlayData.length);
-    setActiveServiceIndex(null); // Hide service section when overlay changes
-  };
 
   const handleLearnMore = (overlayIndex: number) => {
     const overlayId = overlayData[overlayIndex].id;
@@ -36,7 +32,7 @@ const OurServicesTab = () => {
             {/* Hero Section */}
             <div
               className="relative bg-cover bg-center py-20 px-6 text-center flex flex-col justify-center items-center min-h-[518px] "
-              style={{ backgroundImage: `url(${manshore})` }}
+              style={{ backgroundImage: `url(${dsc00741})` }}
             >
               <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/80 to-black"></div>
               <div className="relative z-10 max-w-4xl mx-auto">
@@ -69,10 +65,21 @@ const OurServicesTab = () => {
 
             {/* Animated Overlay Section for Large screen size */}
             <div
-              className={`w-full hidden md:flex justify-center `}
-              onClick={handleOverlayClick}
-              onTouchStart={handleOverlayClick}
-              style={{ cursor: 'pointer' }}
+              className="w-full hidden md:flex justify-center cursor-move"
+              onWheel={(e) => {
+                if (!canScroll) return;
+                setCanScroll(false);
+
+                if (e.deltaY > 0) {
+                  setCurrentOverlay((prev) => (prev + 1) % overlayData.length);
+                } else if (e.deltaY < 0) {
+                  setCurrentOverlay((prev) => (prev - 1 + overlayData.length) % overlayData.length);
+                }
+                setActiveServiceIndex(null);
+
+                setTimeout(() => setCanScroll(true), 500); // 500ms delay, adjust as needed
+              }}
+              style={{ cursor: 'grabbing' }}
             >
               <div className={animationClass} key={currentOverlay}>
                 <OverlaySection
@@ -97,7 +104,7 @@ const OurServicesTab = () => {
       {/* Carousel Section */}
       {/* <CarouselSection data={carouselData} /> */}
 
-      <OurProducts />
+      <OurProjects />
 
       {/* Stats Section */}
       <StatsBar />

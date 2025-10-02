@@ -16,7 +16,7 @@ const cardData: CardData[] = [
     title: 'Integrity',
     subtitle: '',
     description:
-      'At Century Group, we uphold the highest standards of honesty and ethical conduct in all our dealings. We believe that trust is the foundation of every successful partnership, and we are committed to transparency and accountability.',
+      'We operate with transparency, trust, and accountability.',
     icon: 'shield',
   },
   {
@@ -24,7 +24,7 @@ const cardData: CardData[] = [
     title: 'Foresight',
     subtitle: '',
     description:
-      'We are forward-thinking innovators, constantly anticipating market trends and evolving client needs. Our proactive approach allows us to develop strategic solutions that not only address current challenges but also pave the way for future success.',
+      'We envision industry shifts, embrace innovation and navigate uncertainty with clarity.',
     icon: 'light',
   },
   {
@@ -32,7 +32,7 @@ const cardData: CardData[] = [
     title: 'Teamwork',
     subtitle: '',
     description:
-      'Collaboration is at the heart of our operations. We foster a supportive and inclusive environment where diverse talents come together to achieve common goals. By working hand-in-hand with our clients and partners, we deliver exceptional results.',
+      'We partner deeply with our clients, communities and teammates to achieve shared goals.',
     icon: 'teamwork',
   },
   {
@@ -40,7 +40,7 @@ const cardData: CardData[] = [
     title: 'Service Excellence',
     subtitle: '',
     description:
-      'Our commitment to excellence drives everything we do. We strive to exceed expectations by providing unparalleled service, meticulous attention to detail, and a relentless pursuit of quality in every project we undertake.',
+      'Every project meets the highest standards of quality, safety, and reliability.',
     icon: 'service',
   },
   {
@@ -48,7 +48,7 @@ const cardData: CardData[] = [
     title: 'Local Capacity Development',
     subtitle: '',
     description:
-      'We are dedicated to empowering local communities and fostering sustainable growth. Through our initiatives, we invest in developing local talent, resources, and infrastructure, ensuring long-term benefits for the regions in which we operate.',
+      'We are committed to empowering the stakeholders in the communities where we operate by investing in local talents, skills transfer and strengthening local ecosystems.',
     icon: 'loading',
   },
 ];

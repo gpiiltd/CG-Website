@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { ClipLoader } from 'react-spinners';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import Icon from '../assets/SvgImagesAndIcons';
 
 interface ButtonProps {
@@ -116,7 +116,7 @@ export const ButtonComponent: React.FC<ButtonProps> = ({
                   initial={{ opacity: 0, x: 5 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: 5 }}
-                  transition={{ duration: 0.2 }}
+                  transition={{ duration: 0.4 }}
                   style={{ display: 'flex', alignItems: 'center' }}
                 >
                   <Icon type="Arrow" className="" />
@@ -129,65 +129,3 @@ export const ButtonComponent: React.FC<ButtonProps> = ({
     </div>
   );
 };
-
-// Examples of how to use this component
-
-{
-  /* <ButtonComponent text="Submit" onClick={() => alert('Submitted!')} />
-<ButtonComponent
-  text="Cancel"
-  variant="outline"
-  bg_color="#ef4444" // red outline
-  onClick={() => console.log('Cancelled')}
-/>
-<ButtonComponent
-  text="Continue"
-  active={false} // disables click and dims button
-/>
-<ButtonComponent
-  text="Sign In"
-  fullWidth
-  bg_color="#16a34a" // green
-  onClick={() => console.log('Signing in...')}
-/>
-
-const [loading, setLoading] = useState(false);
-
-<ButtonComponent
-  text="Place Order"
-  loading={loading}
-  onClick={() => {
-    setLoading(true);
-    setTimeout(() => setLoading(false), 2000); // simulate API call
-  }}
-/>
-
-<ButtonComponent
-  text="Custom Styled"
-  bg_color="#9333ea" // purple
-  text_color="yellow"
-  border_color="#facc15"
-  minWidth="180px"
-  onClick={() => console.log('Custom button clicked')}
-/>
-<div style={{ display: 'flex', gap: '1rem' }}>
-  <ButtonComponent text="Accept" bg_color="#22c55e" />
-  <ButtonComponent text="Reject" variant="outline" bg_color="#ef4444" />
-</div>
-
-<ButtonComponent
-  text="Next Step"
-  onClick={() => console.log('Next step')}
-  bg_color="#3b82f6"
-/>
-
-
-import { useNavigate } from 'react-router-dom';
-
-const navigate = useNavigate();
-
-<ButtonComponent
-  text="Go to Dashboard"
-  onClick={() => navigate('/dashboard')}
-/> */
-}

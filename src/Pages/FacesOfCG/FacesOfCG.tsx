@@ -2,16 +2,15 @@ import React, { useState } from 'react';
 import CardFace from '../../Components/Cards/CardFace';
 import { cgDirectors, cgManagment } from './ListofFaces';
 import CustomModal from '../../Components/Modal/Modal';
-import Icon from '../../assets/SvgImagesAndIcons';
 import AnimatedScreen from '../../Components/Animations';
 import usePageTitle from '../../Components/PageTitle';
+import LazyImage from '../../Components/LazyImage';
 
 const FacesOfCG: React.FC = () => {
   usePageTitle('Century Group | Our Team');
   const [activeTab, setActiveTab] = useState<string>('directors');
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [selectedDirector, setSelectedDirector] = useState<any>(null);
-
   return (
     <>
       <AnimatedScreen>
@@ -114,54 +113,42 @@ const FacesOfCG: React.FC = () => {
             width="1022px"
             height="585px"
           >
-            {selectedDirector && (
-              <div className="flex flex-col md:flex-row gap-8 px-10 py-2 mb-8">
-                <div className="relative flex flex-col items-center md:w-[295px] md:h-[295px]">
-                  <div className="absolute inset-0 ">
-                    <div className="w-full h-full rounded-[48px] relative">
-                      <Icon
-                        type={selectedDirector.imageName}
-                        className="w-full` md:h-[460px] object-cover rounded-xl"
-                      />
-                      <div className="absolute left-0 bottom-[-340px] md:bottom-[-200px] w-[90%] bg-[#FCEEEA] rounded-tr-[24px] shadow-md py-4 px-4 flex flex-col items-center">
-                        <span className="text-[#ED6C30] font-semibold text-xl">
-                          {selectedDirector.directorName}
-                        </span>
-                        <span className="text-[#3E3E41] text-lg mt-1">{selectedDirector.role}</span>
+            <AnimatedScreen>
+              {selectedDirector && (
+                <div className="flex flex-col md:flex-row gap-8 px-10 py-2 mb-8">
+                  <div className="relative flex flex-col items-center md:w-[295px] md:h-[295px]">
+                    <div className="absolute inset-0 ">
+                      <div className="w-full h-full rounded-[48px] relative">
+                        <LazyImage
+                          src={selectedDirector.imageName}
+                          alt="Director 1"
+                          className="w-full md:h-[460px] object-cover rounded-xl"
+                        />
+                        <div className="absolute left-0 bottom-[-340px] md:bottom-[-200px] w-[90%] bg-[#FCEEEA] rounded-tr-[24px] shadow-md py-4 px-4 flex flex-col items-center">
+                          <span className="text-[#ED6C30] font-semibold text-xl">
+                            {selectedDirector.directorName}
+                          </span>
+                          <span className="text-[#3E3E41] text-lg mt-1">
+                            {selectedDirector.role}
+                          </span>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
 
-                <div className="flex-1 flex flex-col mt-[350px] md:mt-0">
-                  <div>
-                    <p className="text-[#18193F] text-sm leading-relaxed whitespace-pre-line">
-                      <span className="text-[#ED6C30] font-semibold mr-1">
-                        {selectedDirector.directorName}
-                      </span>
-                      {selectedDirector.bio}
-                    </p>
-                  </div>
-                  <div className="flex items-center gap-6 mt-8">
-                    <a href={selectedDirector.linkedin} target="_blank" rel="noopener noreferrer">
-                      <Icon type="linkedinIcon" className="w-full h-full object-cover rounded-xl" />
-                    </a>
-                    <a href={selectedDirector.facebook} target="_blank" rel="noopener noreferrer">
-                      <Icon type="facebookIcon" className="w-full h-full object-cover rounded-xl" />
-                    </a>
-                    <a href={selectedDirector.twitter} target="_blank" rel="noopener noreferrer">
-                      <Icon type="twitterIcon" className="w-full h-full object-cover rounded-xl" />
-                    </a>
-                    <a href={selectedDirector.instagram} target="_blank" rel="noopener noreferrer">
-                      <Icon
-                        type="instagramIcon"
-                        className="w-full h-full object-cover rounded-xl"
-                      />
-                    </a>
+                  <div className="flex-1 flex flex-col mt-[350px] md:mt-0">
+                    <div>
+                      <p className="text-[#18193F] text-sm leading-relaxed whitespace-pre-line">
+                        <span className="text-[#ED6C30] font-semibold mr-1">
+                          {selectedDirector.directorName}
+                        </span>
+                        {selectedDirector.bio}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            )}
+              )}
+            </AnimatedScreen>
           </CustomModal>
         </div>
       </AnimatedScreen>

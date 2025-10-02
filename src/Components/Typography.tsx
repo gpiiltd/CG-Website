@@ -89,9 +89,15 @@ export const Typography = <T extends ElementType = "p">({
   const weightClass = weight ? getWeightClass(weight) : "";
   const colorClass = color ? getColorClass(color) : "";
 
-  return (
+ return (
     <Component
-      className={cn("font-body", sizeClass, weightClass, colorClass, className)}
+      className={cn(
+        "font-body",
+        sizeClass,
+        weightClass,
+        colorClass,
+        className
+      )}
       {...props}
     >
       {children}

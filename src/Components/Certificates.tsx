@@ -1,4 +1,5 @@
 import qualityCert from '../assets/svgImages/cert2.svg';
+import LazyImage from './LazyImage';
 import { Typography } from './Typography';
 
 const certificatesData = [
@@ -24,11 +25,11 @@ const certificatesData = [
     ],
   },
   {
-    title: 'Quality Management System',
+    title: 'Health & Safety Management',
     image: qualityCert,
     description: [
-      'Century Energy Services Limited has been assessed and certified to meet the requirements of ISO 9001:2015, the world’s most recognized quality management standard.',
-      'This certification covers a wide range of our operations, including:',
+      'At Century Energy Services Limited, safety is not just a requirement—it is our culture. We are proud to be certified to ISO 45001:2018, the international standard for Occupational Health & Safety Management Systems (OHSMS).',
+      'This certification covers the following activities:',
     ],
     list: [
       'Integrated Operation and Maintenance of Onshore, Swamp and Offshore Oil and Gas Production Infrastructure / Facilities.',
@@ -45,11 +46,11 @@ const certificatesData = [
     ],
   },
   {
-    title: 'Quality Management System',
+    title: 'Environmental Management System',
     image: qualityCert,
     description: [
-      'Century Energy Services Limited has been assessed and certified to meet the requirements of ISO 9001:2015, the world’s most recognized quality management standard.',
-      'This certification covers a wide range of our operations, including:',
+      'At Century Energy Services Limited, we take pride in operating responsibly, with a strong commitment to protecting the environment while delivering energy solutions. Our certification to ISO 14001:2015, the globally recognized standard for Environmental Management Systems, is proof of our dedication to sustainability',
+      'This certification covers the following activities:',
     ],
     list: [
       'Integrated Operation and Maintenance of Onshore, Swamp and Offshore Oil and Gas Production Infrastructure / Facilities.',
@@ -86,23 +87,13 @@ const Certificates = () => {
             className="flex flex-col gap-6 items-center justify-center lg:flex-row lg:gap-12"
           >
             <div className="flex-shrink-0">
-              <img
-                src={cert.image}
-                alt={`${cert.title} Certificate`}
-                className="rounded-lg max-w-full h-auto"
-              />
+
+      <LazyImage src={cert.image} alt={`${cert.title} Certificate`} className="rounded-lg max-w-full h-auto" />
+
             </div>
 
-            {/* Right side - text */}
             <div>
-              {/* <Typography
-                size="lg"
-                weight="bold"
-                color="primary"
-                className="text-lg sm:text-xl md:text-2xl lg:text-xl xl:text-2xl mb-4"
-              >
-                {cert.title}
-              </Typography> */}
+
 
               {cert.description.map((desc, i) => (
                 <p

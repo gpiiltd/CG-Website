@@ -10,10 +10,19 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
-  const isActive = (path: string) => location.pathname === path;
+const isActive = (path: string) => {
+  const currentPath = location.pathname;
 
+  // Exact match for home page to avoid matching everything
+  if (path === '/') {
+    return currentPath === '/';
+  }
+
+  // For all other routes, check if current path starts with the route
+  return currentPath.startsWith(path);
+};
   return (
-    <nav className=" w-full">
+    <nav className="sticky top-0 z-50 bg-white w-full shadow-sm">
       <div className="px-3 sm:px-4 lg:px-6 max-w-[95%] mx-auto flex items-center justify-between py-3">
         <Link to="/" className="flex cursor-pointer">
           <img src={logo} alt="logo" />
@@ -47,7 +56,6 @@ const Header = () => {
               Discover Century Group
             </Typography>
           </Link>
-          -
           <Link to="/services">
             <Typography
               size="md"
@@ -122,30 +130,7 @@ const Header = () => {
               </Link>
             </div>
 
-            <div className="flex justify-center items-center gap-12 pb-18">
-              <Link to="/governance" onClick={() => setIsOpen(false)}>
-                <Typography
-                  size="md"
-                  weight="semibold"
-                  className={`cursor-pointer duration-300 ease-in-out text-[#878787] ${
-                    isActive('/governance') ? 'text-[#ED6C30]' : 'hover:text-[#ED6C30]'
-                  }`}
-                >
-                  Governance
-                </Typography>
-              </Link>
-              <Link to="/legal" onClick={() => setIsOpen(false)}>
-                <Typography
-                  size="md"
-                  weight="semibold"
-                  className={`cursor-pointer duration-300 ease-in-out text-[#878787] ${
-                    isActive('/legal') ? 'text-[#ED6C30]' : 'hover:text-[#ED6C30]'
-                  }`}
-                >
-                  Legal
-                </Typography>
-              </Link>
-            </div>
+
           </div>
         )}
       </div>

@@ -3,6 +3,8 @@ import { ButtonComponent } from '../../Components/ButtonComponent';
 import HeroCards from './HeroCards';
 import bg_video from '../../assets/videos/CD_video.mp4';
 import { Link } from 'react-router-dom';
+import routeNames from '../../Components/Navigation/RouteNames';
+import Animate from '../../Components/Animate';
 
 const HeroSection = () => {
   return (
@@ -18,25 +20,28 @@ const HeroSection = () => {
           <source src={bg_video} type="video/mp4" />
         </video>
 
-        <div className="absolute inset-0 bg-black/70" />
+        {/* <div className="absolute inset-0 bg-black/70" /> */}
 
         <div className="relative z-10 max-w-[95%] mx-auto px-6 grid lg:grid-cols-2 items-center h-full gap-8">
           <div className="space-y-6">
-            <div className="inline-block px-4 py-2 rounded-full bg-gray-900/70 text-sm">
-              Find us at the FPSO World Congress 2025 →
+
+<Animate animationType='fadeIn' duration={2000}>
+        <div className="text-[#ED6C30] inline-block pl-4 pr-10 py-2 rounded-full bg-gray-900/70 text-base font-semibold">
+              Solution, People, Value
             </div>
+      </Animate>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-              Secure Offshore Energy <br />
-              Infrastructure For <br />
-              Market Leaders
+              CG is a Diversified <br />
+              Energy Infrastructure <br />
+              Investment & Delivery Company
             </h1>
             <p className="text-lg text-gray-300 max-w-lg">
-              A leading offshore asset development and production company, safely delivering value
+              We are a leading offshore asset development and production company, safely delivering value
               since 2002.
             </p>
             <div className="inline-block">
-              <Link to="/contact-us">
-                <ButtonComponent text="Contact us" bg_color="#ED6C30" />
+              <Link to={`${routeNames.discoveryCG}/${routeNames.assets}`}>
+                <ButtonComponent text="Our assets" bg_color="#ED6C30" />
               </Link>
             </div>{' '}
           </div>

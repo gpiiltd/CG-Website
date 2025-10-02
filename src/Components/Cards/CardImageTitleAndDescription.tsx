@@ -1,6 +1,7 @@
 // CardComponent.tsx
 import React from 'react';
 import { Typography } from '../Typography';
+import LazyImage from '../LazyImage';
 
 interface CardComponentProps {
   imageSrc: string;
@@ -19,11 +20,9 @@ const CardImageTitleAndDescription: React.FC<CardComponentProps> = ({
     <div className="bg-white flex flex-col md:flex-row rounded-lg shadow-md border border-gray-200 overflow-hidden">
       {/* Image Container */}
       <div className="w-full md:w-1/3 lg:w-2/5 flex-shrink-0 py-4 px-3 ">
-        <img
-          src={imageSrc}
-          alt={title}
-          className="w-full h-48 md:h-full object-cover rounded-lg"
-        />
+
+      <LazyImage src={imageSrc} alt={title} className="w-full h-48 md:h-full object-cover rounded-lg" />
+
       </div>
 
       {/* Content Container */}
