@@ -3,7 +3,7 @@ import { Typography } from '../../Components/Typography';
 import CardGrid from '../../Components/discovery/discoveryCard';
 import Icon from '../../assets/SvgImagesAndIcons';
 import discoverBg from '../../assets/discover_bg.png';
-import disMen from '../../assets/svgImages/disMen.svg';
+import disMen from '../../assets/svgImages/cesl_workers.jpg';
 import disGirlBook from '../../assets/svgImages/disGirlBook.svg';
 import rope from '../../assets/rope.jpeg';
 import transform from '../../assets/transform.jpeg';
@@ -85,21 +85,18 @@ const DiscoveryView = () => {
 
           {/* Mission section ----------------------------------------------->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */}
           <div className="relative w-full mt-8">
-            {/* Image */}
-
             <LazyImage
               src={disMen}
               alt="Century Group"
               className="w-full h-[300px] md:h-[450px] object-cover"
             />
-
-            {/* Overlay content */}
+            <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/75 to-black/85"></div>
             <div className="absolute inset-0 flex items-center justify-center">
-              <div className=" p-4 md:p-6 rounded-xl shadow-lg w-[90%] md:w-[53%] text-center text-balance">
+              <div className="p-4 md:p-6 rounded-xl shadow-lg w-[90%] md:w-[53%] text-center text-balance text-white">
                 <Typography className="text-sm font-semibold text-[#F9D1BF] mb-2">
                   OUR MISSION
                 </Typography>
-                <Typography className="text-[#ffffff] font-bold text-lg">
+                <Typography className="font-bold text-lg">
                   To be a reference point for excellent service delivery to our clients and
                   stakeholders, while continuing to{' '}
                   <span className="text-[#F9D1BF]">De-risk and create new opportunities</span> in
@@ -114,7 +111,7 @@ const DiscoveryView = () => {
           </div>
 
           {/* Mission section ----------------------------------------------->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */}
-<Animate animationType='fadeIn' duration={2000}>
+          <Animate animationType="fadeIn" duration={2000}>
             <div className="bg-[#FFF7F4] px-[5%] md:py-[7%] py-[12%]">
               <Typography className="text-transform: uppercase font-bold text-2xl mb-2 md:text-[48px] text-[#11092F]">
                 Our Guiding Light
