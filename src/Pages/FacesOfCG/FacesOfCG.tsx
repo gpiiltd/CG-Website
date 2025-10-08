@@ -1,16 +1,74 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import CardFace from '../../Components/Cards/CardFace';
-import { cgDirectors, cgManagment } from './ListofFaces';
 import CustomModal from '../../Components/Modal/Modal';
 import AnimatedScreen from '../../Components/Animations';
 import usePageTitle from '../../Components/PageTitle';
 import LazyImage from '../../Components/LazyImage';
+import { client } from '../../sanityClient';
+import { PortableText, type PortableTextBlock } from 'next-sanity';
 
+interface TeamMember {
+  id: number;
+  directorName: string;
+  role: string;
+  description: string;
+  bio: PortableTextBlock[];
+  imageName: string;
+}
+
+const queryDirectors = `*[_type == "boardOfDirectors"]{
+  id,
+  directorName,
+  role,
+  description,
+  bio,
+  "imageName": imageName.asset->url
+}`;
+
+const queryManagement = `*[_type == "management"]{
+  id,
+  directorName,
+  role,
+  description,
+  bio,
+  "imageName": imageName.asset->url
+}`;
 const FacesOfCG: React.FC = () => {
   usePageTitle('Century Group | Our Team');
   const [activeTab, setActiveTab] = useState<string>('directors');
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [selectedDirector, setSelectedDirector] = useState<any>(null);
+  const [directors, setDirectors] = useState<TeamMember[]>([]);
+  const [management, setManagement] = useState<TeamMember[]>([]);
+
+  useEffect(() => {
+    const fetchDirectors = async () => {
+      try {
+        const directors = await client.fetch(queryDirectors);
+        const sortedDirectors = directors.sort(
+          (a: { id: number }, b: { id: number }) => a.id - b.id
+        );
+        setDirectors(sortedDirectors);
+      } catch (error) {
+        console.error('Error fetching projects:', error);
+      }
+    };
+
+    const fetchManagement = async () => {
+      try {
+        const management = await client.fetch(queryManagement);
+        const sortedManagement = management.sort(
+          (a: { id: number }, b: { id: number }) => a.id - b.id
+        );
+
+        setManagement(sortedManagement);
+      } catch (error) {
+        console.error('Error fetching projects:', error);
+      }
+    };
+    fetchDirectors();
+    fetchManagement();
+  }, []);
   return (
     <>
       <AnimatedScreen>
@@ -48,7 +106,7 @@ const FacesOfCG: React.FC = () => {
 
             {activeTab === 'directors' && (
               <div className="w-full justify-items-center grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-4 gap-x-4 gap-y-20  mb-16 mt-12">
-                {cgDirectors.map((face) => (
+                {directors.map((face) => (
                   <div
                     key={face.directorName}
                     onClick={() => setSelectedDirector(face)}
@@ -68,7 +126,7 @@ const FacesOfCG: React.FC = () => {
 
             {activeTab === 'management' && (
               <div className="w-full justify-items-center grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-3 gap-x-4 gap-y-20  mb-16 mt-12">
-                {cgManagment.map((face) => (
+                {management.map((face) => (
                   <div
                     key={face.directorName}
                     onClick={() => setSelectedDirector(face)}
@@ -137,13 +195,11 @@ const FacesOfCG: React.FC = () => {
                   </div>
 
                   <div className="flex-1 flex flex-col mt-[350px] md:mt-0">
-                    <div>
-                      <p className="text-[#18193F] text-sm leading-relaxed whitespace-pre-line">
-                        <span className="text-[#ED6C30] font-semibold mr-1">
-                          {selectedDirector.directorName}
-                        </span>
-                        {selectedDirector.bio}
-                      </p>
+                    <div className="text-[#18193F] text-sm leading-relaxed">
+                      <span className="text-[#ED6C30] font-semibold mr-1">
+                        {selectedDirector.directorName}
+                      </span>
+                      <PortableText value={selectedDirector.bio} />
                     </div>
                   </div>
                 </div>
