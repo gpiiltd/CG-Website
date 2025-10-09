@@ -1,37 +1,64 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import ServiceSection from './ServiceSection';
-import { serviceSectionsData } from './servicesDatalist';
 import { Typography } from '../../Components/Typography';
 import { HoverCard } from '../../Components/HoverCard';
 import StatsBar from './StatsBar';
 import OurProjects from '../Home/OurProjects';
 import usePageTitle from '../../Components/PageTitle';
-import atalaEP from '../../assets/Atala-E&P.png';
-import tnFPSO from '../../assets/TN FPSO- Deployment - O&M.jpg';
-import LNGVessel from '../../assets/LNG Vessel.jpg';
-import CPTLOps from '../../assets/CPTL Ops.jpeg';
 import AnimatedScreen from '../../Components/Animations';
+import { client } from '../../sanityClient';
 
+const queryServiceDetails = `*[_type == "serviceDetails"]{
+  id,
+  title,
+  subtitle,
+  companyTitle,
+  companyDescription,
+  bgColor,
+  "image": image[].asset->url
+}`;
 const ServiceDetailPage = () => {
   usePageTitle('Century Group | Service Details');
+  const [serviceDetails, setServiceDetails] = useState<any[]>([]);
   const { id } = useParams<{ id: string }>();
   const serviceId = Number(id);
-  const service = serviceSectionsData.find((s) => s.id === serviceId);
+
+  useEffect(() => {
+    const fetchServiceDetails = async () => {
+      try {
+        const fetchedServiceDetails = await client.fetch(queryServiceDetails);
+        const sortedServiceDetails = fetchedServiceDetails.sort(
+          (a: { id: number }, b: { id: number }) => a.id - b.id
+        );
+
+        setServiceDetails(sortedServiceDetails);
+      } catch (error) {
+        console.error('Error fetching service details:', error);
+      }
+    };
+    fetchServiceDetails();
+  }, []);
+
+
+  const service = serviceDetails.find((s) => s.id === serviceId);
 
   if (!service) {
     return <div>Service not found.</div>;
   }
 
   // Filter out the current service
-  const otherServices = serviceSectionsData.filter((s) => s.id !== serviceId);
+  const otherServices = serviceDetails.filter((s) => s.id !== serviceId);
 
-  // Service images
-  const serviceImages: Record<number, string> = {
-    1: atalaEP,
-    2: tnFPSO,
-    3: CPTLOps,
-    4: LNGVessel,
-  };
+  // Create serviceImages from fetched data with fallbacks
+  const serviceImages: Record<number, string> = serviceDetails.reduce(
+    (acc, service) => {
+      acc[service.id] = service.image?.[0] || service.image || '';
+      return acc;
+    },
+    {} as Record<number, string>
+  );
 
   return (
     <>
