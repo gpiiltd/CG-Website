@@ -3,13 +3,6 @@ import type { Svgprops } from '../Components/Interfaces';
 import cgLogo from './svgImages/cgLogo.svg';
 import menPipe from './svgImages/menPipe.svg';
 import lightBulb from './svgImages/lightBulb.svg';
-import kenEtete from './svgImages/kenEtete.svg';
-import osaretinAmadasu from './svgImages/osaretinAmadasu.svg';
-import maclarenKosuwei from './svgImages/maclarenKosuwei.svg';
-import osasUwaifo from './svgImages/osasUwaifo.svg';
-import edwardYinkere from './svgImages/edwardYinkere.svg';
-import teikariyeEtete from './svgImages/teikariyeEtete.svg';
-import preyeAngaye from './svgImages/preyeAngaye.svg';
 import twitterIcon from './svgImages/twitterIcon.svg';
 import linkedinIcon from './svgImages/linkedinIcon.svg';
 import instagramIcon from './svgImages/instagramIcon.svg';
@@ -29,12 +22,6 @@ import shore from './svgImages/shore.svg';
 import manworker from './svgImages/manworker.svg';
 import womanworker from './svgImages/womanworker.svg';
 import gasplant from './svgImages/gasplant.svg';
-import akintobiAkinpelu from './svgImages/akintobiAkinpelu.svg';
-import michealIkinbor from './svgImages/michealIkinbor.svg';
-import muhriAbiodun from './svgImages/muhriAbiodun.svg';
-import ayebatariWilson from './svgImages/ayebatariWilson.svg';
-import paulUkeneye from './svgImages/paulUkeneye.svg';
-import ebimoboweiClifford from './svgImages/ebimoboweiClifford.svg';
 
 const Icon: React.FC<Svgprops> = ({ type, className, click }) => {
   const renderIcon = () => {
@@ -45,7 +32,6 @@ const Icon: React.FC<Svgprops> = ({ type, className, click }) => {
         return <img src={menPipe} alt="menPipe" className={className} />;
       case 'lightBulb':
         return <img src={lightBulb} alt="lightBulb" className={className} />;
-
       case 'shield':
         return <img src={shield} alt="shield" className={className} />;
       case 'light':
@@ -66,20 +52,6 @@ const Icon: React.FC<Svgprops> = ({ type, className, click }) => {
         return <img src={dull} alt="dull" className={className} />;
       case 'checks':
         return <img src={checks} alt="checks" className={className} />;
-      case 'kenEtete':
-        return <img src={kenEtete} alt="kenEtete" className={className} />;
-      case 'osaretinAmadasu':
-        return <img src={osaretinAmadasu} alt="osaretinAmadasu" className={className} />;
-      case 'maclarenKosuwei':
-        return <img src={maclarenKosuwei} alt="maclarenKosuwei" className={className} />;
-      case 'osasUwaifo':
-        return <img src={osasUwaifo} alt="osasUwaifo" className={className} />;
-      case 'edwardYinkere':
-        return <img src={edwardYinkere} alt="edwardYinkere" className={className} />;
-      case 'teikariyeEtete':
-        return <img src={teikariyeEtete} alt="teikariyeEtete" className={className} />;
-      case 'preyeAngaye':
-        return <img src={preyeAngaye} alt="preyeAngaye" className={className} />;
       case 'twitterIcon':
         return <img src={twitterIcon} alt="twitterIcon" className={className} />;
       case 'linkedinIcon':
@@ -98,18 +70,7 @@ const Icon: React.FC<Svgprops> = ({ type, className, click }) => {
         return <img src={womanworker} alt="womanworker" className={className} />;
       case 'gasplant':
         return <img src={gasplant} alt="gasplant" className={className} />;
-      case 'akintobiAkinpelu':
-        return <img src={akintobiAkinpelu} alt="akintobiAkinpelu" className={className} />;
-      case 'michealIkinbor':
-        return <img src={michealIkinbor} alt="michealIkinbor" className={className} />;
-      case 'muhriAbiodun':
-        return <img src={muhriAbiodun} alt="muhriAbiodun" className={className} />;
-      case 'ayebatariWilson':
-        return <img src={ayebatariWilson} alt="ayebatariWilson" className={className} />;
-      case 'paulUkeneye':
-        return <img src={paulUkeneye} alt="paulUkeneye" className={className} />;
-      case 'ebimoboweiClifford':
-        return <img src={ebimoboweiClifford} alt="ebimoboweiClifford" className={className} />;
+
       default:
         return null;
     }
