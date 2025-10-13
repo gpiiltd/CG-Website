@@ -113,69 +113,69 @@ export default function Timeline() {
           </div>
         </div>
       </div>
-      <div className="mx-[7%] flex flex-col-reverse md:flex-row gap-6 mt-6">
-        {/* Image Container - Fixed height */}
-        <div className="w-full md:w-1/2 h-[400px] md:h-[500px]">
-          <LazyImage
-            src={disShipBig}
-            alt="Timeline Illustration"
-            className="rounded-xl object-cover w-full h-full"
-          />
-        </div>
+    <div className="mx-[7%] flex flex-col-reverse md:flex-row gap-6 mt-6">
+  {/* Image Container - Fixed height */}
+  <div className="w-full md:w-1/2 h-[400px] md:h-[500px]">
+    <LazyImage
+      src={disShipBig}
+      alt="Timeline Illustration"
+      className="rounded-xl object-cover w-full h-full"
+    />
+  </div>
 
-        <div className="bg-white w-full">
-          <div className="flex justify-between items-center mb-12">
-            <Typography weight="semibold" className="text-orange-500 font-semibold text-3xl">
-              {activeIndex < years.length - 1
-                ? `${activeYear.year} - ${years[activeIndex + 1].year}`
-                : activeYear.year}
-            </Typography>
+  <div className="bg-white w-full md:h-[500px] flex flex-col">
+    <div className="flex justify-between items-center mb-12">
+      <Typography weight="semibold" className="text-orange-500 font-semibold text-3xl">
+        {activeIndex < years.length - 1
+          ? `${activeYear.year} - ${years[activeIndex + 1].year}`
+          : activeYear.year}
+      </Typography>
 
-            <div className="flex gap-2">
-              <button
-                onClick={goPrev}
-                disabled={activeIndex === 0}
-                className={`p-2 rounded-full transition-all duration-200 ${
-                  activeIndex === 0
-                    ? 'border-1 border-gray-300 text-gray-300 cursor-not-allowed opacity-50'
-                    : 'border-2 border-orange-500 text-orange-500 hover:bg-orange-50 cursor-pointer'
-                }`}
-              >
-                <ChevronLeft size={20} />
-              </button>
-              <button
-                onClick={goNext}
-                disabled={activeIndex === years.length - 1}
-                className={`p-2 rounded-full transition-all duration-200 ${
-                  activeIndex === years.length - 1
-                    ? 'border-1 border-gray-300 text-gray-300 cursor-not-allowed opacity-50'
-                    : 'border-2 border-orange-500 text-orange-500 hover:bg-orange-50 cursor-pointer'
-                }`}
-              >
-                <ChevronRight size={20} />
-              </button>
-            </div>
-          </div>
-
-          {/* Scrollable Milestones */}
-          <div className="flex-1 overflow-y-auto px-4 pb-4">
-            <div className="space-y-4">
-              {activeYear.milestones.map((milestone, index) => (
-                <div
-                  key={index}
-                  className="flex items-start gap-3 p-4 rounded-xl border border-gray-200"
-                >
-                  {/* Fixed icon with flex-shrink-0 */}
-                  <div className="flex-shrink-0">
-                    <Icon type="checks" className="text-gray-400 w-6 h-6" />
-                  </div>
-                  <p className="text-gray-700 text-sm leading-relaxed flex-1">{milestone}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+      <div className="flex gap-2">
+        <button
+          onClick={goPrev}
+          disabled={activeIndex === 0}
+          className={`p-2 rounded-full transition-all duration-200 ${
+            activeIndex === 0
+              ? 'border-1 border-gray-300 text-gray-300 cursor-not-allowed opacity-50'
+              : 'border-2 border-orange-500 text-orange-500 hover:bg-orange-50 cursor-pointer'
+          }`}
+        >
+          <ChevronLeft size={20} />
+        </button>
+        <button
+          onClick={goNext}
+          disabled={activeIndex === years.length - 1}
+          className={`p-2 rounded-full transition-all duration-200 ${
+            activeIndex === years.length - 1
+              ? 'border-1 border-gray-300 text-gray-300 cursor-not-allowed opacity-50'
+              : 'border-2 border-orange-500 text-orange-500 hover:bg-orange-50 cursor-pointer'
+          }`}
+        >
+          <ChevronRight size={20} />
+        </button>
       </div>
+    </div>
+
+    {/* Scrollable Milestones */}
+    <div className="flex-1 overflow-y-auto px-4 pb-4">
+      <div className="space-y-4">
+        {activeYear.milestones.map((milestone, index) => (
+          <div
+            key={index}
+            className="flex items-start gap-3 p-4 rounded-xl border border-gray-200"
+          >
+            {/* Fixed icon with flex-shrink-0 */}
+            <div className="flex-shrink-0">
+              <Icon type="checks" className="text-gray-400 w-6 h-6" />
+            </div>
+            <p className="text-gray-700 text-sm leading-relaxed flex-1">{milestone}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</div>
     </div>
   );
 }
