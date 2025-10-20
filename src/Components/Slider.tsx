@@ -4,11 +4,11 @@ import 'swiper/css';
 
 interface Image {
   src: string;
-  alt: string;
+  alt?: string;
 }
 
 interface ImageSliderProps {
-  images: Image[];
+  images: Image[] ;
 }
 
 const ImageSlider = ({ images }: ImageSliderProps) => {
@@ -31,16 +31,17 @@ const ImageSlider = ({ images }: ImageSliderProps) => {
       {images.map((image, index) => (
         <SwiperSlide key={index}>
           <div className="flex justify-center">
-            <img
-              src={image.src}
-              alt={image.alt}
-              className="w-full h-40 object-contain"
-            />
+          <img
+  src={image.src}
+  alt={image.alt || 'Partner logo'}
+  className="w-full h-40 object-contain"
+/>
           </div>
         </SwiperSlide>
       ))}
     </Swiper>
   );
 };
+
 
 export default ImageSlider;

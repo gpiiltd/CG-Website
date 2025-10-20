@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import disShipBig from '../../assets/svgImages/disShipBig.svg';
+import disShipBig from '../../assets/3a682e2677b9a88d430bfc7979d16fa2b62e4748.jpg';
 import Icon from '../../assets/SvgImagesAndIcons';
 import { Typography } from '../Typography';
 import LazyImage from '../LazyImage';
@@ -50,7 +50,6 @@ const years = [
       'Facilitated the storage and export of the maiden cargo of the Obodo crude blend on behalf of ConOil.',
     ],
   },
-  { year: 2025, milestones: ['Started FPSO projects with faster commissioning.'] },
 ];
 
 export default function Timeline() {

@@ -47,7 +47,7 @@ const DiscoveryView = () => {
 
               <Typography weight="normal" className="mt-4 md:mt-0 md:w-1/2 text-[#333]">
                 In 2002, as Nigeria’s oilfield hummed with untapped potential, a passionate team of
-                professionals met, sketching development that spoke to the challenge and
+                professionals met, sketching designs that spoke to the challenge and
                 conceptualize real solutions on weathered notepads. To build an African energy
                 champion — one that fused global standards and precision with local wisdom. That
                 spark ignited Century Group.
