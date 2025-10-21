@@ -6,22 +6,6 @@ import bg_video from '../../assets/videos/CD_video.mp4';
 import elmina_tour from '../../assets/videos/Guardian_of_Okwori.mp4';
 import CPTL_SOLUTIONS from '../../assets/videos/CPTL_SOLUTIONS.mp4';
 
-
-
-// export type FactSheet = {
-//   yearBuild: string;
-//   imo: string;
-//   beam: string;
-//   overallLength: string;
-//   overallWidth: string;
-//   vesselType: string;
-//   vesselTypeDetailed: string;
-//   navigationalStatus: string;
-//   mmsi: string;
-//   callSign: string;
-//   grossTonnage: string;
-// };
-
 export type FactSheet = Record<string, string | undefined>;
 
 
@@ -40,7 +24,7 @@ export const assets = [
     id: 1,
     title: 'FPSO Tamara Nanaye',
     description:
-      'From offshore infrastructure deployment, to energy logistics, our integrated services are designed too optimize operation, minimize risk and maximize, value for stakeholders.',
+      "FPSO Tamara Nanaye, formerly known as Front Puffin, is a 61,000-ton production vessel with a processing capacity of 40,000 barrels per day and a storage capacity of approximately 769,608 barrels of crude oil.",
     image: ship_asset,
     videoUrl: CPTL_SOLUTIONS,
     factSheet: {
@@ -62,7 +46,7 @@ export const assets = [
     id: 2,
     title: 'FPSO Tamara Tokoni',
     description:
-      'From offshore infrastructure deployment, to energy logistics, our integrated services are designed too optimize operation, minimize risk and maximize, value for stakeholders.',
+      "FPSO Tamara Tokoni operates in the Oyo Field under OML 120. This vessel has a storage capacity of 1.1 million barrels of crude oil and can process 40,000 barrels per day, with a gas handling capacity of 66 million standard cubic feet per day. Equipped with a spread mooring system, the Tamara Tokoni remains stationary while adapting to changing sea and wind conditions, making it a strategic asset in Nigeria's offshore oil production.",
     image: ship_asset2,
     videoUrl: bg_video,
     factSheet: {
@@ -85,7 +69,7 @@ export const assets = [
     id: 3,
     title: 'FPSO Tamara Elmina',
     description:
-      'From offshore infrastructure deployment, to energy logistics, our integrated services are designed too optimize operation, minimize risk and maximize, value for stakeholders.',
+      "FPSO Tamara Elmina, known as boasts a storage capacity of 2 million barrels and a processing capacity of 60,000 to 70,000 barrels per day. Deployed at the Okwori Field in OML 126, approximately 60 kilometres offshore from this vessel plays a crucial role in Nigeria's oil production.",
     image: ship_asset3,
     videoUrl: elmina_tour,
     factSheet: {
@@ -114,7 +98,7 @@ export const assets = [
     id: 4,
     title: 'FSO ELI AKASO',
     description:
-      'From offshore infrastructure deployment, to energy logistics, our integrated services are designed too optimize operation, minimize risk and maximize, value for stakeholders.',
+      "FSO ELI Akaso is stationed offshore Bonny, providing secure storage of up to 2 million barrels for producers in the region. Fully classed by Bureau Veritas and equipped with a spread mooring system, the ELI Akaso serves as a reliable alternative to disrupted onshore pipelines such as the Nembe Creek Trunk Line and the Trans-Niger Pipeline ensuring continuous oil flow and uninterrupted exports.",
     image: ship_asset4,
     videoUrl: null,
     factSheet: {
