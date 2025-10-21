@@ -4,7 +4,7 @@ import CardGrid from '../../Components/discovery/discoveryCard';
 import Icon from '../../assets/SvgImagesAndIcons';
 import discoverBg from '../../assets/discover_bg.png';
 import disMen from '../../assets/svgImages/cesl_workers.jpg';
-import disGirlBook from '../../assets/svgImages/disGirlBook.svg';
+import disGirlBook from '../../assets/LIBRARY PICTURE DONATED.jpg';
 import rope from '../../assets/rope.jpeg';
 import transform from '../../assets/transform.jpeg';
 import leverage from '../../assets/leverage.jpeg';
