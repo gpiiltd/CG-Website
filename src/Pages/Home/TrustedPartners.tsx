@@ -1,12 +1,4 @@
 import { Link, useNavigate } from 'react-router-dom';
-import shell from '../../assets/svgImages/shell.svg';
-import npdc from '../../assets/svgImages/npdc.svg';
-import oriental from '../../assets/svgImages/oriental.svg';
-import energy from '../../assets/svgImages/energy.svg';
-import general from '../../assets/svgImages/general.svg';
-import ship from '../../assets/svgImages/ship.svg';
-import workers1 from '../../assets/svgImages/workers.svg';
-import workers2 from '../../assets/svgImages/workers2.svg';
 import { Typography } from '../../Components/Typography';
 import ImageSlider from '../../Components/Slider';
 import { ButtonComponent } from '../../Components/ButtonComponent';
@@ -15,22 +7,70 @@ import aeclogo from '../../assets/aew.jpeg';
 import LazyImage from '../../Components/LazyImage';
 import AnimatedScreen from '../../Components/Animations';
 import Animate from '../../Components/Animate';
+import { client } from '../../sanityClient';
+import { useEffect, useState } from 'react';
 
+export interface PartnersTypes {
+  imageUrl: string;
+}
+
+interface DescriptionChild {
+  text: string;
+}
+
+interface DescriptionBlock {
+  _key: string;
+  children: DescriptionChild[];
+}
+
+interface ImageData {
+  src: string;
+  alt: string;
+}
+
+interface OperationExcellenceItem {
+  title: string;
+  description: DescriptionBlock[];
+  images: ImageData[];
+}
+
+const query = `*[_type == "partners"]{
+  "src": imageUrl.asset->url,
+  "alt": title
+}`;
 const TrustedPartners = () => {
   const navigate = useNavigate();
+  const [partnersSection, setPartnersSection] = useState<{ src: string; alt?: string }[]>([]);
+  const [oEData, setOEData] = useState<OperationExcellenceItem[]>([]);
 
-  const images = [
-    { src: shell, alt: 'Shell' },
-    { src: npdc, alt: 'Energy Direct' },
-    { src: oriental, alt: 'Energy Link' },
-    { src: energy, alt: 'NPDC' },
-    { src: general, alt: 'General Hydrocarbons' },
-    { src: shell, alt: 'Shell' },
-    { src: npdc, alt: 'Energy Direct' },
-    { src: oriental, alt: 'Energy Link' },
-    { src: energy, alt: 'NPDC' },
-    { src: general, alt: 'General Hydrocarbons' },
-  ];
+  useEffect(() => {
+    const fetchPartnerSection = async () => {
+      try {
+        const data = await client.fetch(query);
+        setPartnersSection(data);
+      } catch (error) {
+        console.error('Error fetching partnerSection:', error);
+      }
+    };
+
+    fetchPartnerSection();
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const query = `*[_type == "operationExcellence"]{
+      title,
+      description,
+      "images": images[]{
+        "src": asset->url,
+        "alt": asset->originalFilename
+      }
+    }`;
+      const result: OperationExcellenceItem[] = await client.fetch(query);
+      setOEData(result);
+    };
+    fetchData();
+  }, []);
 
   return (
     <AnimatedScreen>
@@ -39,66 +79,82 @@ const TrustedPartners = () => {
           <Typography color="primary" size="lg" weight="bold" className="mb-8 text-start">
             Trusted by top-tier energy and infrastructure leaders across Africa.
           </Typography>
-          <ImageSlider images={images} />
+          {partnersSection.length > 0 ? (
+            <ImageSlider images={partnersSection} />
+          ) : (
+            <p className="text-center text-gray-500">Loading partners...</p>
+          )}
         </div>
 
         {/* Benchmark Section */}
+
         <div className="bg-[#fff5f0]">
           <div className="max-w-[95%] mx-auto px-6 py-16 grid lg:grid-cols-2 gap-12 items-center">
-            {/* Left side images */}
-            <div className="flex gap-4 h-max justify-center">
-              <div className="flex flex-col gap-4 h-full">
-                <LazyImage
-                  src={workers2}
-                  alt="Director 1"
-                  className="rounded-lg object-cover h-full w-full"
-                />
-                <LazyImage
-                  src={workers1}
-                  alt="Director 1"
-                  className="rounded-lg object-cover h-full w-full"
-                />
-              </div>
-              <div>
-                <LazyImage
-                  src={ship}
-                  alt="Director 1"
-                  className="rounded-lg object-cover h-full w-full"
-                />
-              </div>
-            </div>
-
-            {/* Right side text */}
-            <Animate animationType="slideInRight" duration={3000}>
-              <div className="h-full">
-                <p className="text-orange-500 uppercase text-sm font-semibold mb-2 tracking-wide">
-                  Operational Excellence
-                </p>
-                <h2 className="text-3xl sm:text-4xl font-bold text-[#11092F] mb-4 leading-snug">
-                  The benchmark for safety, capacity, and experience.
-                </h2>
-                <p className="text-gray-700 mb-4 font-bold text-lg">
-                  Delivering integrated offshore energy solutions through world class floater
-                  deployment, comprehensive ancillary support.
-                </p>
-                <p className="text-gray-600 mb-8 text-lg">
-                  Our expertise and technical capabilities enable us to efficiently execute complex
-                  offshore projects from conceptualization through life cycle support, mitigating
-                  risk and amplifying value delivery.
-                </p>
-                <div className="flex gap-4">
-                  <Link to="/contact-us">
-                    <ButtonComponent text="Contact us" bg_color="#ED6C30" />
-                  </Link>
-                  <ButtonComponent
-                    text="Learn More"
-                    variant="outline"
-                    bg_color="#642D14"
-                    onClick={() => navigate('/discover-century-group')}
-                  />
+            {oEData.map((item, index) => (
+              <div key={index} className="contents">
+                {/* Left side images */}
+                <div className="flex gap-4 h-max justify-center">
+                  <div className="flex flex-col gap-4 h-full">
+                    {item.images?.[0] && (
+                      <LazyImage
+                        src={item.images[0].src}
+                        alt={item.images[0].alt}
+                        className="rounded-lg object-cover h-full w-full"
+                      />
+                    )}
+                    {item.images?.[1] && (
+                      <LazyImage
+                        src={item.images[1].src}
+                        alt={item.images[1].alt}
+                        className="rounded-lg object-cover h-full w-full"
+                      />
+                    )}
+                  </div>
+                  {item.images?.[2] && (
+                    <div>
+                      <LazyImage
+                        src={item.images[2].src}
+                        alt={item.images[2].alt}
+                        className="rounded-lg object-cover h-full w-full"
+                      />
+                    </div>
+                  )}
                 </div>
+
+                {/* Right side text */}
+                <Animate animationType="slideInRight" duration={3000}>
+                  <div className="h-full">
+                    <p className="text-orange-500 uppercase text-sm font-semibold mb-2 tracking-wide">
+                  Operational Excellence
+                    </p>
+                    <h2 className="text-3xl sm:text-4xl font-bold text-[#11092F] mb-4 leading-snug">
+                      {item.title}
+                    </h2>
+
+                    {/* Safely render description */}
+                    <div className="text-gray-600 mb-8 text-lg space-y-4">
+                      {item.description?.map((block) => (
+                        <p key={block._key}>
+                          {block.children.map((child) => child.text).join(' ')}
+                        </p>
+                      ))}
+                    </div>
+
+                    <div className="flex gap-4">
+                      <Link to="/contact-us">
+                        <ButtonComponent text="Contact us" bg_color="#ED6C30" />
+                      </Link>
+                      <ButtonComponent
+                        text="Learn More"
+                        variant="outline"
+                        bg_color="#642D14"
+                        onClick={() => navigate('/discover-century-group')}
+                      />
+                    </div>
+                  </div>
+                </Animate>
               </div>
-            </Animate>
+            ))}
           </div>
         </div>
 

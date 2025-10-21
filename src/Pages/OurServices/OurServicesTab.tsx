@@ -4,23 +4,7 @@ import OverlaySection from './OverlaySection';
 import StatsBar from './StatsBar';
 import OurProjects from '../Home/OurProjects';
 import usePageTitle from '../../Components/PageTitle';
-import dsc00741 from '../../assets/DSC00741.jpg';
-import { client } from '../../sanityClient';
-
-interface Service {
-  id: number;
-  title: string;
-  description: string;
-  bgColor: string;
-  image: string;
-}
-const queryServices = `*[_type == "service"]{
-  id,
-  title,
-  description,
-  bgColor,
-  "image": image.asset->url
-}`;
+import dsc00741 from '../../assets/000A0706.jpg';
 
 const OurServicesTab = () => {
   usePageTitle('Century Group | Services');
@@ -56,23 +40,26 @@ const OurServicesTab = () => {
   return (
     <>
       <div className="relative">
-        <>
-          {/* Hero Section */}
-          <div
-            className="relative bg-cover bg-center py-20 px-6 text-center flex flex-col justify-center items-center min-h-[518px] "
-            style={{ backgroundImage: `url(${dsc00741})` }}
-          >
-            <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/80 to-black"></div>
-            <div className="relative z-10 max-w-4xl mx-auto">
-              <p className="text-sm uppercase tracking-widest text-gray-300 mb-4">our services</p>
-              <h2 className="text-4xl md:text-5xl font-bold leading-tight text-white mb-8">
-                Driving Growth Through Energy
-              </h2>
-              <p className="text-sm tracking-widest text-gray-300 mb-4 lg:w-[650px] mx-auto">
-                From offshore infrastructure deployment, to energy logistics, our integrated
-                services are designed too optimize operation, minimize risk and maximize value for
-                stakeholders.
-              </p>
+        {activeServiceIndex === null ? (
+          <>
+            {/* Hero Section */}
+            <div
+              className="relative bg-cover bg-center py-20 px-6 text-center flex flex-col justify-center items-center min-h-[650px] "
+              style={{ backgroundImage: `url(${dsc00741})` }}
+            >
+              <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/50 to-black"></div>
+              <div className="relative z-10 max-w-4xl mx-auto">
+                <p className="text-sm uppercase tracking-widest text-gray-300 mb-4">our services</p>
+                <h2 className="text-4xl md:text-5xl font-bold leading-tight text-white mb-8">
+                  Driving Growth Through Energy
+                </h2>
+                <p className="text-sm tracking-widest text-gray-300 mb-4 lg:w-[650px] mx-auto">
+                  From offshore infrastructure deployment, to energy logistics, our integrated
+                  services are designed too optimize operation, minimize risk and maximize value for
+                  stakeholders.
+                </p>
+              </div>
+
             </div>
           </div>
 

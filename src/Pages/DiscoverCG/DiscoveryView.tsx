@@ -4,7 +4,7 @@ import CardGrid from '../../Components/discovery/discoveryCard';
 import Icon from '../../assets/SvgImagesAndIcons';
 import discoverBg from '../../assets/discover_bg.png';
 import disMen from '../../assets/svgImages/cesl_workers.jpg';
-import disGirlBook from '../../assets/svgImages/disGirlBook.svg';
+import disGirlBook from '../../assets/LIBRARY PICTURE DONATED.jpg';
 import rope from '../../assets/rope.jpeg';
 import transform from '../../assets/transform.jpeg';
 import leverage from '../../assets/leverage.jpeg';
@@ -47,7 +47,7 @@ const DiscoveryView = () => {
 
               <Typography weight="normal" className="mt-4 md:mt-0 md:w-1/2 text-[#333]">
                 In 2002, as Nigeria’s oilfield hummed with untapped potential, a passionate team of
-                professionals met, sketching development that spoke to the challenge and
+                professionals met, sketching designs that spoke to the challenge and
                 conceptualize real solutions on weathered notepads. To build an African energy
                 champion — one that fused global standards and precision with local wisdom. That
                 spark ignited Century Group.

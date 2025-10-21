@@ -19,6 +19,7 @@ const query = `*[_type == "heroSection"][0]{
   description,
   "videoUrl": videoUrl.asset->url
 }`;
+
 const HeroSection = () => {
   const [heroSection, setHeroSection] = useState<HeroSectionTypes>();
   useEffect(() => {

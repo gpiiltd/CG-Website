@@ -101,7 +101,7 @@ const Footer = () => {
                   <li>
                     <Link to="/services/1" className="hover:text-white">
                       <Typography size="md" weight="light">
-                        Offshore infrastructure
+                        Deployment, Operation and maintenance of Offshore infrastructure
                       </Typography>
                     </Link>
                   </li>
