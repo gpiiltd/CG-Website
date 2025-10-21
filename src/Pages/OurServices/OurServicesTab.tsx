@@ -1,9 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import ServiceSection from './ServiceSection';
 import OverlaySection from './OverlaySection';
-import { overlayData, serviceSectionsData } from './servicesDatalist';
-// import CarouselSection from './CarouselSection';
 import StatsBar from './StatsBar';
 import OurProjects from '../Home/OurProjects';
 import usePageTitle from '../../Components/PageTitle';
@@ -13,14 +10,30 @@ const OurServicesTab = () => {
   usePageTitle('Century Group | Services');
   const navigate = useNavigate();
   const [currentOverlay, setCurrentOverlay] = useState(0);
-  const [activeServiceIndex, setActiveServiceIndex] = useState<number | null>(null);
-  const [canScroll, setCanScroll] = useState(true);
+  const [services, setServices] = useState<Service[]>([]);
 
+  const [canScroll, setCanScroll] = useState(true);
   // Animation classes for fade-in/out
   const animationClass = 'transition-all duration-500 ease-in-out opacity-100 scale-100';
 
+  useEffect(() => {
+    const fetchServices = async () => {
+      try {
+        const fetchedServices = await client.fetch(queryServices);
+        const sortedServices = fetchedServices.sort(
+          (a: { id: number }, b: { id: number }) => a.id - b.id
+        );
+        setServices(sortedServices);
+      } catch (error) {
+        console.error('Error fetching services:', error);
+      }
+    };
+
+    fetchServices();
+  }, []);
+
   const handleLearnMore = (overlayIndex: number) => {
-    const overlayId = overlayData[overlayIndex].id;
+    const overlayId = services[overlayIndex].id;
     navigate(`/services/${overlayId}`);
   };
 
@@ -46,24 +59,27 @@ const OurServicesTab = () => {
                   stakeholders.
                 </p>
               </div>
-            </div>
 
-            {/* Overlay Section for mobile view */}
-            <div className="md:hidden space-y-38">
-              {overlayData.map((overlay, idx) => (
-                <OverlaySection
-                  key={idx}
-                  title={overlay.title}
-                  description={overlay.description}
-                  image={overlay.image}
-                  contactLink="/contact-us"
-                  onLearnMore={() => handleLearnMore(idx)}
-                  bgColor={overlay.bgColor}
-                />
-              ))}
             </div>
+          </div>
 
-            {/* Animated Overlay Section for Large screen size */}
+          {/* Overlay Section for mobile view */}
+          <div className="md:hidden space-y-38">
+            {services.map((overlay, idx) => (
+              <OverlaySection
+                key={idx}
+                title={overlay.title}
+                description={overlay.description}
+                image={overlay.image}
+                contactLink="/contact-us"
+                onLearnMore={() => handleLearnMore(idx)}
+                bgColor={overlay.bgColor}
+              />
+            ))}
+          </div>
+
+          {/* Animated Overlay Section for Large screen size */}
+          {services.length > 0 && (
             <div
               className="w-full hidden md:flex justify-center cursor-move"
               onWheel={(e) => {
@@ -71,38 +87,29 @@ const OurServicesTab = () => {
                 setCanScroll(false);
 
                 if (e.deltaY > 0) {
-                  setCurrentOverlay((prev) => (prev + 1) % overlayData.length);
+                  setCurrentOverlay((prev) => (prev + 1) % services.length);
                 } else if (e.deltaY < 0) {
-                  setCurrentOverlay((prev) => (prev - 1 + overlayData.length) % overlayData.length);
+                  setCurrentOverlay((prev) => (prev - 1 + services.length) % services.length);
                 }
-                setActiveServiceIndex(null);
 
-                setTimeout(() => setCanScroll(true), 500); // 500ms delay, adjust as needed
+                setTimeout(() => setCanScroll(true), 500);
               }}
               style={{ cursor: 'grabbing' }}
             >
               <div className={animationClass} key={currentOverlay}>
                 <OverlaySection
-                  title={overlayData[currentOverlay].title}
-                  description={overlayData[currentOverlay].description}
-                  image={overlayData[currentOverlay].image}
+                  title={services[currentOverlay]?.title || ''}
+                  description={services[currentOverlay]?.description || ''}
+                  image={services[currentOverlay]?.image || ''}
                   contactLink="/contact-us"
                   onLearnMore={() => handleLearnMore(currentOverlay)}
-                  bgColor={overlayData[currentOverlay].bgColor}
+                  bgColor={services[currentOverlay]?.bgColor || '#FFFFFF'}
                 />
               </div>
             </div>
-          </>
-        ) : (
-          // Only show the matching ServiceSection
-          serviceSectionsData[activeServiceIndex] && (
-            <ServiceSection {...serviceSectionsData[activeServiceIndex]} />
-          )
-        )}
+          )}
+        </>
       </div>
-
-      {/* Carousel Section */}
-      {/* <CarouselSection data={carouselData} /> */}
 
       <OurProjects />
 

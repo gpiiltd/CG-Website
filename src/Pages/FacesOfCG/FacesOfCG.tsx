@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useEffect } from 'react';
 import CardFace from '../../Components/Cards/CardFace';
 import CustomModal from '../../Components/Modal/Modal';
@@ -5,7 +6,7 @@ import AnimatedScreen from '../../Components/Animations';
 import usePageTitle from '../../Components/PageTitle';
 import LazyImage from '../../Components/LazyImage';
 import { client } from '../../sanityClient';
-import { PortableText, type PortableTextBlock } from 'next-sanity';
+import { type PortableTextBlock } from 'next-sanity';
 
 interface TeamMember {
   id: number;
@@ -36,7 +37,6 @@ const queryManagement = `*[_type == "management"]{
 const FacesOfCG: React.FC = () => {
   usePageTitle('Century Group | Our Team');
   const [activeTab, setActiveTab] = useState<string>('directors');
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [selectedDirector, setSelectedDirector] = useState<any>(null);
   const [directors, setDirectors] = useState<TeamMember[]>([]);
   const [management, setManagement] = useState<TeamMember[]>([]);
@@ -199,7 +199,15 @@ const FacesOfCG: React.FC = () => {
                       <span className="text-[#ED6C30] font-semibold mr-1">
                         {selectedDirector.directorName}
                       </span>
-                      <PortableText value={selectedDirector.bio} />
+                      <span className="whitespace-pre-line">
+                        {selectedDirector.bio
+                          .map((block: any) =>
+                            block._type === 'block'
+                              ? block.children?.map((child: any) => child.text).join('')
+                              : ''
+                          )
+                          .join('\n')}{' '}
+                      </span>
                     </div>
                   </div>
                 </div>
