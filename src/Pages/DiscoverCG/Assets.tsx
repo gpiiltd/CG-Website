@@ -14,7 +14,14 @@ const Assets = () => {
   usePageTitle('Century Group | Assets');
   const [selectedAsset, setSelectedAsset] = useState<Asset | null>(null);
   const [modalType, setModalType] = useState<ModalType>(null);
+  const [expandedStates, setExpandedStates] = useState<Record<number, boolean>>({});
 
+  const toggleExpanded = (assetId: number) => {
+    setExpandedStates((prev) => ({
+      ...prev,
+      [assetId]: !prev[assetId],
+    }));
+  };
   const handleViewDetails = (asset: Asset) => {
     setSelectedAsset(asset);
     setModalType('details');
@@ -97,17 +104,53 @@ const Assets = () => {
         </div>
 
         <div className="max-w-7xl mx-auto px-4 py-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-            {assets.map((asset) => (
-              <div key={asset.id} className="relative">
-                <div className="bg-white rounded-lg overflow-hidden ">
-                  <div className="p-6 pb-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {assets.map((asset) => {
+              const isExpanded = expandedStates[asset.id] || false;
+
+              return (
+                <div
+                  key={asset.id}
+                  className="bg-white rounded-lg overflow-hidden flex flex-col h-full relative"
+                >
+                  {/* Text Section */}
+                  <div className="p-1 pb-6 flex-1 relative">
                     <h2 className="text-2xl font-bold text-gray-900 mb-4">{asset.title}</h2>
-                    <p className="text-gray-600 leading-relaxed mb-6">{asset.description}</p>
+
+                    <p
+                      className={`text-gray-600 leading-relaxed mb-2 transition-all duration-300 ${
+                        isExpanded ? 'line-clamp-none' : 'line-clamp-3'
+                      }`}
+                    >
+                      {asset.description}
+                    </p>
+
+                    {asset.description.length > 120 && (
+                      <button
+                        onClick={() => toggleExpanded(asset.id)}
+                        className="cursor-pointer text-sm font-medium text-orange-400 hover:underline focus:outline-none"
+                      >
+                        {isExpanded ? 'Show less' : 'Read more'}
+                      </button>
+                    )}
+
+                    {/* Expanded Overlay - Only covers text section */}
+                    {isExpanded && (
+                      <div className="absolute inset-0 bg-white z-20 p-1 overflow-y-auto">
+                        <h2 className="text-2xl font-bold text-gray-900 mb-4">{asset.title}</h2>
+                        <p className="text-gray-600 leading-relaxed mb-4">{asset.description}</p>
+                        <button
+                          onClick={() => toggleExpanded(asset.id)}
+                          className="cursor-pointer text-sm font-medium text-orange-400 hover:underline focus:outline-none"
+                        >
+                          Show less
+                        </button>
+                      </div>
+                    )}
                   </div>
 
+                  {/* Image Section */}
                   <div className="relative">
-
                     <LazyImage
                       src={asset.image}
                       alt={asset.title}
@@ -117,23 +160,23 @@ const Assets = () => {
                     <div className="absolute bottom-4 left-4 flex gap-3">
                       <button
                         onClick={() => handleViewDetails(asset)}
-                        className="cursor-pointer px-4 py-2 bg-transparent border border-white text-white text-sm rounded-full hover:bg-white hover:text-gray-900 transition-colors hover:duration-600"
+                        className="cursor-pointer px-4 py-2 bg-transparent border border-white text-white text-sm rounded-full hover:bg-white hover:text-gray-900 transition-colors duration-300"
                       >
                         View Asset Details
                       </button>
+
                       <button
                         onClick={() => handleWatchTour(asset)}
-                        className="cursor-pointer px-4 py-2 bg-transparent border border-white text-white text-sm rounded-full hover:bg-white hover:text-gray-900 transition-colors flex items-center gap-2 hover:duration-600"
+                        className="cursor-pointer px-4 py-2 bg-transparent border border-white text-white text-sm rounded-full hover:bg-white hover:text-gray-900 transition-colors duration-300 flex items-center gap-2"
                       >
                         Watch The Tour
                         <IoPlayOutline />
                       </button>
                     </div>
-                    {/* )} */}
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
         <div className="max-w-[85%] mx-auto px-4 relative z-10 mt-12">
