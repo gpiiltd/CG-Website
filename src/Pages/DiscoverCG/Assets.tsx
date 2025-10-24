@@ -7,14 +7,59 @@ import { IoPlayOutline } from 'react-icons/io5';
 import AnimatedScreen from '../../Components/Animations';
 import usePageTitle from '../../Components/PageTitle';
 import LazyImage from '../../Components/LazyImage';
+import Stats from '../Home/Stats';
+// import { client } from '../../sanityClient';
 
 type ModalType = 'details' | 'tour' | null;
+
+// type SanityAsset = {
+//   _id: string;
+//   title: string;
+//   description: string;
+//   image: string;
+//   videoUrl?: string;
+//   factSheet?: { label: string; value: string }[];
+// };
+
 
 const Assets = () => {
   usePageTitle('Century Group | Assets');
   const [selectedAsset, setSelectedAsset] = useState<Asset | null>(null);
   const [modalType, setModalType] = useState<ModalType>(null);
   const [expandedStates, setExpandedStates] = useState<Record<number, boolean>>({});
+
+// useEffect(() => {
+//   client
+//     .fetch(
+//       `*[_type == "assets"]{
+//         _id,
+//         title,
+//         description,
+//         "image": image.asset->url,
+//         "videoUrl": video.asset->url,
+//         factSheet[]{
+//           label,
+//           value
+//         }
+//       }`
+//     )
+//     .then((data: SanityAsset[]) => {
+//       const formatted = data.map((item, index) => ({
+//         id: index + 1,
+//         title: item.title,
+//         description: item.description,
+//         image: item.image,
+//         videoUrl: item.videoUrl || null,
+//         factSheet: Object.fromEntries(
+//           item.factSheet?.map((fs) => [fs.label, fs.value]) || []
+//         ),
+//         buttons: [],
+//       }));
+//       setAssets(formatted);
+//     })
+//     .catch(console.error);
+// }, []);
+
 
   const toggleExpanded = (assetId: number) => {
     setExpandedStates((prev) => ({
@@ -179,41 +224,7 @@ const Assets = () => {
             })}
           </div>
         </div>
-        <div className="max-w-[85%] mx-auto px-4 relative z-10 mt-12">
-          <div className="bg-[#0F082B] rounded-2xl px-4 py-6 md:px-6 md:py-8 lg:px-8 lg:py-12 transform -translate-y-2 md:-translate-y-4 lg:-translate-y-6">
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8 text-white text-center">
-              <div className="lg:border-r lg:border-gray-600 pb-4 lg:pb-0">
-                <div className="text-2xl md:text-3xl lg:text-4xl xl:text-6xl font-bold mb-1 md:mb-2">
-                  3
-                </div>
-                <div className="text-xs md:text-sm lg:text-base opacity-90">FPSO'S</div>
-              </div>
-              <div className="lg:border-r lg:border-gray-600 pb-4 lg:pb-0">
-                <div className="text-2xl md:text-3xl lg:text-4xl xl:text-6xl font-bold mb-1 md:mb-2">
-                  1
-                </div>
-                <div className="text-xs md:text-sm lg:text-base opacity-90">FSO</div>
-              </div>
-              <div className="lg:border-r lg:border-gray-600 pb-4 lg:pb-0">
-                <div className="text-2xl md:text-3xl lg:text-4xl xl:text-6xl font-bold mb-1 md:mb-2">
-                  30%
-                </div>
-                <div className="text-xs md:text-sm lg:text-base opacity-90 px-2">
-                  Average cost savings for clients
-                </div>
-              </div>
-              <div>
-                <div className="text-2xl md:text-3xl lg:text-4xl xl:text-6xl font-bold mb-1 md:mb-2">
-                  25%
-                </div>
-                <div className="text-xs md:text-sm lg:text-base opacity-90">
-                  CAGR Projected growth
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
+        <Stats />
         {/* modal  */}
         <CustomModal isOpen={modalType !== null} onClose={closeModal} width="1022px" height="585px">
           {modalType === 'details' && selectedAsset && renderFactSheet(selectedAsset)}
