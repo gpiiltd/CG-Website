@@ -1,65 +1,65 @@
-import { useState, type JSX } from 'react';
+import { useEffect, useState, type JSX } from 'react';
 import { Typography } from '../../Components/Typography';
 import ship from '../../assets/svgImages/bg_discovery.svg';
-import { assets, type Asset } from './data';
+import { type Asset } from './data';
 import CustomModal from '../../Components/Modal/Modal';
 import { IoPlayOutline } from 'react-icons/io5';
 import AnimatedScreen from '../../Components/Animations';
 import usePageTitle from '../../Components/PageTitle';
 import LazyImage from '../../Components/LazyImage';
 import Stats from '../Home/Stats';
-// import { client } from '../../sanityClient';
+import { client } from '../../sanityClient';
 
 type ModalType = 'details' | 'tour' | null;
 
-// type SanityAsset = {
-//   _id: string;
-//   title: string;
-//   description: string;
-//   image: string;
-//   videoUrl?: string;
-//   factSheet?: { label: string; value: string }[];
-// };
-
+type SanityAsset = {
+  _id: string;
+  title: string;
+  description: string;
+  image: string;
+  videoUrl?: string;
+  factSheet?: { label: string; value: string }[];
+};
 
 const Assets = () => {
   usePageTitle('Century Group | Assets');
   const [selectedAsset, setSelectedAsset] = useState<Asset | null>(null);
   const [modalType, setModalType] = useState<ModalType>(null);
   const [expandedStates, setExpandedStates] = useState<Record<number, boolean>>({});
+  const [allAssets, setAllAssets] = useState<Asset[]>([]);
+  const [loading, setLoading] = useState(true);
 
-// useEffect(() => {
-//   client
-//     .fetch(
-//       `*[_type == "assets"]{
-//         _id,
-//         title,
-//         description,
-//         "image": image.asset->url,
-//         "videoUrl": video.asset->url,
-//         factSheet[]{
-//           label,
-//           value
-//         }
-//       }`
-//     )
-//     .then((data: SanityAsset[]) => {
-//       const formatted = data.map((item, index) => ({
-//         id: index + 1,
-//         title: item.title,
-//         description: item.description,
-//         image: item.image,
-//         videoUrl: item.videoUrl || null,
-//         factSheet: Object.fromEntries(
-//           item.factSheet?.map((fs) => [fs.label, fs.value]) || []
-//         ),
-//         buttons: [],
-//       }));
-//       setAssets(formatted);
-//     })
-//     .catch(console.error);
-// }, []);
 
+  useEffect(() => {
+    client
+      .fetch(
+        `*[_type == "asset"]{
+        _id,
+        title,
+        description,
+        "image": image.asset->url,
+  "videoUrl": videoUrl.asset->url,
+        factSheet[]{
+          label,
+          value
+        }
+      }`
+      )
+      .then((data: SanityAsset[]) => {
+        const formatted = data.map((item, index) => ({
+          id: index + 1,
+          title: item.title,
+          description: item.description,
+          image: item.image,
+          videoUrl: item.videoUrl || null,
+          factSheet: Object.fromEntries(item.factSheet?.map((fs) => [fs.label, fs.value]) || []),
+          buttons: ['View Asset Details', 'Watch The Tour'],
+        }));
+        setAllAssets(formatted);
+      })
+      .catch(console.error)
+      .finally(() => setLoading(false));
+  }, []);
 
   const toggleExpanded = (assetId: number) => {
     setExpandedStates((prev) => ({
@@ -81,6 +81,9 @@ const Assets = () => {
     setSelectedAsset(null);
     setModalType(null);
   };
+
+console.log("Selected asset:", JSON.stringify(selectedAsset,null,2));
+
 
   const renderFactSheet = (asset: Asset): JSX.Element => {
     const { factSheet } = asset;
@@ -147,83 +150,89 @@ const Assets = () => {
             </Typography>
           </div>
         </div>
+        {loading ? (
+          <div className="text-center text-gray-600 py-10">Loading assets...</div>
+        ) : allAssets.length === 0 ? (
+          <div className="text-center text-gray-600 py-10">No assets found.</div>
+        ) : (
+          <div className="max-w-7xl mx-auto px-4 py-16">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {allAssets.map((asset) => {
+                const isExpanded = expandedStates[asset.id] || false;
 
-        <div className="max-w-7xl mx-auto px-4 py-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {assets.map((asset) => {
-              const isExpanded = expandedStates[asset.id] || false;
+                return (
+                  <div
+                    key={asset.id}
+                    className="bg-white rounded-lg overflow-hidden flex flex-col h-full relative"
+                  >
+                    {/* Text Section */}
+                    <div className="p-1 pb-6 flex-1 relative">
+                      <h2 className="text-2xl font-bold text-gray-900 mb-4">{asset.title}</h2>
 
-              return (
-                <div
-                  key={asset.id}
-                  className="bg-white rounded-lg overflow-hidden flex flex-col h-full relative"
-                >
-                  {/* Text Section */}
-                  <div className="p-1 pb-6 flex-1 relative">
-                    <h2 className="text-2xl font-bold text-gray-900 mb-4">{asset.title}</h2>
-
-                    <p
-                      className={`text-gray-600 leading-relaxed mb-2 transition-all duration-300 ${
-                        isExpanded ? 'line-clamp-none' : 'line-clamp-3'
-                      }`}
-                    >
-                      {asset.description}
-                    </p>
-
-                    {asset.description.length > 120 && (
-                      <button
-                        onClick={() => toggleExpanded(asset.id)}
-                        className="cursor-pointer text-sm font-medium text-orange-400 hover:underline focus:outline-none"
+                      <p
+                        className={`text-gray-600 leading-relaxed mb-2 transition-all duration-300 ${
+                          isExpanded ? 'line-clamp-none' : 'line-clamp-3'
+                        }`}
                       >
-                        {isExpanded ? 'Show less' : 'Read more'}
-                      </button>
-                    )}
+                        {asset.description}
+                      </p>
 
-                    {/* Expanded Overlay - Only covers text section */}
-                    {isExpanded && (
-                      <div className="absolute inset-0 bg-white z-20 p-1 overflow-y-auto">
-                        <h2 className="text-2xl font-bold text-gray-900 mb-4">{asset.title}</h2>
-                        <p className="text-gray-600 leading-relaxed mb-4">{asset.description}</p>
+                      {asset.description.length > 120 && (
                         <button
                           onClick={() => toggleExpanded(asset.id)}
                           className="cursor-pointer text-sm font-medium text-orange-400 hover:underline focus:outline-none"
                         >
-                          Show less
+                          {isExpanded ? 'Show less' : 'Read more'}
+                        </button>
+                      )}
+
+                      {/* Expanded Overlay */}
+                      {isExpanded && (
+                        <div className="absolute inset-0 bg-white z-20 p-1 overflow-y-auto">
+                          <h2 className="text-2xl font-bold text-gray-900 mb-4">{asset.title}</h2>
+                          <p className="text-gray-600 leading-relaxed mb-4">{asset.description}</p>
+                          <button
+                            onClick={() => toggleExpanded(asset.id)}
+                            className="cursor-pointer text-sm font-medium text-orange-400 hover:underline focus:outline-none"
+                          >
+                            Show less
+                          </button>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Image Section */}
+                    <div className="relative">
+                      <LazyImage
+                        src={asset.image}
+                        alt={asset.title}
+                        className="w-full h-64 object-cover"
+                      />
+
+                      <div className="absolute bottom-4 left-4 flex gap-3">
+                        <button
+                          onClick={() => handleViewDetails(asset)}
+                          className="cursor-pointer px-4 py-2 bg-transparent border border-white text-white text-sm rounded-full hover:bg-white hover:text-gray-900 transition-colors duration-300"
+                        >
+                          View Asset Details
+                        </button>
+
+                        <button
+                          onClick={() => handleWatchTour(asset)}
+                          className="cursor-pointer px-4 py-2 bg-transparent border border-white text-white text-sm rounded-full hover:bg-white hover:text-gray-900 transition-colors duration-300 flex items-center gap-2"
+                        >
+                          Watch The Tour
+                          <IoPlayOutline />
                         </button>
                       </div>
-                    )}
-                  </div>
-
-                  {/* Image Section */}
-                  <div className="relative">
-                    <LazyImage
-                      src={asset.image}
-                      alt={asset.title}
-                      className="w-full h-64 object-cover"
-                    />
-
-                    <div className="absolute bottom-4 left-4 flex gap-3">
-                      <button
-                        onClick={() => handleViewDetails(asset)}
-                        className="cursor-pointer px-4 py-2 bg-transparent border border-white text-white text-sm rounded-full hover:bg-white hover:text-gray-900 transition-colors duration-300"
-                      >
-                        View Asset Details
-                      </button>
-
-                      <button
-                        onClick={() => handleWatchTour(asset)}
-                        className="cursor-pointer px-4 py-2 bg-transparent border border-white text-white text-sm rounded-full hover:bg-white hover:text-gray-900 transition-colors duration-300 flex items-center gap-2"
-                      >
-                        Watch The Tour
-                        <IoPlayOutline />
-                      </button>
                     </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
-        </div>
+        )}
+
         <Stats />
         {/* modal  */}
         <CustomModal isOpen={modalType !== null} onClose={closeModal} width="1022px" height="585px">
@@ -231,13 +240,11 @@ const Assets = () => {
           {modalType === 'tour' && selectedAsset && (
             <AnimatedScreen>
               <div className="w-full h-full bg-gray-900 flex items-center justify-center">
-                {selectedAsset.videoUrl ? (
-                  <iframe
+                {selectedAsset.videoUrl !== null ? (
+                  <video
                     src={selectedAsset.videoUrl}
-                    title={`${selectedAsset.title} Tour`}
-                    className="w-full h-full object-cover"
-                    frameBorder="0"
-                    allowFullScreen
+                    controls
+                    className="w-full h-full object-cover rounded-lg"
                   />
                 ) : (
                   <p className="text-gray-200 text-lg">
@@ -246,6 +253,7 @@ const Assets = () => {
                     fact sheet and highlights.
                   </p>
                 )}
+
               </div>
             </AnimatedScreen>
           )}
