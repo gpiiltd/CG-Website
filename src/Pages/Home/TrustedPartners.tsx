@@ -2,8 +2,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Typography } from '../../Components/Typography';
 import ImageSlider from '../../Components/Slider';
 import { ButtonComponent } from '../../Components/ButtonComponent';
-import people from '../../assets/svgImages/people.svg';
-import aeclogo from '../../assets/aew.jpeg';
 import LazyImage from '../../Components/LazyImage';
 import AnimatedScreen from '../../Components/Animations';
 import Animate from '../../Components/Animate';
@@ -42,6 +40,9 @@ const TrustedPartners = () => {
   const navigate = useNavigate();
   const [partnersSection, setPartnersSection] = useState<{ src: string; alt?: string }[]>([]);
   const [oEData, setOEData] = useState<OperationExcellenceItem[]>([]);
+  const [events, setEvents] = useState<
+    { logo: string; description: string; bgImage: string; eventLink: string }[]
+  >([]);
 
   useEffect(() => {
     const fetchPartnerSection = async () => {
@@ -70,6 +71,19 @@ const TrustedPartners = () => {
       setOEData(result);
     };
     fetchData();
+  }, []);
+
+  useEffect(() => {
+    const fetchEvents = async () => {
+      const data = await client.fetch(`*[_type == "events"]{
+        "logo": eventLogo.asset->url,
+  "bgImage": bgImage.asset->url,
+        description,
+        eventLink
+      }`);
+      setEvents(data);
+    };
+    fetchEvents();
   }, []);
 
   return (
@@ -125,7 +139,7 @@ const TrustedPartners = () => {
                 <Animate animationType="slideInRight" duration={3000}>
                   <div className="h-full">
                     <p className="text-orange-500 uppercase text-sm font-semibold mb-2 tracking-wide">
-                  Operational Excellence
+                      Operational Excellence
                     </p>
                     <h2 className="text-3xl sm:text-4xl font-bold text-[#11092F] mb-4 leading-snug">
                       {item.title}
@@ -159,46 +173,45 @@ const TrustedPartners = () => {
         </div>
 
         {/* FPSO World Congress Banner */}
-        <div
-          className="bg-cover bg-center text-center flex flex-col justify-center items-center "
-          style={{ backgroundImage: `url(${people})` }}
-        >
-          {/* Content */}
-          <div className="max-w-[95%] mx-auto px-4 sm:px-6 py-12 sm:py-16 grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
-            {/* Left side images */}
-            <div className="bg-white w-full flex justify-center lg:justify-end items-center px-4 sm:px-6 py-4 ">
-              <div className="font-bold flex flex-col items-start">
-                <span className="font-outfit font-extrabold text-lg text-[#161C44] pl-3">
-                  MEET US AT THE
-                </span>
-                <div className="flex items-center gap-2">
-                  <LazyImage
-                    src={aeclogo}
-                    alt="African Energy Week"
-                    className="max-w-full h-auto"
-                  />
+        <div>
+          {events.map((event, index) => (
+            <div
+              key={index}
+              className="bg-cover bg-center text-center flex flex-col justify-center items-center"
+              style={{ backgroundImage: `url(${event.bgImage})` }}
+            >
+              <div className="max-w-[95%] mx-auto px-4 sm:px-6 py-12 sm:py-16 grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
+                {/* Left side images */}
+                <div className="bg-white w-full flex justify-center lg:justify-end items-center px-4 sm:px-6 py-4">
+                  <div className="font-bold flex flex-col items-start">
+                    <span className="font-outfit font-extrabold text-lg text-[#161C44] pl-3">
+                      MEET US AT THE
+                    </span>
+                    <div className="flex items-center gap-2">
+                      <LazyImage src={event.logo} alt="Event Logo" className="max-w-full h-auto" />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Right side text */}
+                <div className="space-y-4">
+                  <Typography size="2xl" weight="bold" className="text-start text-white">
+                    {event.description}
+                  </Typography>
+
+                  <div className="flex gap-4">
+                    <Link
+                      to={event.eventLink}
+                      target="_blank"
+                      className="border-2 border-[#FDF0EA] rounded-full px-6 py-2 hover:scale-105 transition-all duration-300 ease-in-out"
+                    >
+                      <span className="text-[#FDF0EA] font-semibold">Learn More</span>
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
-
-            {/* Right side text */}
-            <div className="space-y-4">
-              <Typography size="2xl" weight="bold" className="text-start text-white">
-                Africa’s premier energy event, uniting governments, investors, and industry leaders
-                across the oil, gas, and renewable value chain.
-              </Typography>
-
-              <div className="flex gap-4">
-                <Link
-                  to="https://aecweek.com/"
-                  target="_blank"
-                  className="border-2 border-[#FDF0EA] rounded-full px-6 py-2 hover:scale-105 transition-all duration-300 ease-in-out"
-                >
-                  <span className="text-[#FDF0EA] font-semibold">Learn More</span>
-                </Link>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </section>
     </AnimatedScreen>

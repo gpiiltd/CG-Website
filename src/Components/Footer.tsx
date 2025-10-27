@@ -2,11 +2,25 @@ import { Link } from 'react-router-dom';
 import { FaLinkedinIn, FaFacebookF, FaInstagram, FaYoutube } from 'react-icons/fa';
 import { Typography } from './Typography';
 import { ButtonComponent } from './ButtonComponent';
-import footerImage from '../assets/footer_image.jpg';
 import { FaXTwitter } from 'react-icons/fa6';
 import routeNames from './Navigation/RouteNames';
+import { useEffect, useState } from 'react';
+import { client } from '../sanityClient';
 
 const Footer = () => {
+const [footerImage, setFooterImage] = useState<string>("");
+
+useEffect(() => {
+  client
+    .fetch(
+      `*[_type == "footerCTA"][0]{
+        "image": image.asset->url
+      }`
+    )
+    .then((data) => setFooterImage(data?.image))
+    .catch(console.error);
+}, []);
+
   return (
     <>
       <div
@@ -175,20 +189,6 @@ const Footer = () => {
                       </Typography>
                     </Link>
                   </li>
-                  {/* <li>
-                    <Link to="" className="hover:text-white">
-                      <Typography size="md" weight="light">
-                        Terms & Conditions
-                      </Typography>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="" className="hover:text-white">
-                      <Typography size="md" weight="light">
-                        Privacy Policy
-                      </Typography>
-                    </Link>
-                  </li> */}
                 </ul>
               </div>
               {/* Social Icons */}
