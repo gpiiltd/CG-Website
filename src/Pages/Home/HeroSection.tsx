@@ -16,7 +16,7 @@ export interface HeroSectionTypes {
 }
 const query = `*[_type == "heroSection"][0]{
   title,
-  description,
+  heroText,
   "videoUrl": videoUrl.asset->url
 }`;
 
@@ -78,4 +78,3 @@ const HeroSection = () => {
 };
 
 export default HeroSection;
-

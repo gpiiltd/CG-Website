@@ -2,7 +2,6 @@ import { ButtonComponent } from '../../Components/ButtonComponent';
 import { Typography } from '../../Components/Typography';
 import CardGrid from '../../Components/discovery/discoveryCard';
 import Icon from '../../assets/SvgImagesAndIcons';
-import discoverBg from '../../assets/discover_bg.png';
 import disMen from '../../assets/svgImages/cesl_workers.jpg';
 import disGirlBook from '../../assets/LIBRARY PICTURE DONATED.jpg';
 import rope from '../../assets/rope.jpeg';
@@ -10,19 +9,49 @@ import transform from '../../assets/transform.jpeg';
 import leverage from '../../assets/leverage.jpeg';
 import Timeline from '../../Components/discovery/DiscoveryTimeline';
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import LazyImage from '../../Components/LazyImage';
 import usePageTitle from '../../Components/PageTitle';
 import AnimatedScreen from '../../Components/Animations';
 import Animate from '../../Components/Animate';
+import { client } from '../../sanityClient';
+import type { TypedObject } from '@portabletext/types';
+
+export interface DiscoveryViewTypes {
+  titleOne: TypedObject[];
+  titleTwo: TypedObject[];
+  titleDescription: string;
+  heroTitle: string;
+  heroText: string;
+  imageName: string;
+}
+const query = `*[_type == "discoveryView"][0]{
+  titleOne,
+  titleTwo,
+  titleDescription,
+  heroTitle,
+  heroText,
+  "imageName": imageName.asset->url
+}`;
 
 const DiscoveryView = () => {
   usePageTitle('Century Group | Discovery');
+  const [discoveryView, setDiscoveryView] = useState<DiscoveryViewTypes>();
   const navigate = useNavigate();
 
   useEffect(() => {
+    const fetchHeroSection = async () => {
+      try {
+        const discoveryView = await client.fetch(query);
+        setDiscoveryView(discoveryView);
+      } catch (error) {
+        console.error('Error fetching discoveryView:', error);
+      }
+    };
+    fetchHeroSection();
     window.scrollTo(0, 0);
   }, []);
+  console.log('DV', discoveryView);
 
   return (
     <>
@@ -40,44 +69,49 @@ const DiscoveryView = () => {
                 weight="bold"
                 className="text-[#11092F] text-3xl md:text-4xl md:w-1/2"
               >
-                Where offshore ambition
+                {discoveryView?.titleOne && discoveryView.titleOne}
                 <br />
-                meets African resolve
+                {discoveryView?.titleTwo && discoveryView.titleTwo}
               </Typography>
 
-              <Typography weight="normal" className="mt-4 md:mt-0 md:w-1/2 text-[#333]">
-                In 2002, as Nigeria’s oilfield hummed with untapped potential, a passionate team of
-                professionals met, sketching designs that spoke to the challenge and
-                conceptualize real solutions on weathered notepads. To build an African energy
-                champion — one that fused global standards and precision with local wisdom. That
-                spark ignited Century Group.
-              </Typography>
+              {discoveryView?.titleDescription && (
+                <Typography weight="normal" className="mt-4 md:mt-0 md:w-1/2 text-[#333]">
+                  discoveryView?.titleDescription
+                </Typography>
+              )}
             </div>
 
             {/* image below */}
             <div className="relative w-full mt-8 rounded-2xl">
               {/* Image */}
 
-              <LazyImage
-                src={discoverBg}
-                alt="Century Group"
-                className="w-full h-[300px] md:h-[450px] object-cover mb-3 rounded-2xl"
-              />
+              {discoveryView?.imageName && (
+                <LazyImage
+                  src={discoveryView?.imageName}
+                  alt="Century Group"
+                  className="w-full h-[300px] md:h-[450px] object-cover mb-3 rounded-2xl"
+                />
+              )}
 
               {/* Overlay content - moved to bottom-left */}
               <div className="absolute bottom-2 w-full p-4 flex justify-center md:justify-start md:left-2 md:w-auto">
                 <div className="bg-[#170C3D] p-4 md:p-6 rounded-xl shadow-lg max-w-md">
-                  <Typography
-                    weight="semibold"
-                    className="text-left md:text-left text-2xl text-white mb-2"
-                  >
-                    The vision
-                  </Typography>
-                  <Typography weight="light" className="text-md text-left md:text-left text-white">
-                    To be the largest integrated energy infrastructure supply and management company
-                    in Africa, a globally recognized entity to solve problems, enable people, and
-                    create value.
-                  </Typography>
+                  {discoveryView?.heroTitle && (
+                    <Typography
+                      weight="semibold"
+                      className="text-left md:text-left text-2xl text-white mb-2"
+                    >
+                      discoveryView?.heroTitle
+                    </Typography>
+                  )}
+                  {discoveryView?.heroText && (
+                    <Typography
+                      weight="light"
+                      className="text-md text-left md:text-left text-white"
+                    >
+                      discoveryView?.heroText
+                    </Typography>
+                  )}
                 </div>
               </div>
             </div>
