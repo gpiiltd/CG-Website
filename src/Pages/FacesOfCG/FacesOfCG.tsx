@@ -169,9 +169,9 @@ const FacesOfCG: React.FC = () => {
             isOpen={!!selectedDirector}
             onClose={() => setSelectedDirector(null)}
             width="1022px"
-            height="585px"
+            height="fit"
           >
-            <AnimatedScreen>
+            {/* <AnimatedScreen>
               {selectedDirector && (
                 <div className="flex flex-col md:flex-row gap-8 px-10 py-2 mb-8">
                   <div className="relative flex flex-col items-center md:w-[295px] md:h-[295px]">
@@ -180,7 +180,7 @@ const FacesOfCG: React.FC = () => {
                         <LazyImage
                           src={selectedDirector.imageName}
                           alt="Director 1"
-                          className="w-full md:h-[460px] object-cover rounded-xl"
+                          className="w-full md:h-auto object-cover rounded-xl"
                         />
                         <div className="absolute left-0 bottom-[-340px] md:bottom-[-200px] w-[90%] bg-[#FCEEEA] rounded-tr-[24px] shadow-md py-4 px-4 flex flex-col items-center">
                           <span className="text-[#ED6C30] font-semibold text-xl">
@@ -212,7 +212,53 @@ const FacesOfCG: React.FC = () => {
                   </div>
                 </div>
               )}
-            </AnimatedScreen>
+            </AnimatedScreen> */}
+<AnimatedScreen>
+  {selectedDirector && (
+    <div className="flex flex-col md:flex-row gap-8 px-6 sm:px-10 py-6 mb-8">
+      {/* Image Section */}
+      <div className="flex flex-col items-center md:w-[320px]">
+        <div className="relative w-full">
+          <LazyImage
+            src={selectedDirector.imageName}
+            alt={selectedDirector.directorName}
+            className="w-full h-auto max-h-[380px] object-cover rounded-2xl"
+          />
+
+          {/* Overlay Info Box */}
+<div className="absolute bottom-0 left-1/2 -translate-x-1/2 -ml-4 translate-y-1/2 w-[90%] bg-[#FCEEEA] rounded-tr-[24px] shadow-md py-3 px-4 flex flex-col items-center">
+            <span className="text-[#ED6C30] font-semibold text-lg sm:text-xl text-center">
+              {selectedDirector.directorName}
+            </span>
+            <span className="text-[#3E3E41] text-base mt-1 text-center">
+              {selectedDirector.role}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      {/* Bio Section */}
+      <div className="flex-1 flex flex-col justify-center mt-12 md:mt-0">
+        <div className="text-[#18193F] text-sm leading-relaxed">
+          <span className="text-[#ED6C30] font-semibold mr-1">
+            {selectedDirector.directorName}
+          </span>
+          <span className="whitespace-pre-line">
+            {selectedDirector.bio
+              .map((block: any) =>
+                block._type === "block"
+                  ? block.children?.map((child: any) => child.text).join("")
+                  : ""
+              )
+              .join("\n")}
+          </span>
+        </div>
+      </div>
+    </div>
+  )}
+</AnimatedScreen>
+
+
           </CustomModal>
         </div>
       </AnimatedScreen>
