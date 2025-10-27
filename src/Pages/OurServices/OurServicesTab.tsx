@@ -4,7 +4,6 @@ import OverlaySection from './OverlaySection';
 import StatsBar from './StatsBar';
 import OurProjects from '../Home/OurProjects';
 import usePageTitle from '../../Components/PageTitle';
-import dsc00741 from '../../assets/000A0706.jpg';
 import { client } from '../../sanityClient';
 
 interface Service {
@@ -27,10 +26,23 @@ const OurServicesTab = () => {
   const navigate = useNavigate();
   const [currentOverlay, setCurrentOverlay] = useState(0);
   const [services, setServices] = useState<Service[]>([]);
-
   const [canScroll, setCanScroll] = useState(true);
+const [sericesBgImage, setSericesBgImage] = useState<string>('');
+
   // Animation classes for fade-in/out
   const animationClass = 'transition-all duration-500 ease-in-out opacity-100 scale-100';
+
+
+  useEffect(() => {
+    client
+      .fetch(
+        `*[_type == "serviceHero"][0]{
+        "image": image.asset->url
+      }`
+      )
+      .then((data) => setSericesBgImage(data?.image))
+      .catch(console.error);
+  }, []);
 
   useEffect(() => {
     const fetchServices = async () => {
@@ -60,7 +72,7 @@ const OurServicesTab = () => {
           {/* Hero Section */}
           <div
             className="relative bg-cover bg-center py-20 px-6 text-center flex flex-col justify-center items-center min-h-[600px] "
-            style={{ backgroundImage: `url(${dsc00741})` }}
+            style={{ backgroundImage: `url(${sericesBgImage})` }}
           >
             <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/80 to-black"></div>
             <div className="relative z-10 max-w-4xl mx-auto">

@@ -1,12 +1,8 @@
 import React from 'react';
 import type { Svgprops } from '../Components/Interfaces';
 import cgLogo from './svgImages/cgLogo.svg';
-import menPipe from './svgImages/menPipe.svg';
 import lightBulb from './svgImages/lightBulb.svg';
 import twitterIcon from './svgImages/twitterIcon.svg';
-import linkedinIcon from './svgImages/linkedinIcon.svg';
-import instagramIcon from './svgImages/instagramIcon.svg';
-import facebookIcon from './svgImages/facebookIcon.svg';
 import shield from './svgImages/shieldCard.svg';
 import light from './svgImages/light.svg';
 import teamwork from './svgImages/teamwork.svg';
@@ -21,15 +17,13 @@ import manshore from './svgImages/manshore.svg';
 import shore from './svgImages/shore.svg';
 import manworker from './svgImages/manworker.svg';
 import womanworker from './svgImages/womanworker.svg';
-import gasplant from './svgImages/gasplant.svg';
 
 const Icon: React.FC<Svgprops> = ({ type, className, click }) => {
   const renderIcon = () => {
     switch (type) {
       case 'cgLogo':
         return <img src={cgLogo} alt="export" className={className} />;
-      case 'menPipe':
-        return <img src={menPipe} alt="menPipe" className={className} />;
+
       case 'lightBulb':
         return <img src={lightBulb} alt="lightBulb" className={className} />;
       case 'shield':
@@ -54,12 +48,6 @@ const Icon: React.FC<Svgprops> = ({ type, className, click }) => {
         return <img src={checks} alt="checks" className={className} />;
       case 'twitterIcon':
         return <img src={twitterIcon} alt="twitterIcon" className={className} />;
-      case 'linkedinIcon':
-        return <img src={linkedinIcon} alt="linkedinIcon" className={className} />;
-      case 'instagramIcon':
-        return <img src={instagramIcon} alt="instagramIcon" className={className} />;
-      case 'facebookIcon':
-        return <img src={facebookIcon} alt="facebookIcon" className={className} />;
       case 'manshore':
         return <img src={manshore} alt="manshore" className={className} />;
       case 'shore':
@@ -68,8 +56,7 @@ const Icon: React.FC<Svgprops> = ({ type, className, click }) => {
         return <img src={manworker} alt="manworker" className={className} />;
       case 'womanworker':
         return <img src={womanworker} alt="womanworker" className={className} />;
-      case 'gasplant':
-        return <img src={gasplant} alt="gasplant" className={className} />;
+
 
       default:
         return null;
