@@ -1,6 +1,5 @@
 import { useEffect, useState, type JSX } from 'react';
 import { Typography } from '../../Components/Typography';
-import ship from '../../assets/svgImages/bg_discovery.svg';
 import { type Asset } from './data';
 import CustomModal from '../../Components/Modal/Modal';
 import { IoPlayOutline } from 'react-icons/io5';
@@ -28,7 +27,18 @@ const Assets = () => {
   const [expandedStates, setExpandedStates] = useState<Record<number, boolean>>({});
   const [allAssets, setAllAssets] = useState<Asset[]>([]);
   const [loading, setLoading] = useState(true);
+  const [assetBgImage, setAssetBgImage] = useState<string>('');
 
+  useEffect(() => {
+    client
+      .fetch(
+        `*[_type == "assetHeroSection"][0]{
+        "image": image.asset->url
+      }`
+      )
+      .then((data) => setAssetBgImage(data?.image))
+      .catch(console.error);
+  }, []);
 
   useEffect(() => {
     client
@@ -38,8 +48,10 @@ const Assets = () => {
         title,
         description,
         "image": image.asset->url,
-  "videoUrl": videoUrl.asset->url,
-        factSheet[]{
+ "videoUrl": select(
+    defined(videoUrl.asset->url) => videoUrl.asset->url,
+    null
+  ),        factSheet[]{
           label,
           value
         }
@@ -82,8 +94,7 @@ const Assets = () => {
     setModalType(null);
   };
 
-console.log("Selected asset:", JSON.stringify(selectedAsset,null,2));
-
+  console.log('Selected asset:', JSON.stringify(selectedAsset, null, 2));
 
   const renderFactSheet = (asset: Asset): JSX.Element => {
     const { factSheet } = asset;
@@ -133,7 +144,7 @@ console.log("Selected asset:", JSON.stringify(selectedAsset,null,2));
         {/* Hero Section */}
         <div
           className="relative bg-cover bg-center py-20 px-6 text-center flex flex-col justify-center items-center min-h-[400px]"
-          style={{ backgroundImage: `url(${ship})` }}
+          style={{ backgroundImage: `url(${assetBgImage})` }}
         >
           {/* Overlay */}
           <div className="absolute inset-0 bg-black/70"></div>
@@ -244,6 +255,7 @@ console.log("Selected asset:", JSON.stringify(selectedAsset,null,2));
                   <video
                     src={selectedAsset.videoUrl}
                     controls
+                    autoPlay
                     className="w-full h-full object-cover rounded-lg"
                   />
                 ) : (
@@ -253,7 +265,6 @@ console.log("Selected asset:", JSON.stringify(selectedAsset,null,2));
                     fact sheet and highlights.
                   </p>
                 )}
-
               </div>
             </AnimatedScreen>
           )}
