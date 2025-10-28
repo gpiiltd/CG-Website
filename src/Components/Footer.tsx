@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaLinkedinIn, FaFacebookF, FaInstagram, FaYoutube } from 'react-icons/fa';
 import { Typography } from './Typography';
 import { ButtonComponent } from './ButtonComponent';
@@ -8,18 +8,19 @@ import { useEffect, useState } from 'react';
 import { client } from '../sanityClient';
 
 const Footer = () => {
-const [footerImage, setFooterImage] = useState<string>("");
+  const [footerImage, setFooterImage] = useState<string>('');
+  const navigate = useNavigate();
 
-useEffect(() => {
-  client
-    .fetch(
-      `*[_type == "footerCTA"][0]{
+  useEffect(() => {
+    client
+      .fetch(
+        `*[_type == "footerCTA"][0]{
         "image": image.asset->url
       }`
-    )
-    .then((data) => setFooterImage(data?.image))
-    .catch(console.error);
-}, []);
+      )
+      .then((data) => setFooterImage(data?.image))
+      .catch(console.error);
+  }, []);
 
   return (
     <>
@@ -150,34 +151,40 @@ useEffect(() => {
                 </Typography>
                 <ul className="space-y-3">
                   <li>
-                    <Link
-                      to={routeNames.governanceLicencesAndCertifications}
-                      className="hover:text-white"
+                    <div
+                      onClick={() =>
+                        navigate(routeNames.governanceLicencesAndCertifications, { state: { activeTab: 'policy' } })
+                      }
+                      className="hover:text-white cursor-pointer"
                     >
                       <Typography size="md" weight="light">
                         Corporate Governance
                       </Typography>
-                    </Link>
+                    </div>
                   </li>
                   <li>
-                    <Link
-                      to={routeNames.governanceLicencesAndCertifications}
-                      className="hover:text-white"
+                     <div
+                      onClick={() =>
+                        navigate(routeNames.governanceLicencesAndCertifications, { state: { activeTab: 'certificate' } })
+                      }
+                      className="hover:text-white cursor-pointer"
                     >
                       <Typography size="md" weight="light">
                         Health & Safety
                       </Typography>
-                    </Link>
+                    </div>
                   </li>
                   <li>
-                    <Link
-                      to={routeNames.governanceLicencesAndCertifications}
-                      className="hover:text-white"
+                     <div
+                      onClick={() =>
+                        navigate(routeNames.governanceLicencesAndCertifications, { state: { activeTab: 'policy' } })
+                      }
+                      className="hover:text-white cursor-pointer"
                     >
                       <Typography size="md" weight="light">
                         Whistle Blowing
                       </Typography>
-                    </Link>
+                    </div>
                   </li>
                   <li>
                     <Link
