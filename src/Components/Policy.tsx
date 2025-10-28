@@ -1,4 +1,4 @@
-import qualityCert from '../assets/svgImages/cert1.svg';
+import qualityCert from '../assets/cert.png';
 import PolicyCard from './PolicyCard';
 
 const policies = [

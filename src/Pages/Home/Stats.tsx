@@ -8,7 +8,7 @@ const Stats = () => {
                   <div className="text-2xl md:text-3xl lg:text-4xl xl:text-6xl font-bold mb-1 md:mb-2">
                     3
                   </div>
-                  <div className="text-xs md:text-sm lg:text-base opacity-90">FPSO'S</div>
+                  <div className="text-xs md:text-sm lg:text-base opacity-90">FPSOS</div>
                 </div>
                 <div className="lg:border-r lg:border-gray-600 pb-4 lg:pb-0">
                   <div className="text-2xl md:text-3xl lg:text-4xl xl:text-6xl font-bold mb-1 md:mb-2">

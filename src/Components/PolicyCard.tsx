@@ -1,5 +1,5 @@
-import { ButtonComponent } from "./ButtonComponent";
-import { Typography } from "./Typography";
+import { ButtonComponent } from './ButtonComponent';
+import { Typography } from './Typography';
 
 interface PolicyCardProps {
   title: string;
@@ -49,17 +49,23 @@ const PolicyCard: React.FC<PolicyCardProps> = ({
                 <ButtonComponent
                   text="View document"
                   bg_color="#ED6C30"
-                  onClick={() => window.open(viewLink, "_blank")}
+                  onClick={() => window.open(image, '_blank')}
                 />
               </div>
             )}
+
             {downloadLink && (
               <div className="w-full xs:w-auto sm:w-auto">
                 <ButtonComponent
                   text="Download"
                   bg_color="#642D14"
                   variant="outline"
-                  onClick={() => window.open(downloadLink, "_blank")}
+                  onClick={() => {
+                    const link = document.createElement('a');
+                    link.href = image;
+                    link.download = `${title.replace(/\s+/g, '_')}.png`;
+                    link.click();
+                  }}
                 />
               </div>
             )}
@@ -80,4 +86,5 @@ const PolicyCard: React.FC<PolicyCardProps> = ({
     </div>
   );
 };
+
 export default PolicyCard;
