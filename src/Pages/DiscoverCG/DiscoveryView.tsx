@@ -1,28 +1,86 @@
 import { ButtonComponent } from '../../Components/ButtonComponent';
 import { Typography } from '../../Components/Typography';
 import CardGrid from '../../Components/discovery/discoveryCard';
-import Icon from '../../assets/SvgImagesAndIcons';
-import discoverBg from '../../assets/discover_bg.png';
-import disMen from '../../assets/svgImages/cesl_workers.jpg';
-import disGirlBook from '../../assets/LIBRARY PICTURE DONATED.jpg';
-import rope from '../../assets/rope.jpeg';
-import transform from '../../assets/transform.jpeg';
-import leverage from '../../assets/leverage.jpeg';
 import Timeline from '../../Components/discovery/DiscoveryTimeline';
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import LazyImage from '../../Components/LazyImage';
 import usePageTitle from '../../Components/PageTitle';
 import AnimatedScreen from '../../Components/Animations';
 import Animate from '../../Components/Animate';
+import { client } from '../../sanityClient';
+import type { TypedObject } from '@portabletext/types';
+import { PortableText } from 'next-sanity';
+
+export interface DiscoveryViewTypes {
+  titleOne: TypedObject[];
+  titleTwo: TypedObject[];
+  titleDescription: string;
+  heroTitle: string;
+  heroText: string;
+  imageName: string;
+  missionImageBG: string;
+  timelineImage: string;
+  years: {
+    year: number;
+    milestones: string[];
+  }[];
+  inspirationTeammatesImage: string;
+  inspirationDonationImage: string;
+  serviceTitleText: string;
+  serviceSubTitleText: string;
+  serviceMainDescriptionText: string;
+  serviceImageOne: string;
+  serviceImageOneText: string;
+  serviceImageTwo: string;
+  serviceImageTwoText: string;
+  serviceImageThree: string;
+  serviceImageThreeText: string;
+}
+const query = `*[_type == "discoveryView"][0]{
+  titleOne,
+  titleTwo,
+  titleDescription,
+  heroTitle,
+  heroText,
+  "imageName": imageName.asset->url,
+  "missionImageBG": missionImageBG.asset->url,
+  "timelineImage": timelineImage.asset->url,
+  years[]{
+    year,
+    milestones
+  },
+  "inspirationTeammatesImage": inspirationTeammatesImage.asset->url,
+  "inspirationDonationImage": inspirationDonationImage.asset->url,
+  serviceTitleText,
+  serviceSubTitleText,
+  serviceMainDescriptionText,
+  "serviceImageOne": serviceImageOne.asset->url,
+  serviceImageOneText,
+  "serviceImageTwo": serviceImageTwo.asset->url,
+  serviceImageTwoText,
+  "serviceImageThree": serviceImageThree.asset->url,
+  serviceImageThreeText,
+}`;
 
 const DiscoveryView = () => {
   usePageTitle('Century Group | Discovery');
+  const [discoveryView, setDiscoveryView] = useState<DiscoveryViewTypes>();
   const navigate = useNavigate();
 
   useEffect(() => {
+    const fetchHeroSection = async () => {
+      try {
+        const discoveryView = await client.fetch(query);
+        setDiscoveryView(discoveryView);
+      } catch (error) {
+        console.error('Error fetching discoveryView:', error);
+      }
+    };
+    fetchHeroSection();
     window.scrollTo(0, 0);
   }, []);
+  console.log('DV', discoveryView);
 
   return (
     <>
@@ -40,26 +98,19 @@ const DiscoveryView = () => {
                 weight="bold"
                 className="text-[#11092F] text-3xl md:text-4xl md:w-1/2"
               >
-                Where offshore ambition
-                <br />
-                meets African resolve
+                {discoveryView?.titleOne && <PortableText value={discoveryView.titleOne} />}
+                {discoveryView?.titleTwo && <PortableText value={discoveryView.titleTwo} />}
               </Typography>
 
               <Typography weight="normal" className="mt-4 md:mt-0 md:w-1/2 text-[#333]">
-                In 2002, as Nigeria’s oilfield hummed with untapped potential, a passionate team of
-                professionals met, sketching designs that spoke to the challenge and
-                conceptualize real solutions on weathered notepads. To build an African energy
-                champion — one that fused global standards and precision with local wisdom. That
-                spark ignited Century Group.
+                {discoveryView?.titleDescription}
               </Typography>
             </div>
 
-            {/* image below */}
             <div className="relative w-full mt-8 rounded-2xl">
               {/* Image */}
-
               <LazyImage
-                src={discoverBg}
+                src={discoveryView?.imageName || '/default-image.jpg'}
                 alt="Century Group"
                 className="w-full h-[300px] md:h-[450px] object-cover mb-3 rounded-2xl"
               />
@@ -71,12 +122,11 @@ const DiscoveryView = () => {
                     weight="semibold"
                     className="text-left md:text-left text-2xl text-white mb-2"
                   >
-                    The vision
+                    {discoveryView?.heroTitle}
                   </Typography>
+
                   <Typography weight="light" className="text-md text-left md:text-left text-white">
-                    To be the largest integrated energy infrastructure supply and management company
-                    in Africa, a globally recognized entity to solve problems, enable people, and
-                    create value.
+                    {discoveryView?.heroText}
                   </Typography>
                 </div>
               </div>
@@ -86,7 +136,7 @@ const DiscoveryView = () => {
           {/* Mission section ----------------------------------------------->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */}
           <div className="relative w-full mt-8">
             <LazyImage
-              src={disMen}
+              src={discoveryView?.missionImageBG || '/default-image.jpg'}
               alt="Century Group"
               className="w-full h-[300px] md:h-[450px] object-cover"
             />
@@ -140,7 +190,10 @@ const DiscoveryView = () => {
               our resilience. When the global market retreated during the 2008 downturn, we doubled
               up on ingenuity
             </Typography>
-            <Timeline />
+            <Timeline
+              years={discoveryView?.years ?? []}
+              image={discoveryView?.timelineImage ?? ''}
+            />
           </div>
 
           {/* who we are ----------------------------------------------->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */}
@@ -159,8 +212,12 @@ const DiscoveryView = () => {
                   We’re engineers who dream in coastlines and barrels.
                 </Typography>
 
-                <div className="flex justify-center md:justify-start">
-                  <Icon type="disImageTag" className="h-[5rem] md:h-[7rem] mt-4 mb-6" />
+                <div className="flex justify-center md:justify-start mb-3">
+                  <LazyImage
+                    src={discoveryView?.inspirationTeammatesImage || '/default-image.jpg'}
+                    alt="Century Group"
+                    className="w-sm h-[150px] md:h-[120px] object-contain rounded-2xl"
+                  />
                 </div>
 
                 {/* Button aligned left */}
@@ -194,7 +251,7 @@ const DiscoveryView = () => {
               {/* Image first on mobile, second on desktop */}
               <div className="flex-1 mt-0 md:mt-0 mb-8 md:pr-14">
                 <LazyImage
-                  src={disGirlBook}
+                  src={discoveryView?.inspirationDonationImage || '/default-image.jpg'}
                   alt="Century Group"
                   className="w-full h-[250px] md:h-[320px] object-cover rounded-2xl"
                 />
@@ -232,22 +289,18 @@ const DiscoveryView = () => {
                   weight="bold"
                   className="text-3xl  md:text-5xl font-bold md:mb-8 mb-4 text-[#11092F]"
                 >
-                  Leading Africa’s <br className="hidden md:block" /> Offshore Transformation
+                  {discoveryView?.serviceTitleText}
                 </Typography>
 
-                <Typography className="text-[#3E3E41] text-center md:text-left mb-5">
-                  Partner with Us to advance Africa’s energy landscape
-                  <br className="hidden md:block" /> responsibly for organic value.
+                <Typography className="text-[#3E3E41] text-center md:text-left mb-5 w-[23rem]">
+                  {discoveryView?.serviceSubTitleText}
                 </Typography>
               </div>
 
               {/* Second text div */}
               <div className="flex-1 text-center md:text-left mt-0 md:mt-0 md:pr-14">
                 <Typography weight="normal" className="font-bold mb-8 text-[#3E3E41]">
-                  Today, as Africa’s Infrastructure (FPSOs, FSOs, MOPUs and export terminals) fuel
-                  growth and global economies, Century Group stands at the nexus of proven expertise
-                  and purposeful progress, leveraging African talent to redistribute opportunity and
-                  ignite critical innovation.
+                  {discoveryView?.serviceMainDescriptionText}
                 </Typography>
                 <ButtonComponent
                   text="View Our Services"
@@ -262,36 +315,34 @@ const DiscoveryView = () => {
             <div className="flex flex-col md:flex-row md:items-center gap-10 md:justify-between mt-8">
               <span className="block w-full">
                 <LazyImage
-                  src={rope}
+                  src={discoveryView?.serviceImageOne ?? ''}
                   alt="Century Group"
                   className="w-full h-[250px] md:h-[320px] object-cover rounded-2xl"
                 />
-                <Typography weight={'semibold'} className="text-[#11092F] mt-2.5">
-                  Deploying FPSOs with 30% faster
-                  <br />
-                  commissioning
+                <Typography weight={'semibold'} className="text-[#11092F] mt-2.5 w-[20rem]">
+                  {discoveryView?.serviceImageOneText}
                 </Typography>
               </span>
 
               <span className="block w-full">
                 <LazyImage
-                  src={transform}
+                  src={discoveryView?.serviceImageTwo ?? ''}
                   alt="Century Group"
                   className="w-full h-[250px] md:h-[320px] object-cover rounded-2xl"
                 />
                 <Typography weight={'semibold'} className="text-[#11092F] mt-2.5">
-                  Transforming moribund assets into profitable cash flow
+                  {discoveryView?.serviceImageTwoText}
                 </Typography>
               </span>
 
               <span className="block w-full">
                 <LazyImage
-                  src={leverage}
+                  src={discoveryView?.serviceImageThree ?? ''}
                   alt="Century Group"
                   className="w-full h-[250px] md:h-[320px] object-cover rounded-2xl"
                 />
                 <Typography weight={'semibold'} className="text-[#11092F] mt-2.5">
-                  Leveraging our compliance framework for seamless operations
+                  {discoveryView?.serviceImageThreeText}
                 </Typography>
               </span>
             </div>
