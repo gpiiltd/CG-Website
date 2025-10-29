@@ -1,9 +1,9 @@
 import { useState, useRef, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import disShipBig from '../../assets/3a682e2677b9a88d430bfc7979d16fa2b62e4748.jpg';
-import Icon from '../../assets/SvgImagesAndIcons';
 import { Typography } from '../Typography';
 import LazyImage from '../LazyImage';
+import { FaRegCircleDot } from 'react-icons/fa6';
+import { FaRegCheckCircle } from 'react-icons/fa';
 
 interface TimelineYear {
   year: number;
@@ -12,9 +12,10 @@ interface TimelineYear {
 
 interface TimelineProps {
   years: TimelineYear[];
+  image: string;
 }
 
-export default function Timeline({ years }: TimelineProps) {
+export default function Timeline({ years, image }: TimelineProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const activeYear = years[activeIndex];
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -48,7 +49,7 @@ export default function Timeline({ years }: TimelineProps) {
             {years.map((item, i) => (
               <div key={item.year} className="flex items-center">
                 {/* Year Button */}
-                <button
+                {/* <button
                   id={`year-${i}`}
                   onClick={() => setActiveIndex(i)}
                   className={`relative flex flex-col items-center text-md ${
@@ -57,9 +58,24 @@ export default function Timeline({ years }: TimelineProps) {
                 >
                   <span>{item.year}</span>
                   {i === activeIndex ? (
-                    <Icon type="dotted" className="text-orange-500 mt-1 " />
+                    <FaRegCircleDot className="text-orange-500 mt-1 h-6 w-6" />
                   ) : (
-                    <Icon type="dull" className="text-gray-400 mt-1 " />
+                    <FaRegCircleDot className="text-gray-400 mt-1 h-6 w-6" />
+                  )}
+                </button> */}
+
+                <button
+                  id={`year-${i}`}
+                  onClick={() => setActiveIndex(i)}
+                  className={`relative flex flex-col items-center text-md ${
+                    i <= activeIndex ? 'font-bold text-orange-500' : 'font- text-gray-400'
+                  }`}
+                >
+                  <span>{item.year}</span>
+                  {i <= activeIndex ? ( // Changed to i <= activeIndex
+                    <FaRegCircleDot className="text-orange-500 mt-1 h-6 w-6" />
+                  ) : (
+                    <FaRegCircleDot className="text-gray-400 mt-1 h-6 w-6" />
                   )}
                 </button>
 
@@ -84,7 +100,7 @@ export default function Timeline({ years }: TimelineProps) {
         {/* Image Container - Fixed height */}
         <div className="w-full md:w-1/2 h-[400px] md:h-[500px]">
           <LazyImage
-            src={disShipBig}
+            src={image ?? ''}
             alt="Timeline Illustration"
             className="rounded-xl object-cover w-full h-full"
           />
@@ -134,7 +150,7 @@ export default function Timeline({ years }: TimelineProps) {
                 >
                   {/* Fixed icon with flex-shrink-0 */}
                   <div className="flex-shrink-0">
-                    <Icon type="checks" className="text-gray-400 w-6 h-6" />
+                    <FaRegCheckCircle className="text-gray-400 w-6 h-6" />
                   </div>
                   <p className="text-gray-700 text-sm leading-relaxed flex-1">{milestone}</p>
                 </div>

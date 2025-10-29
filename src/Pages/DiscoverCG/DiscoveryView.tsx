@@ -1,12 +1,6 @@
 import { ButtonComponent } from '../../Components/ButtonComponent';
 import { Typography } from '../../Components/Typography';
 import CardGrid from '../../Components/discovery/discoveryCard';
-import Icon from '../../assets/SvgImagesAndIcons';
-import disMen from '../../assets/svgImages/cesl_workers.jpg';
-import disGirlBook from '../../assets/LIBRARY PICTURE DONATED.jpg';
-import rope from '../../assets/rope.jpeg';
-import transform from '../../assets/transform.jpeg';
-import leverage from '../../assets/leverage.jpeg';
 import Timeline from '../../Components/discovery/DiscoveryTimeline';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
@@ -26,6 +20,7 @@ export interface DiscoveryViewTypes {
   heroText: string;
   imageName: string;
   missionImageBG: string;
+  timelineImage: string;
   years: {
     year: number;
     milestones: string[];
@@ -50,6 +45,7 @@ const query = `*[_type == "discoveryView"][0]{
   heroText,
   "imageName": imageName.asset->url,
   "missionImageBG": missionImageBG.asset->url,
+  "timelineImage": timelineImage.asset->url,
   years[]{
     year,
     milestones
@@ -196,7 +192,10 @@ const DiscoveryView = () => {
               our resilience. When the global market retreated during the 2008 downturn, we doubled
               up on ingenuity
             </Typography>
-            <Timeline years={discoveryView?.years ?? []} />
+            <Timeline
+              years={discoveryView?.years ?? []}
+              image={discoveryView?.timelineImage ?? ''}
+            />
           </div>
 
           {/* who we are ----------------------------------------------->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */}
@@ -318,7 +317,7 @@ const DiscoveryView = () => {
             <div className="flex flex-col md:flex-row md:items-center gap-10 md:justify-between mt-8">
               <span className="block w-full">
                 <LazyImage
-                  src={rope}
+                  src={discoveryView?.serviceImageOne ?? ''}
                   alt="Century Group"
                   className="w-full h-[250px] md:h-[320px] object-cover rounded-2xl"
                 />
@@ -329,7 +328,7 @@ const DiscoveryView = () => {
 
               <span className="block w-full">
                 <LazyImage
-                  src={transform}
+                  src={discoveryView?.serviceImageTwo ?? ''}
                   alt="Century Group"
                   className="w-full h-[250px] md:h-[320px] object-cover rounded-2xl"
                 />
@@ -340,7 +339,7 @@ const DiscoveryView = () => {
 
               <span className="block w-full">
                 <LazyImage
-                  src={leverage}
+                  src={discoveryView?.serviceImageThree ?? ''}
                   alt="Century Group"
                   className="w-full h-[250px] md:h-[320px] object-cover rounded-2xl"
                 />
