@@ -30,7 +30,7 @@ export interface ServiceSectionProps {
   title?: string;
   subtitle?: string;
   description?: string;
-  images: string[];
+  image: string[];
   companyTitle?: string;
   companyDescription?: string;
   contactLink?: string;

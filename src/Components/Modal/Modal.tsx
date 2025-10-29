@@ -6,8 +6,8 @@ const CustomModal: React.FC<Modalprops> = ({
   isOpen,
   onClose,
   children,
-  width = '70%',
-  height = '90%',
+  width = '',
+  height = '',
 }) => {
   if (!isOpen) return null;
   return (
