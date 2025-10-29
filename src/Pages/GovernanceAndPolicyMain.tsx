@@ -1,38 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { TabBar } from '../Components/Tab';
 import Certificates from '../Components/Certificates';
 import { Typography } from '../Components/Typography';
 import Policy from '../Components/Policy';
 import usePageTitle from '../Components/PageTitle';
 import AnimatedScreen from '../Components/Animations';
-import { useLocation} from 'react-router-dom';
-
 
 const GovernanceAndPolicyMain: React.FC = () => {
   usePageTitle('Century Group | Governance & Policy');
-const location = useLocation();
-  const initialTab = location.state?.activeTab || "policy";
-  const [activeTab, setActiveTab] = useState(initialTab);
-
-  useEffect(() => {
-    const searchParams = new URLSearchParams(location.search);
-    const tab = searchParams.get('tab');
-    if (tab) {
-      setActiveTab(tab);
-    }
-  }, [location.search]);
+  const [activeTab, setActiveTab] = useState('certificate');
 
   const tabs = [
-{ id: 'policy', label: 'Policy' },
-    { id: 'certificate', label: 'Certificate' },
-
+    { id: 'certificate', label: 'Certificates' },
+    { id: 'policy', label: 'Policies' },
   ];
 
   return (
     <AnimatedScreen>
       <div className="max-w-[90%] mx-auto px-4 py-12">
         {/* Heading */}
-        {activeTab === 'policy' && (
+        {activeTab === 'certificate' && (
           <div className="mb-10 grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-6 md:gap-12 lg:gap-24">
             {/* Left side */}
             <div className="text-center lg:text-left">
@@ -54,7 +41,8 @@ const location = useLocation();
             </div>
           </div>
         )}
-        {activeTab === 'certificate' && (
+
+        {activeTab === 'policy' && (
           <div className="mb-10 grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-6 md:gap-12 lg:gap-24">
             {/* Left side */}
             <div className="text-center lg:text-left">
@@ -80,7 +68,7 @@ const location = useLocation();
         {/* Tabs */}
         <TabBar
           tabs={tabs}
-        defaultActiveTab={activeTab}
+          defaultActiveTab="certificate"
           onTabChange={(id) => setActiveTab(id)}
           variant="elevated"
           size="medium"
@@ -90,12 +78,12 @@ const location = useLocation();
         {/* Tab Content */}
         <div className="mt-8">
           {activeTab === 'certificate' && <Certificates />}
+
           {activeTab === 'policy' && <Policy />}
         </div>
       </div>
     </AnimatedScreen>
   );
 };
-
 
 export default GovernanceAndPolicyMain;
