@@ -6,8 +6,7 @@ const CustomModal: React.FC<Modalprops> = ({
   isOpen,
   onClose,
   children,
-  width = "90%",
-  // height = "auto",
+  width = "80%",
 }) => {
   if (!isOpen) return null;
 
@@ -27,7 +26,7 @@ const CustomModal: React.FC<Modalprops> = ({
         className="bg-white rounded-2xl shadow-xl relative w-full overflow-hidden flex flex-col"
         style={{
           maxWidth: width,
-          maxHeight: "90vh", // ✅ prevents modal from exceeding viewport
+          maxHeight: "90vh",
         }}
         onClick={(e) => e.stopPropagation()}
       >
@@ -42,7 +41,7 @@ const CustomModal: React.FC<Modalprops> = ({
         </div>
 
         {/* Scrollable content */}
-        <div className="overflow-y-auto px-4 sm:px-8 pb-6">
+        <div className="overflow-y-auto px-2 sm:px-4 pb-6">
           {children}
         </div>
       </div>

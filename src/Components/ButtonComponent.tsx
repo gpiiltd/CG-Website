@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { ClipLoader } from 'react-spinners';
 import { AnimatePresence, motion } from 'framer-motion';
-import Icon from '../assets/SvgImagesAndIcons';
+import Icon from '../assets/Icons.';
 
 interface ButtonProps {
   text: string;

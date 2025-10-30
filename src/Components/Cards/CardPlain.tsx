@@ -1,5 +1,5 @@
 import React from 'react';
-import Icon from '../../assets/SvgImagesAndIcons';
+import Icon from '../../assets/Icons.';
 import type { CardITOProps } from '../Interfaces';
 
 const CardPlain: React.FC<CardITOProps> = ({

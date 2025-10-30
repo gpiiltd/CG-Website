@@ -1,6 +1,6 @@
 import React from 'react';
 import type { CardITOProps } from '../Interfaces';
-import Icon from '../../assets/SvgImagesAndIcons';
+import Icon from '../../assets/Icons.';
 
 const CardImageTextOpa: React.FC<CardITOProps> = ({
   imageName = '',

@@ -1,5 +1,5 @@
 import React from 'react';
-import Icon from '../../assets/SvgImagesAndIcons';
+import Icon from '../../assets/Icons.';
 import type { CardITOProps } from '../Interfaces';
 
 const CardWithImage: React.FC<CardITOProps> = ({
@@ -17,7 +17,6 @@ const CardWithImage: React.FC<CardITOProps> = ({
   >
     <Icon type={imageName} className="w-full h-full object-cover rounded-xl" />
     <img src={imageSrc} alt="image" />
-
     <div className="w-[70%]  flex flex-col justify-center">
       <h2 className="text-[#11092F] text-lg font-semibold">{title}</h2>
       <p className="text-[#3E3E41] my-1">{description}</p>
