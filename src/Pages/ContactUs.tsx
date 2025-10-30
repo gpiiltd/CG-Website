@@ -13,7 +13,7 @@ import { useEffect, useRef } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { z } from 'zod';
-import discoverBg from '../assets/svgImages/map.svg';
+import discoverBg from '../assets/map.svg';
 import { client } from '../sanityClient';
 import LazyImage from '../Components/LazyImage';
 

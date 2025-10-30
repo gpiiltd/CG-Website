@@ -101,7 +101,13 @@ const Assets = () => {
     if (!factSheet || Object.keys(factSheet).length === 0) {
       return (
         <div className="pb-6 bg-gray-900 text-white min-h-full flex flex-col items-center justify-center">
-          <h2 className="text-3xl font-bold mb-4">{asset.title}</h2>
+          <img
+            src={asset.image}
+            alt={asset.title}
+            className="w-full h-80 object-cover rounded-lg shadow-md"
+          />
+          <h2 className="text-3xl font-bold mb-4 pt-3">{asset.title}</h2>
+
           <p className="text-lg text-gray-300 text-center">
             A fact sheet isn’t available for this vessel at the moment
           </p>
@@ -246,11 +252,11 @@ const Assets = () => {
 
         <Stats />
         {/* modal  */}
-        <CustomModal isOpen={modalType !== null} onClose={closeModal} width="1022px" height="585px">
+        <CustomModal isOpen={modalType !== null} onClose={closeModal} width="1022px">
           {modalType === 'details' && selectedAsset && renderFactSheet(selectedAsset)}
           {modalType === 'tour' && selectedAsset && (
             <AnimatedScreen>
-              <div className="w-full h-full bg-gray-900 flex items-center justify-center">
+              <div className="w-full h-full bg-gray-900 flex items-center justify-center rounded-sm">
                 {selectedAsset.videoUrl !== null ? (
                   <video
                     src={selectedAsset.videoUrl}
@@ -259,11 +265,12 @@ const Assets = () => {
                     className="w-full h-full object-cover rounded-lg"
                   />
                 ) : (
-                  <p className="text-gray-200 text-lg">
-                    {' '}
-                    A tour video isn’t available for this asset yet, but please enjoy exploring its
-                    fact sheet and highlights.
-                  </p>
+                  <div>
+                    <p className="text-gray-200 text-lg">
+
+                      A tour video isn’t available for this asset
+                    </p>
+                  </div>
                 )}
               </div>
             </AnimatedScreen>

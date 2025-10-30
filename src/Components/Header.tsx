@@ -1,31 +1,27 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import logo from '../assets/svgImages/cg-logo.svg';
+import logo from '../assets/cg-logo.svg';
 import { ButtonComponent } from './ButtonComponent';
 import { Typography } from './Typography';
 import { IoMdCloseCircleOutline } from 'react-icons/io';
 import { GiHamburgerMenu } from 'react-icons/gi';
+import LazyImage from './LazyImage';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
-
-const isActive = (path: string) => {
-  const currentPath = location.pathname;
-
-  // Exact match for home page to avoid matching everything
-  if (path === '/') {
-    return currentPath === '/';
-  }
-
-  // For all other routes, check if current path starts with the route
-  return currentPath.startsWith(path);
-};
+  const isActive = (path: string) => {
+    const currentPath = location.pathname;
+    if (path === '/') {
+      return currentPath === '/';
+    }
+    return currentPath.startsWith(path);
+  };
   return (
     <nav className="sticky top-0 z-50 bg-white w-full shadow-sm">
       <div className="px-3 sm:px-4 lg:px-6 max-w-[95%] mx-auto flex items-center justify-between py-3">
         <Link to="/" className="flex cursor-pointer">
-          <img src={logo} alt="logo" />
+          <LazyImage src={logo} alt="logo" />
         </Link>
         <GiHamburgerMenu
           onClick={() => setIsOpen(true)}
@@ -78,7 +74,7 @@ const isActive = (path: string) => {
           <div className="lg:hidden fixed inset-0 bg-white z-50 flex flex-col">
             <div className="flex justify-between  p-4">
               <Link to="/" className="flex">
-                <img src={logo} alt="logo" />
+                <LazyImage src={logo} alt="logo" />
               </Link>
               <IoMdCloseCircleOutline
                 onClick={() => setIsOpen(false)}
@@ -129,8 +125,6 @@ const isActive = (path: string) => {
                 <ButtonComponent text="Contact us" bg_color="#ED6C30" />
               </Link>
             </div>
-
-
           </div>
         )}
       </div>

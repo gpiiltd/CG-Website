@@ -26,11 +26,6 @@ const Policy = () => {
       .catch(console.error);
   }, []);
   return (
-    // <div>
-    //   {policies.map((policy, index) => (
-    //     <PolicyCard key={index} {...policy} />
-    //   ))}
-    // </div>
  <div>
       {policies.map((policy) => (
         <PolicyCard
