@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-// import qualityCert from '../assets/svgImages/cert2.svg';
 import { client } from '../sanityClient';
 import LazyImage from './LazyImage';
 import { Typography } from './Typography';
@@ -11,71 +10,6 @@ interface Certificate {
   list: string[];
 }
 
-// const certificatesData = [
-//   {
-//     title: 'Quality Management System',
-//     image: qualityCert,
-//     description: [
-//       'Century Energy Services Limited has been assessed and certified to meet the requirements of ISO 9001:2015, the world’s most recognized quality management standard.',
-//       'This certification covers a wide range of our operations, including:',
-//     ],
-//     list: [
-//       'Integrated Operation and Maintenance of Onshore, Swamp and Offshore Oil and Gas Production Infrastructure / Facilities.',
-//       'Mooring Installation / Demobilisation of Production Infrastructure (FPSOs, FSOs, MOPUs, Rigs, etc.).',
-//       'Alternative Crude Evacuation Support Services for Stranded Oil and Gas Assets.',
-//       'Marine Support Services.',
-//       'FPSO, FSO, JOT, MOPU Mooring Design / Installation.',
-//       'Offshore Logistics Base Management.',
-//       'Drilling Project Management and Drilling Support Services.',
-//       'Supply Chain Management & Procurement Services.',
-//       'Onshore and Offshore Field Development Planning and Support.',
-//       'Full Field Management/Optimization.',
-//       'Exploration and Production.',
-//     ],
-//   },
-//   {
-//     title: 'Health & Safety Management',
-//     image: qualityCert,
-//     description: [
-//       'At Century Energy Services Limited, safety is not just a requirement—it is our culture. We are proud to be certified to ISO 45001:2018, the international standard for Occupational Health & Safety Management Systems (OHSMS).',
-//       'This certification covers the following activities:',
-//     ],
-//     list: [
-//       'Integrated Operation and Maintenance of Onshore, Swamp and Offshore Oil and Gas Production Infrastructure / Facilities.',
-//       'Mooring Installation / Demobilisation of Production Infrastructure (FPSOs, FSOs, MOPUs, Rigs, etc.).',
-//       'Alternative Crude Evacuation Support Services for Stranded Oil and Gas Assets.',
-//       'Marine Support Services.',
-//       'FPSO, FSO, JOT, MOPU Mooring Design / Installation.',
-//       'Offshore Logistics Base Management.',
-//       'Drilling Project Management and Drilling Support Services.',
-//       'Supply Chain Management & Procurement Services.',
-//       'Onshore and Offshore Field Development Planning and Support.',
-//       'Full Field Management/Optimization.',
-//       'Exploration and Production.',
-//     ],
-//   },
-//   {
-//     title: 'Environmental Management System',
-//     image: qualityCert,
-//     description: [
-//       'At Century Energy Services Limited, we take pride in operating responsibly, with a strong commitment to protecting the environment while delivering energy solutions. Our certification to ISO 14001:2015, the globally recognized standard for Environmental Management Systems, is proof of our dedication to sustainability',
-//       'This certification covers the following activities:',
-//     ],
-//     list: [
-//       'Integrated Operation and Maintenance of Onshore, Swamp and Offshore Oil and Gas Production Infrastructure / Facilities.',
-//       'Mooring Installation / Demobilisation of Production Infrastructure (FPSOs, FSOs, MOPUs, Rigs, etc.).',
-//       'Alternative Crude Evacuation Support Services for Stranded Oil and Gas Assets.',
-//       'Marine Support Services.',
-//       'FPSO, FSO, JOT, MOPU Mooring Design / Installation.',
-//       'Offshore Logistics Base Management.',
-//       'Drilling Project Management and Drilling Support Services.',
-//       'Supply Chain Management & Procurement Services.',
-//       'Onshore and Offshore Field Development Planning and Support.',
-//       'Full Field Management/Optimization.',
-//       'Exploration and Production.',
-//     ],
-//   },
-// ];
 
 const Certificates = () => {
   const [certificatesData, setCertificatesData] = useState<Certificate[]>([]);
