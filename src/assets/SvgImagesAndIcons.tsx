@@ -9,7 +9,6 @@ import teamwork from './svgImages/teamwork.svg';
 import service from './svgImages/service.svg';
 import loading from './svgImages/loading.svg';
 import disImageTag from './svgImages/disImageTag.svg';
-import Arrow from './svgImages/Arrow.svg';
 import dotted from './svgImages/dotted.svg';
 import dull from './svgImages/dull.svg';
 import checks from './svgImages/checks.svg';
@@ -17,6 +16,8 @@ import manshore from './svgImages/manshore.svg';
 import shore from './svgImages/shore.svg';
 import manworker from './svgImages/manworker.svg';
 import womanworker from './svgImages/womanworker.svg';
+import { FaArrowRightLong } from "react-icons/fa6";
+
 
 const Icon: React.FC<Svgprops> = ({ type, className, click }) => {
   const renderIcon = () => {
@@ -39,7 +40,8 @@ const Icon: React.FC<Svgprops> = ({ type, className, click }) => {
       case 'disImageTag':
         return <img src={disImageTag} alt="disImageTag" className={className} />;
       case 'Arrow':
-        return <img src={Arrow} alt="Arrow" className={className} />;
+        return <FaArrowRightLong />
+;
       case 'dotted':
         return <img src={dotted} alt="dotted" className={className} />;
       case 'dull':
