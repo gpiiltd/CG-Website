@@ -1,5 +1,5 @@
 const stats = [
-  { value: '3', label: "FPSO'S" },
+  { value: '3', label: "FPSOS" },
   { value: '1', label: 'FSO' },
   { value: '30%', label: 'Average cost savings for clients' },
   { value: '25%', label: 'CAGR Projected growth' },

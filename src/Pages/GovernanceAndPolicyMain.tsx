@@ -11,8 +11,8 @@ const GovernanceAndPolicyMain: React.FC = () => {
   const [activeTab, setActiveTab] = useState('certificate');
 
   const tabs = [
-    { id: 'certificate', label: 'Certificate' },
-    { id: 'policy', label: 'Policy' },
+    { id: 'certificate', label: 'Certificates' },
+    { id: 'policy', label: 'Policies' },
   ];
 
   return (

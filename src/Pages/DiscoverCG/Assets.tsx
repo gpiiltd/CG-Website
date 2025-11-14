@@ -1,20 +1,84 @@
-import { useState, type JSX } from 'react';
+import { useEffect, useState, type JSX } from 'react';
 import { Typography } from '../../Components/Typography';
-import ship from '../../assets/svgImages/bg_discovery.svg';
-import { assets, type Asset } from './data';
+import { type Asset } from './data';
 import CustomModal from '../../Components/Modal/Modal';
 import { IoPlayOutline } from 'react-icons/io5';
 import AnimatedScreen from '../../Components/Animations';
 import usePageTitle from '../../Components/PageTitle';
 import LazyImage from '../../Components/LazyImage';
+import Stats from '../Home/Stats';
+import { client } from '../../sanityClient';
 
 type ModalType = 'details' | 'tour' | null;
+
+type SanityAsset = {
+  _id: string;
+  title: string;
+  description: string;
+  image: string;
+  videoUrl?: string;
+  factSheet?: { label: string; value: string }[];
+};
 
 const Assets = () => {
   usePageTitle('Century Group | Assets');
   const [selectedAsset, setSelectedAsset] = useState<Asset | null>(null);
   const [modalType, setModalType] = useState<ModalType>(null);
+  const [expandedStates, setExpandedStates] = useState<Record<number, boolean>>({});
+  const [allAssets, setAllAssets] = useState<Asset[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [assetBgImage, setAssetBgImage] = useState<string>('');
 
+  useEffect(() => {
+    client
+      .fetch(
+        `*[_type == "assetHeroSection"][0]{
+        "image": image.asset->url
+      }`
+      )
+      .then((data) => setAssetBgImage(data?.image))
+      .catch(console.error);
+  }, []);
+
+  useEffect(() => {
+    client
+      .fetch(
+        `*[_type == "asset"]{
+        _id,
+        title,
+        description,
+        "image": image.asset->url,
+ "videoUrl": select(
+    defined(videoUrl.asset->url) => videoUrl.asset->url,
+    null
+  ),        factSheet[]{
+          label,
+          value
+        }
+      }`
+      )
+      .then((data: SanityAsset[]) => {
+        const formatted = data.map((item, index) => ({
+          id: index + 1,
+          title: item.title,
+          description: item.description,
+          image: item.image,
+          videoUrl: item.videoUrl || null,
+          factSheet: Object.fromEntries(item.factSheet?.map((fs) => [fs.label, fs.value]) || []),
+          buttons: ['View Asset Details', 'Watch The Tour'],
+        }));
+        setAllAssets(formatted);
+      })
+      .catch(console.error)
+      .finally(() => setLoading(false));
+  }, []);
+
+  const toggleExpanded = (assetId: number) => {
+    setExpandedStates((prev) => ({
+      ...prev,
+      [assetId]: !prev[assetId],
+    }));
+  };
   const handleViewDetails = (asset: Asset) => {
     setSelectedAsset(asset);
     setModalType('details');
@@ -30,12 +94,20 @@ const Assets = () => {
     setModalType(null);
   };
 
+  console.log('Selected asset:', JSON.stringify(selectedAsset, null, 2));
+
   const renderFactSheet = (asset: Asset): JSX.Element => {
     const { factSheet } = asset;
     if (!factSheet || Object.keys(factSheet).length === 0) {
       return (
         <div className="pb-6 bg-gray-900 text-white min-h-full flex flex-col items-center justify-center">
-          <h2 className="text-3xl font-bold mb-4">{asset.title}</h2>
+          <img
+            src={asset.image}
+            alt={asset.title}
+            className="w-full h-80 object-cover rounded-lg shadow-md"
+          />
+          <h2 className="text-3xl font-bold mb-4 pt-3">{asset.title}</h2>
+
           <p className="text-lg text-gray-300 text-center">
             A fact sheet isn’t available for this vessel at the moment
           </p>
@@ -78,7 +150,7 @@ const Assets = () => {
         {/* Hero Section */}
         <div
           className="relative bg-cover bg-center py-20 px-6 text-center flex flex-col justify-center items-center min-h-[400px]"
-          style={{ backgroundImage: `url(${ship})` }}
+          style={{ backgroundImage: `url(${assetBgImage})` }}
         >
           {/* Overlay */}
           <div className="absolute inset-0 bg-black/70"></div>
@@ -95,102 +167,110 @@ const Assets = () => {
             </Typography>
           </div>
         </div>
+        {loading ? (
+          <div className="text-center text-gray-600 py-10">Loading assets...</div>
+        ) : allAssets.length === 0 ? (
+          <div className="text-center text-gray-600 py-10">No assets found.</div>
+        ) : (
+          <div className="max-w-7xl mx-auto px-4 py-16">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {allAssets.map((asset) => {
+                const isExpanded = expandedStates[asset.id] || false;
 
-        <div className="max-w-7xl mx-auto px-4 py-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-            {assets.map((asset) => (
-              <div key={asset.id} className="relative">
-                <div className="bg-white rounded-lg overflow-hidden ">
-                  <div className="p-6 pb-8">
-                    <h2 className="text-2xl font-bold text-gray-900 mb-4">{asset.title}</h2>
-                    <p className="text-gray-600 leading-relaxed mb-6">{asset.description}</p>
-                  </div>
+                return (
+                  <div
+                    key={asset.id}
+                    className="bg-white rounded-lg overflow-hidden flex flex-col h-full relative"
+                  >
+                    {/* Text Section */}
+                    <div className="p-1 pb-6 flex-1 relative">
+                      <h2 className="text-2xl font-bold text-gray-900 mb-4">{asset.title}</h2>
 
-                  <div className="relative">
-
-                    <LazyImage
-                      src={asset.image}
-                      alt={asset.title}
-                      className="w-full h-64 object-cover"
-                    />
-
-                    <div className="absolute bottom-4 left-4 flex gap-3">
-                      <button
-                        onClick={() => handleViewDetails(asset)}
-                        className="cursor-pointer px-4 py-2 bg-transparent border border-white text-white text-sm rounded-full hover:bg-white hover:text-gray-900 transition-colors hover:duration-600"
+                      <p
+                        className={`text-gray-600 leading-relaxed mb-2 transition-all duration-300 ${
+                          isExpanded ? 'line-clamp-none' : 'line-clamp-3'
+                        }`}
                       >
-                        View Asset Details
-                      </button>
-                      <button
-                        onClick={() => handleWatchTour(asset)}
-                        className="cursor-pointer px-4 py-2 bg-transparent border border-white text-white text-sm rounded-full hover:bg-white hover:text-gray-900 transition-colors flex items-center gap-2 hover:duration-600"
-                      >
-                        Watch The Tour
-                        <IoPlayOutline />
-                      </button>
+                        {asset.description}
+                      </p>
+
+                      {asset.description.length > 120 && (
+                        <button
+                          onClick={() => toggleExpanded(asset.id)}
+                          className="cursor-pointer text-sm font-medium text-orange-400 hover:underline focus:outline-none"
+                        >
+                          {isExpanded ? 'Show less' : 'Read more'}
+                        </button>
+                      )}
+
+                      {/* Expanded Overlay */}
+                      {isExpanded && (
+                        <div className="absolute inset-0 bg-white z-20 p-1 overflow-y-auto">
+                          <h2 className="text-2xl font-bold text-gray-900 mb-4">{asset.title}</h2>
+                          <p className="text-gray-600 leading-relaxed mb-4">{asset.description}</p>
+                          <button
+                            onClick={() => toggleExpanded(asset.id)}
+                            className="cursor-pointer text-sm font-medium text-orange-400 hover:underline focus:outline-none"
+                          >
+                            Show less
+                          </button>
+                        </div>
+                      )}
                     </div>
-                    {/* )} */}
+
+                    {/* Image Section */}
+                    <div className="relative">
+                      <LazyImage
+                        src={asset.image}
+                        alt={asset.title}
+                        className="w-full h-64 object-cover"
+                      />
+
+                      <div className="absolute bottom-4 left-4 flex gap-3">
+                        <button
+                          onClick={() => handleViewDetails(asset)}
+                          className="cursor-pointer px-4 py-2 bg-transparent border border-white text-white text-sm rounded-full hover:bg-white hover:text-gray-900 transition-colors duration-300"
+                        >
+                          View Asset Details
+                        </button>
+
+                        <button
+                          onClick={() => handleWatchTour(asset)}
+                          className="cursor-pointer px-4 py-2 bg-transparent border border-white text-white text-sm rounded-full hover:bg-white hover:text-gray-900 transition-colors duration-300 flex items-center gap-2"
+                        >
+                          Watch The Tour
+                          <IoPlayOutline />
+                        </button>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div className="max-w-[85%] mx-auto px-4 relative z-10 mt-12">
-          <div className="bg-[#0F082B] rounded-2xl px-4 py-6 md:px-6 md:py-8 lg:px-8 lg:py-12 transform -translate-y-2 md:-translate-y-4 lg:-translate-y-6">
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8 text-white text-center">
-              <div className="lg:border-r lg:border-gray-600 pb-4 lg:pb-0">
-                <div className="text-2xl md:text-3xl lg:text-4xl xl:text-6xl font-bold mb-1 md:mb-2">
-                  3
-                </div>
-                <div className="text-xs md:text-sm lg:text-base opacity-90">FPSO'S</div>
-              </div>
-              <div className="lg:border-r lg:border-gray-600 pb-4 lg:pb-0">
-                <div className="text-2xl md:text-3xl lg:text-4xl xl:text-6xl font-bold mb-1 md:mb-2">
-                  1
-                </div>
-                <div className="text-xs md:text-sm lg:text-base opacity-90">FSO</div>
-              </div>
-              <div className="lg:border-r lg:border-gray-600 pb-4 lg:pb-0">
-                <div className="text-2xl md:text-3xl lg:text-4xl xl:text-6xl font-bold mb-1 md:mb-2">
-                  30%
-                </div>
-                <div className="text-xs md:text-sm lg:text-base opacity-90 px-2">
-                  Average cost savings for clients
-                </div>
-              </div>
-              <div>
-                <div className="text-2xl md:text-3xl lg:text-4xl xl:text-6xl font-bold mb-1 md:mb-2">
-                  25%
-                </div>
-                <div className="text-xs md:text-sm lg:text-base opacity-90">
-                  CAGR Projected growth
-                </div>
-              </div>
+                );
+              })}
             </div>
           </div>
-        </div>
+        )}
 
+        <Stats />
         {/* modal  */}
-        <CustomModal isOpen={modalType !== null} onClose={closeModal} width="1022px" height="585px">
+        <CustomModal isOpen={modalType !== null} onClose={closeModal} width="1022px">
           {modalType === 'details' && selectedAsset && renderFactSheet(selectedAsset)}
           {modalType === 'tour' && selectedAsset && (
             <AnimatedScreen>
-              <div className="w-full h-full bg-gray-900 flex items-center justify-center">
-                {selectedAsset.videoUrl ? (
-                  <iframe
+              <div className="w-full h-full bg-gray-900 flex items-center justify-center rounded-sm">
+                {selectedAsset.videoUrl !== null ? (
+                  <video
                     src={selectedAsset.videoUrl}
-                    title={`${selectedAsset.title} Tour`}
-                    className="w-full h-full object-cover"
-                    frameBorder="0"
-                    allowFullScreen
+                    controls
+                    autoPlay
+                    className="w-full h-full object-cover rounded-lg"
                   />
                 ) : (
-                  <p className="text-gray-200 text-lg">
-                    {' '}
-                    A tour video isn’t available for this asset yet, but please enjoy exploring its
-                    fact sheet and highlights.
-                  </p>
+                  <div>
+                    <p className="text-gray-200 text-lg">
+
+                      A tour video isn’t available for this asset
+                    </p>
+                  </div>
                 )}
               </div>
             </AnimatedScreen>

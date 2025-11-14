@@ -1,5 +1,4 @@
-import React from 'react';
-import man from '../assets/svgImages/man_standing.svg';
+import React, { useState } from 'react';
 import { ButtonComponent } from '../Components/ButtonComponent';
 import { Typography } from '../Components/Typography';
 import AnimatedScreen from '../Components/Animations';
@@ -14,7 +13,9 @@ import { useEffect, useRef } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { z } from 'zod';
-import discoverBg from '../assets/svgImages/map.svg';
+import discoverBg from '../assets/map.svg';
+import { client } from '../sanityClient';
+import LazyImage from '../Components/LazyImage';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -34,6 +35,7 @@ type ContactFormData = z.infer<typeof contactSchema>;
 const ContactUs: React.FC = () => {
   const sectionRef = useRef(null);
   const [loading, setLoading] = React.useState(false);
+  const [contactImage, setContactImage] = useState<string>('');
   const methods = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
     mode: 'onBlur', // Validate when an input loses focus
@@ -62,6 +64,17 @@ const ContactUs: React.FC = () => {
         }
       );
     }
+  }, []);
+
+  useEffect(() => {
+    client
+      .fetch(
+        `*[_type == "contactUs"][0]{
+        "image": image.asset->url
+      }`
+      )
+      .then((data) => setContactImage(data?.image))
+      .catch(console.error);
   }, []);
 
   // Fix: Move the onSubmit handler inside the component and ensure it returns JSX
@@ -111,9 +124,9 @@ const ContactUs: React.FC = () => {
         <div className="max-w-6xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           {/* Left image */}
           <div>
-            <img
-              src={man}
-              alt="Oil rig worker"
+            <LazyImage
+              src={contactImage}
+              alt="image"
               className="rounded-lg shadow-lg object-cover w-full  h-[600px]"
             />
           </div>

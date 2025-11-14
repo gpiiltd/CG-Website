@@ -20,7 +20,7 @@ const HeroCards = () => {
   }, []);
 
 return (
-  <div className="relative w-full max-w-[400px] aspect-[4/3] mx-auto">
+  <div className="relative w-full max-w-[250px] aspect-[4/3] mx-auto">
     {cards.map((card, index) => {
       const isActive = index === activeIndex;
       return (

@@ -1,12 +1,27 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaLinkedinIn, FaFacebookF, FaInstagram, FaYoutube } from 'react-icons/fa';
 import { Typography } from './Typography';
 import { ButtonComponent } from './ButtonComponent';
-import footerImage from '../assets/footer_image.jpg';
 import { FaXTwitter } from 'react-icons/fa6';
 import routeNames from './Navigation/RouteNames';
+import { useEffect, useState } from 'react';
+import { client } from '../sanityClient';
 
 const Footer = () => {
+  const [footerImage, setFooterImage] = useState<string>('');
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    client
+      .fetch(
+        `*[_type == "footerCTA"][0]{
+        "image": image.asset->url
+      }`
+      )
+      .then((data) => setFooterImage(data?.image))
+      .catch(console.error);
+  }, []);
+
   return (
     <>
       <div
@@ -101,7 +116,7 @@ const Footer = () => {
                   <li>
                     <Link to="/services/1" className="hover:text-white">
                       <Typography size="md" weight="light">
-                        Offshore infrastructure
+                        Deployment, Operation and maintenance of Offshore infrastructure
                       </Typography>
                     </Link>
                   </li>
@@ -136,34 +151,40 @@ const Footer = () => {
                 </Typography>
                 <ul className="space-y-3">
                   <li>
-                    <Link
-                      to={routeNames.governanceLicencesAndCertifications}
-                      className="hover:text-white"
+                    <div
+                      onClick={() =>
+                        navigate(routeNames.governanceLicencesAndCertifications, { state: { activeTab: 'policy' } })
+                      }
+                      className="hover:text-white cursor-pointer"
                     >
                       <Typography size="md" weight="light">
                         Corporate Governance
                       </Typography>
-                    </Link>
+                    </div>
                   </li>
                   <li>
-                    <Link
-                      to={routeNames.governanceLicencesAndCertifications}
-                      className="hover:text-white"
+                     <div
+                      onClick={() =>
+                        navigate(routeNames.governanceLicencesAndCertifications, { state: { activeTab: 'certificate' } })
+                      }
+                      className="hover:text-white cursor-pointer"
                     >
                       <Typography size="md" weight="light">
                         Health & Safety
                       </Typography>
-                    </Link>
+                    </div>
                   </li>
                   <li>
-                    <Link
-                      to={routeNames.governanceLicencesAndCertifications}
-                      className="hover:text-white"
+                     <div
+                      onClick={() =>
+                        navigate(routeNames.governanceLicencesAndCertifications, { state: { activeTab: 'policy' } })
+                      }
+                      className="hover:text-white cursor-pointer"
                     >
                       <Typography size="md" weight="light">
                         Whistle Blowing
                       </Typography>
-                    </Link>
+                    </div>
                   </li>
                   <li>
                     <Link
@@ -175,20 +196,6 @@ const Footer = () => {
                       </Typography>
                     </Link>
                   </li>
-                  {/* <li>
-                    <Link to="" className="hover:text-white">
-                      <Typography size="md" weight="light">
-                        Terms & Conditions
-                      </Typography>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="" className="hover:text-white">
-                      <Typography size="md" weight="light">
-                        Privacy Policy
-                      </Typography>
-                    </Link>
-                  </li> */}
                 </ul>
               </div>
               {/* Social Icons */}
