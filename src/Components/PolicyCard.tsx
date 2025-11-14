@@ -5,33 +5,42 @@ interface PolicyCardProps {
   id: string;
   title: string;
   description: string;
-  image: string;
+  coverImage: string;
+  pdfDocument: string;
 }
 
-const PolicyCard: React.FC<PolicyCardProps> = ({ id, title, description, image }) => {
+const PolicyCard: React.FC<PolicyCardProps> = ({
+  id,
+  title,
+  description,
+  coverImage,
+  pdfDocument
+}) => {
   const handleView = () => {
-    window.open(image, '_blank');
+    // Open PDF in new tab for viewing
+    window.open(pdfDocument, '_blank');
   };
 
-const handleDownload = async () => {
-  try {
-    const response = await fetch(image, { mode: 'cors' });
-    const blob = await response.blob();
-    const url = URL.createObjectURL(blob);
+  const handleDownload = async () => {
+    try {
+      const response = await fetch(pdfDocument);
+      const blob = await response.blob();
+      const url = URL.createObjectURL(blob);
 
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `${title.replace(/\s+/g, '_')}_${id}.png`;
-    document.body.appendChild(link);
-    link.click();
-    // Cleanup
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
-  } catch (error) {
-    console.error('Error downloading image:', error);
-  }
-};
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `${title.replace(/\s+/g, '_')}_${id}.pdf`;
+      document.body.appendChild(link);
+      link.click();
 
+      // Cleanup
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error('Error downloading PDF:', error);
+      alert('Failed to download the document. Please try again.');
+    }
+  };
 
   return (
     <div className="bg-[#FFF8F5] p-6 rounded-xl mb-8">
@@ -57,20 +66,27 @@ const handleDownload = async () => {
           </Typography>
 
           <div className="flex gap-4 mt-6">
-            <ButtonComponent text="View document" bg_color="#ED6C30" onClick={handleView} />
+            <ButtonComponent
+              text="View document"
+              bg_color="#ED6C30"
+              onClick={handleView}
+            />
             <ButtonComponent
               text="Download"
               bg_color="#642D14"
               variant="outline"
               onClick={handleDownload}
-
             />
           </div>
         </div>
 
-        {/* Image */}
+        {/* Cover Image */}
         <div className="w-full flex justify-center items-center xl:justify-start">
-          <img src={image} alt={title} className="rounded-lg w-full h-[405px]" />
+          <img
+            src={coverImage}
+            alt={`${title} cover`}
+            className="rounded-lg w-full h-[405px] object-cover"
+          />
         </div>
       </div>
     </div>
