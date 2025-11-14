@@ -29,7 +29,6 @@ const Certificates = () => {
         }`
       )
       .then((data) => {
-        console.log('Fetched certificates:', data);
         setCertificatesData(data);
         setLoading(false);
       })

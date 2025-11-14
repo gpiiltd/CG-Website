@@ -3,11 +3,11 @@ import PolicyCard from './PolicyCard';
 import { client } from '../sanityClient';
 
 interface Policy {
- _id: string;
+  _id: string;
   title: string;
   description: string;
-  image: string;
-
+  coverImage: string;
+  pdfDocument: string;
 }
 const Policy = () => {
   const [policies, setPolicies] = useState<Policy[]>([]);
@@ -19,21 +19,24 @@ const Policy = () => {
           _id,
           title,
           description,
-          "image": image.asset->url
+          "coverImage": coverImage.asset->url,
+          "pdfDocument": pdfDocument.asset->url
         }`
       )
       .then(setPolicies)
       .catch(console.error);
   }, []);
+
   return (
- <div>
+    <div>
       {policies.map((policy) => (
         <PolicyCard
           key={policy._id}
           id={policy._id}
           title={policy.title}
           description={policy.description}
-          image={policy.image}
+          coverImage={policy.coverImage}
+          pdfDocument={policy.pdfDocument}
         />
       ))}
     </div>
