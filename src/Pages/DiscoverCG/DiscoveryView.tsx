@@ -93,7 +93,6 @@ const DiscoveryView = () => {
     fetchHeroSection();
     window.scrollTo(0, 0);
   }, []);
-  console.log('DV', JSON.stringify(discoveryView,null,2));
   const portableTextComponents: PortableTextComponents = {
     block: {
       normal: ({ children }: PortableTextComponentProps<PortableTextBlock>) => {
