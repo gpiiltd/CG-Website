@@ -15,18 +15,8 @@ export const LazyImage: React.FC<LazyImageProps> = ({ src, alt, className }) => 
           <span className="text-gray-400 text-sm">Loading...</span>
         </div>
       )}
-
-      {/* <img
-        src={src}
-        alt={alt}
-        className={`w-full h-full object-cover rounded transition-opacity duration-500 ${
-          loaded ? "opacity-100" : "opacity-0"
-        }`}
-        onLoad={() => setLoaded(true)}
-        loading="lazy"
-      /> */}
    <img
-      src={src}
+      src={src || 'default_image'}
       alt={alt}
       className={`w-full h-full object-cover transition-opacity duration-500 ${
         loaded ? "opacity-100" : "opacity-0"
